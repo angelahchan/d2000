@@ -5,9 +5,17 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import HomeScreen from '../screens/HomeScreen';
+import PaymentScreen from '../screens/PaymentScreen';
+import AccountScreen from '../screens/AccountScreen';
+import PlannerScreen from '../screens/PlannerScreen';
+import {
+    BottomTabParamList,
+    HomeParamList,
+    PaymentParamList,
+    PlannerParamList,
+    AccountParamList
+} from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -16,18 +24,32 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Home"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="Home"
+        component={HomeNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="Payment"
+        component={PaymentNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Planner"
+        component={PlannerNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Account"
+        component={AccountNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
@@ -44,30 +66,58 @@ function TabBarIcon(props: { name: string; color: string }) {
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const HomeStack = createStackNavigator<HomeParamList>();
 
-function TabOneNavigator() {
+function HomeNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{ headerTitle: 'Home' }}
       />
-    </TabOneStack.Navigator>
+    </HomeStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const PaymentStack = createStackNavigator<PaymentParamList>();
 
-function TabTwoNavigator() {
+function PaymentNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+    <PaymentStack.Navigator>
+      <PaymentStack.Screen
+        name="PaymentScreen"
+        component={PaymentScreen}
+        options={{ headerTitle: 'Payment' }}
       />
-    </TabTwoStack.Navigator>
+    </PaymentStack.Navigator>
   );
+}
+
+const AccountStack = createStackNavigator<AccountParamList>();
+
+function AccountNavigator() {
+    return (
+        <AccountStack.Navigator>
+            <AccountStack.Screen
+                name="AccountScreen"
+                component={AccountScreen}
+                options={{ headerTitle: 'Account' }}
+            />
+        </AccountStack.Navigator>
+    );
+}
+
+const PlannerStack = createStackNavigator<PlannerParamList>();
+
+function PlannerNavigator() {
+    return (
+        <PlannerStack.Navigator>
+            <PlannerStack.Screen
+                name="PlannerScreen"
+                component={PlannerScreen}
+                options={{ headerTitle: 'Planner' }}
+            />
+        </PlannerStack.Navigator>
+    );
 }
