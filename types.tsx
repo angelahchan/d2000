@@ -6,6 +6,8 @@ export type RootStackParamList = {
 export type BottomTabParamList = {
   Home: undefined;
   Payment: undefined;
+  Planner: undefined;
+  Account: undefined;
 };
 
 export type HomeParamList = {
@@ -21,5 +23,5 @@ export type AccountParamList = {
 };
 
 export type PlannerParamList = {
-    AccountScreen: undefined;
+  PlannerScreen: undefined;
 };
