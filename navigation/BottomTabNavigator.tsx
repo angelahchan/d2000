@@ -9,6 +9,8 @@ import HomeScreen from '../screens/HomeScreen';
 import PaymentScreen from '../screens/PaymentScreen';
 import AccountScreen from '../screens/AccountScreen';
 import PlannerScreen from '../screens/PlannerScreen';
+import AddCardScreen from '../screens/AddCardScreen';
+import PaymentCompleteScreen from '../screens/PaymentCompleteScreen';
 import {
     BottomTabParamList,
     HomeParamList,
@@ -89,6 +91,17 @@ function PaymentNavigator() {
         name="PaymentScreen"
         component={PaymentScreen}
         options={{ headerTitle: 'Payment' }}
+
+      />
+      <PaymentStack.Screen
+        name="AddCardScreen"
+        component={AddCardScreen}
+        options={{ headerTitle: 'Add Payment' }}
+      />
+      <PaymentStack.Screen
+        name="PaymentCompleteScreen"
+        component={PaymentCompleteScreen}
+        options={{ headerTitle: 'Payment Complete' }}
       />
     </PaymentStack.Navigator>
   );

@@ -1,17 +1,94 @@
 import * as React from 'react';
-import { StyleSheet, Image, ScrollView,Dimensions, TouchableOpacity, Modal, Button} from 'react-native';
+import { StyleSheet, Image, ScrollView,Dimensions, TouchableOpacity, Modal, Button
+} from 'react-native';
 import * as PSTATE from '../constants/PaymentState';
 import * as COL from '../constants/MainColors';
 import { Ionicons } from '@expo/vector-icons';
 import { Text, View} from '../components/Themed';
 import { TouchableHighlight } from 'react-native-gesture-handler';
+import GlobalContext from '../context/GlobalContext';
+
 export default function PaymentMiddle(props:any){
     let  paymentStat = props.paymentStat;
     let setCanPay = props.setCanPay;
+    const [global, setGlobal] = React.useContext(GlobalContext);
+    
+    /*
+    Change card to selected item
+    and change state to ready
+    */
+    function handleToggleComplete(id:any) {
+        let selectedItem;
+        const newList = global.cards.map((item) => {
+            if (item.cardNumber === id) {
+              const updatedItem = {
+                ...item,
+                selected: true,
+              };
+              selectedItem = updatedItem;
+              return updatedItem;
+            }
+            else {
+                const updatedItem = {
+                    ...item,
+                    selected: false,
+                  };
+                return updatedItem;
+            }
+          });
+       
+          setGlobal({
+            ...global,
+            cards: newList,
+            selectedCard: selectedItem 
+          });
+        setCanPay(PSTATE.PAYMENT_STATUS.READY)
+    }
+
     //payment form to add a new card
     const [modalVisible, setModalVisible] = React.useState(false);
-    return (
-    <View style={styles.scrollbox} >
+    if (paymentStat == PSTATE.PAYMENT_STATUS.NOT_READY || paymentStat == PSTATE.PAYMENT_STATUS.READY){
+        return (
+        <View style={styles.scrollbox} > 
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}
+            >
+                <View style={styles.cardContainer}>
+                {
+                    global.cards.map((card, index) => { // cards.map(card    for card in cards:
+                        return (
+                        <TouchableOpacity style={styles.paymentBox} activeOpacity={0.5} key={index}
+                        onPress = { () =>  handleToggleComplete(card.cardNumber) }>
+                            <Text>{card.cardNumber}</Text>
+                            <Text>{card.type}</Text>
+                            <Text>{card.selected.toString()}</Text>
+                        </TouchableOpacity>
+                        );
+                    })
+                }
+                    <TouchableOpacity style={styles.paymentBox} onPress={() => props.navigation.push('AddCardScreen')}
+                    >
+                        <Text>Add a Payment Method</Text>
+                        <AddIcon name="ios-add" color="grey" />
+                    </TouchableOpacity>
+
+                </View>
+                
+            </ScrollView>
+        </View>
+        )
+    }
+
+    else if (paymentStat == PSTATE.PAYMENT_STATUS.FINISHED){
+        return (<></>)
+    }
+    else {
+        return ( <TouchableOpacity style={styles.paymentBox}>
+            <Text>{global.selectedCard.cardNumber}</Text>
+            <Text>{global.selectedCard.type}</Text>
+        </TouchableOpacity>)
+    }
+}
+/*
             <Modal
                 animationType="slide"
                 transparent={true}
@@ -29,23 +106,8 @@ export default function PaymentMiddle(props:any){
                     Hellooooo
                 </Text>
                 </View>
-            </Modal>  
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}
-          >
-            <View style={styles.cardContainer}>
-                <TouchableOpacity style={styles.paymentBox} onPress={() => {
-                setModalVisible(!modalVisible);}
-                }>
-                    <Text>Add a Payment Method</Text>
-                    <AddIcon name="ios-add" color="grey" />
-                </TouchableOpacity>
-
-            </View>
-            
-        </ScrollView>
-    </View>
-    )
-}
+            </Modal> 
+    */
 function AddIcon(props: { name: string; color: string }) {
     return <Ionicons size={50}  {...props} />;
   }
@@ -105,6 +167,17 @@ const styles = StyleSheet.create({
         padding:10,
         position: 'absolute',
         right:5
-    }
+    },
+    carditem: {
+        padding: 5,
+        margin: 15,
+        backgroundColor: '#eeeeee',
+        borderColor: '#999999',
+        borderWidth: 1,
+        width: '50%',
+        minWidth: 150,
+        height: 50,
+      }
+    
 
   });

@@ -13,7 +13,7 @@ export default function PaymentTop(props:any){
     switch (paymentStat){
         case  PSTATE.PAYMENT_STATUS.NOT_READY:
             return(
-                <TouchableOpacity style={styles.paymentTop} onPress={() => setCanPay(PSTATE.PAYMENT_STATUS.READY)}>
+                <TouchableOpacity style={styles.paymentTop} >
                         <Text style={styles.title}  textBreakStrategy={'simple'}>Not Ready To Pay</Text>
                         <Image
                             style={styles.iconContainer}
@@ -32,9 +32,12 @@ export default function PaymentTop(props:any){
                     <Text style={styles.description}>Tap on here to start your trip.</Text>
                 </TouchableOpacity>
             );
+        /* on tap off return to payment complete  */
         case PSTATE.PAYMENT_STATUS.IN_PROGRESS:
             return (
-                <TouchableOpacity style = {styles.paymentTop} onPress={() => setCanPay(PSTATE.PAYMENT_STATUS.FINISHED)}>
+                <TouchableOpacity style = {styles.paymentTop} onPress={() => {
+                setCanPay(PSTATE.PAYMENT_STATUS.FINISHED)
+                props.navigation.navigate('PaymentCompleteScreen')}}>
                 <Text style={styles.title }>In Progress</Text>
                 <Image
                         style={styles.iconContainer}

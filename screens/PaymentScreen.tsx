@@ -7,15 +7,17 @@ import PaymentMiddle from '../components/PaymentMiddle'
 
 import { Text, View} from '../components/Themed';
 //      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-export default function PaymentScreen() {
+export default function PaymentScreen(props:any) {
   const [canPay, setCanPay] = React.useState(PSTATE.PAYMENT_STATUS.NOT_READY);
   const [savedCards, setSavedCards] = React.useState();
   return (
     <View style={styles.container}>
       <PaymentTop paymentStat={canPay} setCanPay={setCanPay}
-      savedCards={savedCards} setSavedCards={setSavedCards} />
+      savedCards={savedCards} setSavedCards={setSavedCards}
+      navigation={props.navigation}  />
       <PaymentMiddle paymentStat={canPay} setCanPay={setCanPay}
-       savedCards={savedCards} setSavedCards={setSavedCards} />
+       savedCards={savedCards} setSavedCards={setSavedCards}
+       navigation={props.navigation} />
 
     </View>
   );
