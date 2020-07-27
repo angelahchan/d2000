@@ -27,20 +27,22 @@ export default function AddCardScreen(props:any) {
 
   return (
     <View style={styles.container}>
-    <Text style={styles.title}>Create New Card</Text>
-    <Text>Name:</Text>
-    <TextInput
-      style={styles.textInput}
-      value={type}
-      onChangeText={text => setType(text)}
-    /> 
-    <Text>Card Number:</Text>
-    <TextInput
-      style={styles.textInput}
-      value={cardNumber}
-      onChangeText={text => setCardNumber(text)}
-    /> 
-    <Button title="Add Card" onPress={submitCardDetails} />
+      <Text style={styles.title}>Create New Card</Text>
+      <Text>Card Type:</Text>
+      <TextInput
+        style={styles.textInput}
+        value={type}
+        onChangeText={text => setType(text)}
+      /> 
+      <Text>Card Number:</Text>
+      <TextInput
+        style={styles.textInput}
+        value={cardNumber}
+        onChangeText={text => setCardNumber(text)}
+      /> 
+      <View style={styles.button}>
+      <Button  title="Add Card" onPress={submitCardDetails} />
+      </View>
   </View>
 
   );
@@ -55,6 +57,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    width:'80%',
+    textAlign:'center',
+    margin:30
+    
   },
   separator: {
     marginVertical: 30,
@@ -64,6 +70,12 @@ const styles = StyleSheet.create({
   textInput: {
     borderColor: 'gray',
     borderWidth: 1,
+    width:'50%',
+    marginTop:5,
+    marginBottom:25
+  },
+  button:{
+    marginVertical:10
   }
 
 });

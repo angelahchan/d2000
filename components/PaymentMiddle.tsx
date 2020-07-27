@@ -9,9 +9,9 @@ import { TouchableHighlight } from 'react-native-gesture-handler';
 import GlobalContext from '../context/GlobalContext';
 
 export default function PaymentMiddle(props:any){
-    let  paymentStat = props.paymentStat;
     let setCanPay = props.setCanPay;
     const [global, setGlobal] = React.useContext(GlobalContext);
+    let  paymentStat = global.tripState
     
     /*
     Change card to selected item
@@ -43,7 +43,6 @@ export default function PaymentMiddle(props:any){
             selectedCard: selectedItem,
             tripState:PSTATE.PAYMENT_STATUS.READY 
           });
-        setCanPay(PSTATE.PAYMENT_STATUS.READY)
     }
 
     //payment form to add a new card
