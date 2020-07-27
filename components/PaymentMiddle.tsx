@@ -40,7 +40,8 @@ export default function PaymentMiddle(props:any){
           setGlobal({
             ...global,
             cards: newList,
-            selectedCard: selectedItem 
+            selectedCard: selectedItem,
+            tripState:PSTATE.PAYMENT_STATUS.READY 
           });
         setCanPay(PSTATE.PAYMENT_STATUS.READY)
     }

@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AsyncStorage } from 'react-native';
-
+import * as PSTATE from './constants/PaymentState';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
@@ -13,7 +13,8 @@ export default function App() {
   const colorScheme = useColorScheme();
   const [global, setGlobal] = React.useState({
     cards: [],
-    selectedCard:{}
+    selectedCard:{},
+    tripState:PSTATE.PAYMENT_STATUS.NOT_READY
   });
 
   React.useEffect(() => { // Only do this once

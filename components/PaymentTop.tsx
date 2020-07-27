@@ -5,9 +5,11 @@ import * as COL from '../constants/MainColors';
 import { Ionicons } from '@expo/vector-icons';
 let main_col = COL.COLS.MAIN_COL;
 let backgroundCol = COL.COLS.BACKGROUND_COL;
+import GlobalContext from '../context/GlobalContext';
 import { Text, View,} from '../components/Themed';
 export default function PaymentTop(props:any){
-    let  paymentStat = props.paymentStat;
+    const [global, setGlobal] = React.useContext(GlobalContext);
+    let  paymentStat = global.tripState
     let setCanPay = props.setCanPay;
     let paymentTitle;
     switch (paymentStat){
@@ -18,13 +20,17 @@ export default function PaymentTop(props:any){
                         <Image
                             style={styles.iconContainer}
                             source={require('../assets/images/cross.png')} />
-                        <Text style={styles.description}>Enable NFC and add a payment method.</Text>
+                        <Text style={styles.description}>Enable NFC and add/select a payment method.</Text>
 
                 </TouchableOpacity>
             );
         case  PSTATE.PAYMENT_STATUS.READY:
             return(
-                <TouchableOpacity style = {styles.paymentTop} onPress={() => setCanPay(PSTATE.PAYMENT_STATUS.IN_PROGRESS)}>
+                <TouchableOpacity style = {styles.paymentTop} onPress={() =>
+                    setGlobal({
+                      ...global,
+                      tripState:PSTATE.PAYMENT_STATUS.IN_PROGRESS
+                    })}>
                     <Text style={styles.title}>NFC Ready</Text>
                     <Image
                         style={styles.iconContainer}
@@ -36,7 +42,10 @@ export default function PaymentTop(props:any){
         case PSTATE.PAYMENT_STATUS.IN_PROGRESS:
             return (
                 <TouchableOpacity style = {styles.paymentTop} onPress={() => {
-                setCanPay(PSTATE.PAYMENT_STATUS.FINISHED)
+                    setGlobal({
+                        ...global,
+                        tripState:PSTATE.PAYMENT_STATUS.FINISHED
+                      })
                 props.navigation.navigate('PaymentCompleteScreen')}}>
                 <Text style={styles.title }>In Progress</Text>
                 <Image
