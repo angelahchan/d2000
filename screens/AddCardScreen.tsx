@@ -22,7 +22,7 @@ export default function AddCardScreen(props:any) {
         },
       ]
     });
-    props.navigation.push('PaymentScreen');
+    props.navigation.navigate('PaymentScreen');
   }
 
   return (
