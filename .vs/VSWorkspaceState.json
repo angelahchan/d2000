@@ -5,10 +5,11 @@
     "\\assets\\images",
     "\\components",
     "\\constants",
+    "\\context",
     "\\hooks",
     "\\navigation",
     "\\screens"
   ],
-  "SelectedNode": "\\screens\\LoginScreen.tsx",
+  "SelectedNode": "\\screens\\NotFoundScreen.tsx",
   "PreviewInSolutionExplorer": false
 }
