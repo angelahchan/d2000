@@ -29,7 +29,7 @@ export default function SignUpScreen({
             },
             
         });
-        navigation.navigate('Sign');
+        navigation.navigate('Login');
     }
   return (
       <View style={styles.container}>

@@ -11,29 +11,31 @@ import { StyleSheet, AsyncStorage, Button, TextInput, TouchableOpacity } from 'r
 import GlobalContext from '../context/GlobalContext';
 import { RootStackParamList } from '../types';
 
-export default function LoginScreen({
+export default function SignUpScreen({
     navigation,
-}: StackScreenProps<RootStackParamList, 'Login'>) {
+}: StackScreenProps<RootStackParamList, 'Forgot'>) {
     const [global, setGlobal] = React.useContext(GlobalContext);
     const [name, setName] = React.useState('');
     const [password, setPassword] = React.useState('');
-
+    const [mobile, setmobile] = React.useState('');
+    const [confimPass, setconfimPass] = React.useState('');
 
     function submitUser() {
         setGlobal({
             ...global,
             User: {
                 name: name,
-                password: password
+                password: password,
+                mobile:mobile
             },
             
         });
-        navigation.navigate('Root');
+        navigation.navigate('Login');
     }
   return (
       <View style={styles.container}>
-          <Text style={styles.title}>Welcome Back</Text>
-          <Text>Email/Phone:</Text>
+          <Text style={styles.title}>Forgot</Text>
+          <Text>Email:</Text>
           <TextInput
               style={styles.textInput}
               value={name}
@@ -45,16 +47,24 @@ export default function LoginScreen({
               value={password}
               onChangeText={text => setPassword(text)}
           />
-          <TouchableOpacity onPress={() => navigation.replace('Forgot')} style={styles.link}>
-              <Text style={styles.linkText}>forgot?</Text>
-          </TouchableOpacity>
+          <Text>ConfimPassword:</Text>
+          <TextInput
+              style={styles.textInput}
+              value={confimPass}
+              onChangeText={text => setconfimPass(text)}
+          />
+          <Text>Mobile:</Text>
+          <TextInput
+              style={styles.textInput}
+              value={mobile}
+              onChangeText={text => setmobile(text)}
+          />
           <View style={styles.button}>
-              <Button title="Login" onPress={submitUser} />
+              <Button title="Submit" onPress={submitUser} />
           </View>
-
-          <Text>Don't have a account?</Text>
-          <TouchableOpacity onPress={() => navigation.replace('Sign')} style={styles.link}>
-              <Text style={styles.linkText}>Sign up</Text>
+          <Text>Already have an account?</Text>
+          <TouchableOpacity onPress={() => navigation.replace('Login')} style={styles.link}>
+              <Text style={styles.linkText}>Log in</Text>
           </TouchableOpacity>
       </View>
   );
