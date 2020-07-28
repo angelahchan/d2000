@@ -31,6 +31,8 @@ export default {
         },
       },
       NotFound: '*',
+      Login: 'Login',
+      Sign:'Sign',
     },
   },
 };

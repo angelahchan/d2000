@@ -28,11 +28,11 @@ export default function LoginScreen({
             },
             
         });
-        navigation.navigate('Login');
+        navigation.navigate('Root');
     }
   return (
       <View style={styles.container}>
-          <Text style={styles.title}>Create New Card</Text>
+          <Text style={styles.title}>Welcome Back</Text>
           <Text>Email/Phone:</Text>
           <TextInput
               style={styles.textInput}
@@ -45,8 +45,11 @@ export default function LoginScreen({
               value={password}
               onChangeText={text => setPassword(text)}
           />
+          <TouchableOpacity onPress={() => navigation.replace('Sign')} style={styles.link}>
+              <Text style={styles.linkText}>forgot?</Text>
+          </TouchableOpacity>
           <View style={styles.button}>
-              <Button title="Add Card" onPress={submitUser} />
+              <Button title="Login" onPress={submitUser} />
           </View>
 
           <Text>Don't have a account?</Text>

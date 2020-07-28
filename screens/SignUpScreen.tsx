@@ -33,7 +33,7 @@ export default function SignUpScreen({
     }
   return (
       <View style={styles.container}>
-          <Text style={styles.title}>Create New Card</Text>
+          <Text style={styles.title}>Sign up</Text>
           <Text>Email:</Text>
           <TextInput
               style={styles.textInput}
