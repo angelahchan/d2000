@@ -1,0 +1,36 @@
+{
+    "lines":[
+        {
+            "start":"UNSW",
+            "des":"Bondi beach",
+            "duration":"15",
+            "price":"9.99",
+            "seats":"70",
+            "arrive":"16:30"
+        },
+        {
+            "start":"UNSW",
+            "des":"Bondi beach",
+            "duration":"30",
+            "price":"3.99",
+            "seats":"70",
+            "arrive":"16:40"
+        },
+        {
+            "start":"UNSW",
+            "des":"Bondi beach",
+            "duration":"20",
+            "price":"6.99",
+            "seats":"70",
+            "arrive":"16:35"
+        },
+        {
+            "start":"Zetland",
+            "des":"central station",
+            "duration":"30",
+            "price":"3.99",
+            "seats":"70",
+            "arrive":"16:40"
+        }
+    ]
+}
