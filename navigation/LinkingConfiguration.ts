@@ -13,7 +13,9 @@ export default {
           },
           Payment: {
             screens: {
-              PaymentScreen: 'two',
+              PaymentScreen: 'payment',
+              AddCardScreen:'addpayment',
+              PaymentCompleteScreen:'paymentcomplete'
             },
           },
           Planner: {

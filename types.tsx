@@ -16,6 +16,8 @@ export type HomeParamList = {
 
 export type PaymentParamList = {
   PaymentScreen: undefined;
+  AddCardScreen:undefined;
+  PaymentCompleteScreen:undefined;
 };
 
 export type AccountParamList = {
