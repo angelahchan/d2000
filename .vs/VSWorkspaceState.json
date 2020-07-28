@@ -1,7 +1,14 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\assets",
+    "\\assets\\images",
+    "\\components",
+    "\\constants",
+    "\\hooks",
+    "\\navigation",
+    "\\screens"
   ],
-  "SelectedNode": "\\hooks",
+  "SelectedNode": "\\screens\\LoginScreen.tsx",
   "PreviewInSolutionExplorer": false
 }
