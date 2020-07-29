@@ -13,9 +13,10 @@ export default function App() {
   const colorScheme = useColorScheme();
   const [global, setGlobal] = React.useState({
     cards: [],
-    selectedCard:{},
+        selectedCard:{},
     tripState:PSTATE.PAYMENT_STATUS.NOT_READY
   });
+  // users [] 
 
   React.useEffect(() => { // Only do this once
     AsyncStorage.getItem('global').then(global => {

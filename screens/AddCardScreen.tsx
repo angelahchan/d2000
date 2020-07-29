@@ -1,50 +1,42 @@
 import * as React from 'react';
-import { StyleSheet,  AsyncStorage, Button,TextInput } from 'react-native';
+import { StyleSheet,  AsyncStorage, Button,TextInput, Picker } from 'react-native';
 import CardContext from '../context/CardContext'
-import { Text, View } from '../components/Themed';
+import { Text, View,  } from '../components/Themed';
 import GlobalContext from '../context/GlobalContext';
+import { Input } from 'react-native-elements';
+import CreditCardForm from '../components/CreditCardForm'
+import OpalCardForm from '../components/OpalCardForm'
+
 
 export default function AddCardScreen(props:any) {
-  const [global, setGlobal] = React.useContext(GlobalContext);
+  //const [global, setGlobal] = React.useContext(GlobalContext);
   const [type, setType] = React.useState('');
   const [cardNumber, setCardNumber] = React.useState('');
+  const [selectedValue, setSelectedValue] = React.useState("none");
+  let displayForm = selectedValue == "none"
+  let form;
 
-  
-  function submitCardDetails() {
-    setGlobal({
-      ...global,
-      cards: [
-        ...global.cards,
-        {
-          type: type,
-          cardNumber: cardNumber,
-          selected:false
-        },
-      ]
-    });
-    props.navigation.navigate('PaymentScreen');
+  if (selectedValue == "credit-card"){
+    form = <CreditCardForm navigation={props.navigation}></CreditCardForm>
   }
-
+  else if (selectedValue == "opal"){
+    form = <OpalCardForm navigation={props.navigation}/>
+  }
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Create New Card</Text>
-      <Text>Card Type:</Text>
-      <TextInput
-        style={styles.textInput}
-        value={type}
-        onChangeText={text => setType(text)}
-      /> 
-      <Text>Card Number:</Text>
-      <TextInput
-        style={styles.textInput}
-        value={cardNumber}
-        onChangeText={text => setCardNumber(text)}
-      /> 
-      <View style={styles.button}>
-      <Button  title="Add Card" onPress={submitCardDetails} />
-      </View>
+      {displayForm &&
+      <Picker
+        selectedValue={selectedValue}
+        style={styles.picker}
+        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+      > 
+        <Picker.Item label="Select a card type" value="none" />
+        <Picker.Item label="Credit/Debit Card" value="credit-card" />
+        <Picker.Item label="Opal Card" value="opal" />
+      </Picker>
+      }
+      {form}
   </View>
-
   );
 }
 
@@ -74,8 +66,25 @@ const styles = StyleSheet.create({
     marginTop:5,
     marginBottom:25
   },
+  input:{
+    width:'80%',
+    justifyContent:'flex-start'
+  },
   button:{
-    marginVertical:10
+    marginVertical:10,
+    width:'80%'
+  },
+  picker:{
+    width:'50%',
+  },
+  formname: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start'// if you want to fill rows left to right
+  },
+  item: {
+    width: '50%' // is 50% of container width
   }
 
 });

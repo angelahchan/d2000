@@ -11,6 +11,7 @@ import AccountScreen from '../screens/AccountScreen';
 import PlannerScreen from '../screens/PlannerScreen';
 import AddCardScreen from '../screens/AddCardScreen';
 import PaymentCompleteScreen from '../screens/PaymentCompleteScreen';
+import * as COL from '../constants/MainColors'
 import {
     BottomTabParamList,
     HomeParamList,
@@ -76,7 +77,13 @@ function HomeNavigator() {
       <HomeStack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{ headerTitle: 'Home' }}
+        options={{ headerTitle: 'Home',
+        headerStyle: {
+          backgroundColor:COL.COLS.MAIN_COL,
+        },
+        headerTitleStyle: {
+          color: 'white',
+        }, }}
       />
     </HomeStack.Navigator>
   );
@@ -90,18 +97,36 @@ function PaymentNavigator() {
       <PaymentStack.Screen
         name="PaymentScreen"
         component={PaymentScreen}
-        options={{ headerTitle: 'Payment' }}
+        options={{ headerTitle: 'Payment', 
+        headerStyle: {
+          backgroundColor:COL.COLS.MAIN_COL,
+        },
+        headerTitleStyle: {
+          color: 'white',
+        },
+      }}
 
       />
       <PaymentStack.Screen
         name="AddCardScreen"
         component={AddCardScreen}
-        options={{ headerTitle: 'Add Payment' }}
+        options={{ headerTitle: 'Add Payment', headerStyle: {
+          backgroundColor:COL.COLS.MAIN_COL,
+        },
+        headerTitleStyle: {
+          color: 'white',
+        },}}
       />
       <PaymentStack.Screen
         name="PaymentCompleteScreen"
         component={PaymentCompleteScreen}
-        options={{ headerTitle: 'Payment Complete' }}
+        options={{ headerTitle: 'Payment Complete',
+        headerStyle: {
+          backgroundColor:COL.COLS.MAIN_COL,
+        },
+        headerTitleStyle: {
+          color: 'white',
+        }, }}
       />
     </PaymentStack.Navigator>
   );
@@ -115,7 +140,13 @@ function AccountNavigator() {
             <AccountStack.Screen
                 name="AccountScreen"
                 component={AccountScreen}
-                options={{ headerTitle: 'Account' }}
+                options={{ headerTitle: 'Account',
+                headerStyle: {
+                  backgroundColor:COL.COLS.MAIN_COL,
+                },
+                headerTitleStyle: {
+                  color: 'white',
+                }, }}
             />
         </AccountStack.Navigator>
     );
@@ -129,7 +160,13 @@ function PlannerNavigator() {
             <PlannerStack.Screen
                 name="PlannerScreen"
                 component={PlannerScreen}
-                options={{ headerTitle: 'Planner' }}
+                options={{ headerTitle: 'Planner',
+                headerStyle: {
+                  backgroundColor:COL.COLS.MAIN_COL,
+                },
+                headerTitleStyle: {
+                  color: 'white',
+                }, }}
             />
         </PlannerStack.Navigator>
     );
