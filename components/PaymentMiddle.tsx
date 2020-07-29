@@ -14,10 +14,6 @@ export default function PaymentMiddle(props:any){
     let setCanPay = props.setCanPay;
     const [global, setGlobal] = React.useContext(GlobalContext);
     let  paymentStat = global.tripState
-    //payment form to add a new card
-    const [modalVisible, setModalVisible] = React.useState(false);
-    const [cardNo, setCardNo] = React.useState('')
-    const [balance, setBalance] = React.useState('')
     
     const opalImage = <Image
     style={styles.paymentImage}
@@ -75,8 +71,6 @@ export default function PaymentMiddle(props:any){
                         activeOpacity={1} key={index}
                         onPress = { () =>  {
                             handleToggleComplete(card.cardNumber)
-                            setBalance(card.balance)
-                            setCardNo(card.cardNumber)
                          } }>
                             {card.type == 'opal' && opalImage}
                             {card.type == 'credit' && creditImage}
@@ -95,7 +89,8 @@ export default function PaymentMiddle(props:any){
             </ScrollView>
         </View>
         <View style={styles.cardDetailsBox}>
-        {cardNo != '' && <CardDetail cardNumber={cardNo} balance={balance}/> }
+        {Object.keys(global.selectedCard).length != 0 && <CardDetail  cardNumber={global.selectedCard.cardNumber} 
+        balance={global.selectedCard.balance}/> }
         </View>
         </>
         )
@@ -107,31 +102,13 @@ export default function PaymentMiddle(props:any){
     else {
         return ( <>
         <View style={styles.cardDetailsBox}>
-        {cardNo != '' && <CardDetail cardNumber={cardNo} balance={balance}/> }
+        {Object.keys(global.selectedCard).length != 0 && <CardDetail cardNumber={global.selectedCard.cardNumber} 
+        balance={global.selectedCard.balance}/> }
         </View>
         </>)
     }
 }
-/*
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-            >   
-                <View style={styles.modal}>
-                    <TouchableOpacity
-                        style={styles.closeBtn} 
-                        onPress={() => {
-                        setModalVisible(!modalVisible);
-                    }}>
-                        <AddIcon name="ios-close" color="gray"/>
-                    </TouchableOpacity>
-                <Text>
-                    Hellooooo
-                </Text>
-                </View>
-            </Modal> 
-    */
+
 function AddIcon(props: { name: string; color: string }) {
     return <Ionicons size={50}  {...props} />;
   }
@@ -173,7 +150,7 @@ const styles = StyleSheet.create({
         borderStyle:'dashed',
         borderRadius: 10,
         width:210,
-        backgroundColor:COL.COLS.BACKGROUND_COL,
+        backgroundColor:'white',
         height: 120,
         marginVertical:15,
         borderColor: COL.COLS.MAIN_COL
