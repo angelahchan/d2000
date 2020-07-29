@@ -75,7 +75,8 @@ const styles = StyleSheet.create({
     width:'80%'
   },
   picker:{
-    width:'50%',
+    width:'80%',
+    borderWidth:1,
   },
   formname: {
     flex: 1,

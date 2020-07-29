@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Image, ScrollView,Dimensions, TouchableOpacity, Modal, Button
+import { StyleSheet, Image, ScrollView,Dimensions, TouchableOpacity, TouchableWithoutFeedback, Modal, Button
 } from 'react-native';
 import * as PSTATE from '../constants/PaymentState';
 import * as COL from '../constants/MainColors';
@@ -7,12 +7,27 @@ import { Ionicons } from '@expo/vector-icons';
 import { Text, View} from '../components/Themed';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import GlobalContext from '../context/GlobalContext';
+import CardDetail from '../components/CardDetail'
+
 
 export default function PaymentMiddle(props:any){
     let setCanPay = props.setCanPay;
     const [global, setGlobal] = React.useContext(GlobalContext);
     let  paymentStat = global.tripState
+    //payment form to add a new card
+    const [modalVisible, setModalVisible] = React.useState(false);
+    const [cardNo, setCardNo] = React.useState('')
+    const [balance, setBalance] = React.useState('')
     
+    const opalImage = <Image
+    style={styles.paymentImage}
+    source={require('../assets/images/opal-card.png')}>
+    </Image>
+    const creditImage = <Image
+    style={styles.paymentImage}
+    source={require('../assets/images/credit-card.jpg')}>
+    </Image>
+
     /*
     Change card to selected item
     and change state to ready
@@ -45,22 +60,26 @@ export default function PaymentMiddle(props:any){
           });
     }
 
-    //payment form to add a new card
-    const [modalVisible, setModalVisible] = React.useState(false);
     if (paymentStat == PSTATE.PAYMENT_STATUS.NOT_READY || paymentStat == PSTATE.PAYMENT_STATUS.READY){
         return (
+        <>
         <View style={styles.scrollbox} > 
-            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} snapToAlignment="start"
             >
                 <View style={styles.cardContainer}>
                 {
-                    global.cards.map((card, index) => { // cards.map(card    for card in cards:
+                    global.cards.map((card, index) => {
+                        // cards.map(card    for card in cards:
                         return (
-                        <TouchableOpacity style={styles.paymentBox} activeOpacity={0.5} key={index}
-                        onPress = { () =>  handleToggleComplete(card.cardNumber) }>
-                            <Text>{card.cardNumber}</Text>
-                            <Text>{card.type}</Text>
-                            <Text>{card.selected.toString()}</Text>
+                        <TouchableOpacity style={[card.selected ? styles.selected: styles.deselected ]}
+                        activeOpacity={1} key={index}
+                        onPress = { () =>  {
+                            handleToggleComplete(card.cardNumber)
+                            setBalance(card.balance)
+                            setCardNo(card.cardNumber)
+                         } }>
+                            {card.type == 'opal' && opalImage}
+                            {card.type == 'credit' && creditImage}
                         </TouchableOpacity>
                         );
                     })
@@ -68,13 +87,17 @@ export default function PaymentMiddle(props:any){
                     <TouchableOpacity style={styles.paymentBox} onPress={() => props.navigation.push('AddCardScreen')}
                     >
                         <Text>Add a Payment Method</Text>
-                        <AddIcon name="ios-add" color="grey" />
+                        <AddIcon name="ios-add" color={COL.COLS.MAIN_COL} />
                     </TouchableOpacity>
 
                 </View>
                 
             </ScrollView>
         </View>
+        <View style={styles.cardDetailsBox}>
+        {cardNo != '' && <CardDetail cardNumber={cardNo} balance={balance}/> }
+        </View>
+        </>
         )
     }
 
@@ -82,10 +105,11 @@ export default function PaymentMiddle(props:any){
         return (<></>)
     }
     else {
-        return ( <TouchableOpacity style={styles.paymentBox}>
-            <Text>{global.selectedCard.cardNumber}</Text>
-            <Text>{global.selectedCard.type}</Text>
-        </TouchableOpacity>)
+        return ( <>
+        <View style={styles.cardDetailsBox}>
+        {cardNo != '' && <CardDetail cardNumber={cardNo} balance={balance}/> }
+        </View>
+        </>)
     }
 }
 /*
@@ -121,6 +145,14 @@ const styles = StyleSheet.create({
         overflow: 'hidden'
 
     },
+        
+    cardDetailsBox: {
+        flex:0.3,
+        alignItems:'center',
+        overflow: 'hidden',
+        width:'90%'
+
+    },
     title:{
         fontWeight:'bold',
         textAlign:'center',
@@ -129,7 +161,6 @@ const styles = StyleSheet.create({
  
     },
     description:{
-        textAlignVertical:'bottom',
         padding:5,
         textAlign:'center',
         fontSize:12,
@@ -141,16 +172,24 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderStyle:'dashed',
         borderRadius: 10,
-        width:270,
-        height: 125,
-        margin:15,
-        color:'grey'
+        width:210,
+        backgroundColor:COL.COLS.BACKGROUND_COL,
+        height: 120,
+        marginVertical:15,
+        borderColor: COL.COLS.MAIN_COL
     },
     cardContainer:{
         flex:1,
         alignItems:'flex-start',
         flexDirection:'row',
 
+    },
+    paymentImage:{
+        flex:1,
+        width:250,
+        height: 125,
+        marginVertical:15,
+        resizeMode:"contain"
     },
     modal:{
         zIndex: 1, /* Sit on top */
@@ -177,6 +216,12 @@ const styles = StyleSheet.create({
         width: '50%',
         minWidth: 150,
         height: 50,
+      },
+      selected:{
+          opacity:1
+      },
+      deselected:{
+          opacity:0.5
       }
     
 

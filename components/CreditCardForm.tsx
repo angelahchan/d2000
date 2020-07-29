@@ -49,6 +49,7 @@ const cvvInput = React.createRef<Input>()
       placeholder='Credit/debit card number'
       leftIcon={{ type: 'font-awesome', name: 'credit-card' }}
       autoCompleteType='cc-number'
+      keyboardType = 'numeric'
       errorStyle={{ color: 'red' }}
       onChangeText={text => setCardNumber(text)}
       ref={cardInput}
