@@ -19,18 +19,22 @@ export default function SignUpScreen({
     const [password, setPassword] = React.useState('');
     const [mobile, setmobile] = React.useState('');
 
+
     function submitUser() {
         setGlobal({
             ...global,
-            User: {
-                name: name,
-                password: password,
-                mobile:mobile
-            },
-            
+            users: [
+                ...global.users,
+                {
+                    name: name,
+                    password: password,
+                    mobile: mobile
+                },
+            ]
         });
-        navigation.navigate('Login');
+        navigation.navigate('Login')
     }
+
   return (
       <View style={styles.container}>
           <Text style={styles.title}>Sign up</Text>

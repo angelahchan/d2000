@@ -19,16 +19,35 @@ export default function LoginScreen({
     const [password, setPassword] = React.useState('');
 
 
-    function submitUser() {
+
+    function submitUser(name: any, password: any) {
+        let flag = false;
+        const newList = global.users.map((item) => {
+            if ((item.mail == name || item.moblie == name) && item.password == password) {
+
+                flag = true;
+                return true;
+            }
+            else {
+
+                flag = false;
+                return false;
+            }
+        });
+
         setGlobal({
             ...global,
-            User: {
+            CurrentUser: {
                 name: name,
                 password: password
             },
             
         });
-        navigation.navigate('Root');
+        if (flag == true) {
+            navigation.navigate('Root');
+        } else {
+            navigation.navigate('Login');
+        }
     }
   return (
       <View style={styles.container}>
