@@ -44,7 +44,7 @@ export default function PaymentTop(props:any){
                 <TouchableOpacity style = {styles.paymentTop} onPress={() => {
                     setGlobal({
                         ...global,
-                        tripState:PSTATE.PAYMENT_STATUS.FINISHED
+                        tripState:PSTATE.PAYMENT_STATUS.READY
                       })
                 props.navigation.navigate('PaymentCompleteScreen')}}>
                 <Text style={styles.title }>In Progress</Text>
