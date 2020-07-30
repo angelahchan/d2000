@@ -2,6 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\assets",
+    "\\assets\\fonts",
     "\\assets\\images",
     "\\components",
     "\\constants",
@@ -10,6 +11,6 @@
     "\\navigation",
     "\\screens"
   ],
-  "SelectedNode": "\\screens\\NotFoundScreen.tsx",
+  "SelectedNode": "\\navigation\\LinkingConfiguration.ts",
   "PreviewInSolutionExplorer": false
 }
