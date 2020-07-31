@@ -77,13 +77,13 @@ const styles = StyleSheet.create({
   },
   label:{
     fontSize: 16,
-    width:'100%',
-    textAlign:'left',
+    width:'50%',
+    textAlign:'center',
     color:'grey',
   },
   labelRight:{
     fontSize: 16,
-    width:'100%',
+    width:'50%',
     textAlign:'left'
   },
   cardno:{
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems: 'flex-start',
     height:30,
-    width:'90%'
+    width:'100%'
   }
 });
 
