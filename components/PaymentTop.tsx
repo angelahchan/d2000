@@ -7,11 +7,44 @@ let main_col = COL.COLS.MAIN_COL;
 let backgroundCol = COL.COLS.BACKGROUND_COL;
 import GlobalContext from '../context/GlobalContext';
 import { Text, View,} from '../components/Themed';
+import moment from 'moment';
 export default function PaymentTop(props:any){
     const [global, setGlobal] = React.useContext(GlobalContext);
     let  paymentStat = global.tripState
     let setCanPay = props.setCanPay;
     let paymentTitle;
+
+    function chargeCard(id:any) {
+        let selectedItem;
+        const newList = global.cards.map((item) => {
+            if (item.cardNumber === id) {
+              const updatedItem = {
+                ...item,
+                balance: item.balance - 6.1,
+              };
+              selectedItem = updatedItem;
+              return updatedItem;
+            }
+            else {
+                const updatedItem = {
+                    ...item,
+                    selected: false,
+                  };
+                return updatedItem;
+            }
+          });
+       
+          setGlobal({
+            ...global,
+            cards: newList,
+            selectedCard: selectedItem,
+            tripState:PSTATE.PAYMENT_STATUS.READY,
+            endTime: moment()
+          .utcOffset('+10')
+          .format('YYYY/MM/DD hh:mm:ss')
+          });
+    }
+
     switch (paymentStat){
         case  PSTATE.PAYMENT_STATUS.NOT_READY:
             return(
@@ -29,7 +62,11 @@ export default function PaymentTop(props:any){
                 <TouchableOpacity style = {styles.paymentTop} onPress={() =>
                     setGlobal({
                       ...global,
-                      tripState:PSTATE.PAYMENT_STATUS.IN_PROGRESS
+                      tripState:PSTATE.PAYMENT_STATUS.IN_PROGRESS,
+                      startTime: moment()
+                      .utcOffset('+10')
+                      .format('YYYY/MM/DD hh:mm:ss')
+                      
                     })}>
                     <Text style={styles.title}>NFC Ready</Text>
                     <Image
@@ -42,10 +79,7 @@ export default function PaymentTop(props:any){
         case PSTATE.PAYMENT_STATUS.IN_PROGRESS:
             return (
                 <TouchableOpacity style = {styles.paymentTop} onPress={() => {
-                    setGlobal({
-                        ...global,
-                        tripState:PSTATE.PAYMENT_STATUS.READY
-                      })
+                    chargeCard(global.selectedCard.cardNumber)
                 props.navigation.navigate('PaymentCompleteScreen')}}>
                 <Text style={styles.title }>In Progress</Text>
                 <Image

@@ -8,6 +8,7 @@ import { Text, View} from '../components/Themed';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import GlobalContext from '../context/GlobalContext';
 import CardDetail from '../components/CardDetail'
+import PaymentCard from '../components/PaymentCard'
 
 
 export default function PaymentMiddle(props:any){
@@ -67,13 +68,12 @@ export default function PaymentMiddle(props:any){
                     global.cards.map((card, index) => {
                         // cards.map(card    for card in cards:
                         return (
-                        <TouchableOpacity style={[card.selected ? styles.selected: styles.deselected ]}
+                        <TouchableOpacity 
                         activeOpacity={1} key={index}
                         onPress = { () =>  {
                             handleToggleComplete(card.cardNumber)
                          } }>
-                            {card.type == 'opal' && opalImage}
-                            {card.type == 'credit' && creditImage}
+                             <PaymentCard cardType={card.type} isSelected={card.selected}/>
                         </TouchableOpacity>
                         );
                     })
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
         width:210,
         backgroundColor:'white',
         height: 120,
-        marginVertical:15,
+        margin: 15,
         borderColor: COL.COLS.MAIN_COL
     },
     cardContainer:{
@@ -163,10 +163,11 @@ const styles = StyleSheet.create({
     },
     paymentImage:{
         flex:1,
-        width:250,
-        height: 125,
-        marginVertical:15,
-        resizeMode:"contain"
+        width:'100%',
+        height: '100%',
+        margin: 15,
+        resizeMode:"center",
+        
     },
     modal:{
         zIndex: 1, /* Sit on top */
@@ -195,10 +196,19 @@ const styles = StyleSheet.create({
         height: 50,
       },
       selected:{
-          opacity:1
+        width:210,
+        height: 166,
+        margin: 15,
+        borderWidth: 5,
+        borderRadius:10,
+        borderColor: COL.COLS.MAIN_COL,
+        alignContent:'center'
       },
       deselected:{
-          opacity:0.5
+        width:264,
+        height: 166,
+        margin: 15,
+        borderRadius:10,
       }
     
 
