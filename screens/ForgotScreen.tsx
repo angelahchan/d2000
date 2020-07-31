@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import { FORGOT_STATUS } from '../constants/ForgotState';
 
 
 import { StackScreenProps } from '@react-navigation/stack';
@@ -19,55 +20,193 @@ export default function SignUpScreen({
     const [password, setPassword] = React.useState('');
     const [mobile, setmobile] = React.useState('');
     const [confimPass, setconfimPass] = React.useState('');
+    const [forgotstate, setforgotState] = React.useState(FORGOT_STATUS.READY);
 
     function submitUser() {
-        setGlobal({
-            ...global,
-            User: {
-                name: name,
-                password: password,
-                mobile:mobile
-            },
-            
+
+
+        const newList = global.users.map((item) => {
+            if (item.mail == name) {
+                if (item.mail == mobile) {
+                    if (password != confimPass) {
+                        item.password = password;
+                        setforgotState(FORGOT_STATUS.SUCCESS);
+                    } else {
+                        setforgotState(FORGOT_STATUS.FAILPASS);
+                    }
+
+                } else {
+                    setforgotState(FORGOT_STATUS.FAILMOBILE);
+                }
+
+            }
+            else {
+
+                setforgotState(FORGOT_STATUS.FAILMAIL);
+            }
         });
-        navigation.navigate('Login');
+
+
+        if (forgotstate == FORGOT_STATUS.SUCCESS) {
+            navigation.navigate('Login');
+        } else {
+            navigation.navigate('Forgot');
+        }
     }
-  return (
-      <View style={styles.container}>
-          <Text style={styles.title}>Forgot</Text>
-          <Text>Email:</Text>
-          <TextInput
-              style={styles.textInput}
-              value={name}
-              onChangeText={text => setName(text)}
-          />
-          <Text>Password:</Text>
-          <TextInput
-              style={styles.textInput}
-              value={password}
-              onChangeText={text => setPassword(text)}
-          />
-          <Text>ConfimPassword:</Text>
-          <TextInput
-              style={styles.textInput}
-              value={confimPass}
-              onChangeText={text => setconfimPass(text)}
-          />
-          <Text>Mobile:</Text>
-          <TextInput
-              style={styles.textInput}
-              value={mobile}
-              onChangeText={text => setmobile(text)}
-          />
-          <View style={styles.button}>
-              <Button title="Submit" onPress={submitUser} />
-          </View>
-          <Text>Already have an account?</Text>
-          <TouchableOpacity onPress={() => navigation.replace('Login')} style={styles.link}>
-              <Text style={styles.linkText}>Log in</Text>
-          </TouchableOpacity>
-      </View>
-  );
+    switch (forgotstate) {
+        case FORGOT_STATUS.READY:
+            return (
+                <View style={styles.container}>
+                    <Text style={styles.title}>Forgot</Text>
+                    <Text>Email:</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        value={name}
+                        onChangeText={text => setName(text)}
+                    />
+                    <Text>Password:</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        value={password}
+                        onChangeText={text => setPassword(text)}
+                    />
+                    <Text>ConfimPassword:</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        value={confimPass}
+                        onChangeText={text => setconfimPass(text)}
+                    />
+                    <Text>Mobile:</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        value={mobile}
+                        onChangeText={text => setmobile(text)}
+                    />
+                    <View style={styles.button}>
+                        <Button title="Submit" onPress={submitUser} />
+                    </View>
+                    <Text>Already have an account?</Text>
+                    <TouchableOpacity onPress={() => navigation.replace('Login')} style={styles.link}>
+                        <Text style={styles.linkText}>Log in</Text>
+                    </TouchableOpacity>
+                </View>
+            );
+        case FORGOT_STATUS.FAILMAIL:
+            return (
+                <View style={styles.container}>
+                    <Text style={styles.title}>Forgot</Text>
+                    <Text>Email:</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        value={name}
+                        onChangeText={text => setName(text)}
+                    />
+                    <Text style={styles.warn}>Email Wrong!</Text>
+                    <Text>Password:</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        value={password}
+                        onChangeText={text => setPassword(text)}
+                    />
+                    <Text>ConfimPassword:</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        value={confimPass}
+                        onChangeText={text => setconfimPass(text)}
+                    />
+                    <Text>Mobile:</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        value={mobile}
+                        onChangeText={text => setmobile(text)}
+                    />
+                    <View style={styles.button}>
+                        <Button title="Submit" onPress={submitUser} />
+                    </View>
+                    <Text>Already have an account?</Text>
+                    <TouchableOpacity onPress={() => navigation.replace('Login')} style={styles.link}>
+                        <Text style={styles.linkText}>Log in</Text>
+                    </TouchableOpacity>
+                </View>
+            );
+        case FORGOT_STATUS.FAILMOBILE:
+            return (
+                <View style={styles.container}>
+                    <Text style={styles.title}>Forgot</Text>
+                    <Text>Email:</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        value={name}
+                        onChangeText={text => setName(text)}
+                    />
+                    <Text>Password:</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        value={password}
+                        onChangeText={text => setPassword(text)}
+                    />
+                    <Text>ConfimPassword:</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        value={confimPass}
+                        onChangeText={text => setconfimPass(text)}
+                    />
+                    <Text>Mobile:</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        value={mobile}
+                        onChangeText={text => setmobile(text)}
+                    />
+                    <Text style={styles.warn}>Phone Wrong!</Text>
+                    <View style={styles.button}>
+                        <Button title="Submit" onPress={submitUser} />
+                    </View>
+                    <Text>Already have an account?</Text>
+                    <TouchableOpacity onPress={() => navigation.replace('Login')} style={styles.link}>
+                        <Text style={styles.linkText}>Log in</Text>
+                    </TouchableOpacity>
+                </View>
+            );
+        case FORGOT_STATUS.FAILPASS:
+            return (
+                <View style={styles.container}>
+                    <Text style={styles.title}>Forgot</Text>
+                    <Text>Email:</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        value={name}
+                        onChangeText={text => setName(text)}
+                    />
+                    <Text>Password:</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        value={password}
+                        onChangeText={text => setPassword(text)}
+                    />
+                    <Text>ConfimPassword:</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        value={confimPass}
+                        onChangeText={text => setconfimPass(text)}
+                    />
+                    <Text style={styles.warn}>ComfimPassword should be same as Password!</Text>
+                    <Text>Mobile:</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        value={mobile}
+                        onChangeText={text => setmobile(text)}
+                    />
+                    <View style={styles.button}>
+                        <Button title="Submit" onPress={submitUser} />
+                    </View>
+                    <Text>Already have an account?</Text>
+                    <TouchableOpacity onPress={() => navigation.replace('Login')} style={styles.link}>
+                        <Text style={styles.linkText}>Log in</Text>
+                    </TouchableOpacity>
+                </View>
+            );
+        default: return (<Text>Password Change Success!</Text>)
+    }
 }
 
 const styles = StyleSheet.create({
@@ -106,5 +245,9 @@ const styles = StyleSheet.create({
     link: {
         marginTop: 15,
         paddingVertical: 15,
+    },
+    warn: {
+        color: 'red'
     }
+
 });

@@ -1,7 +1,8 @@
 //change the payment status on tap on etc
-export const LOGIN_STATUS = {
+export const FORGOT_STATUS = {
     SUCCESS:"success",
     FAILPASS: "failpassword",
-    FAILNAME: "failusername",
+    FAILMAIL: "failmail",
+    FAILMOBILE: "failmobile",
     READY:"ready",
 }

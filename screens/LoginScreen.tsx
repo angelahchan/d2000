@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-
+import { LOGIN_STATUS } from '../constants/LoginState';
 
 import { StackScreenProps } from '@react-navigation/stack';
 
@@ -17,66 +17,140 @@ export default function LoginScreen({
     const [global, setGlobal] = React.useContext(GlobalContext);
     const [name, setName] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const [loginState, setLoginState] = React.useState(LOGIN_STATUS.READY);
 
 
 
-    function submitUser(name: any, password: any) {
-        let flag = false;
+    function submitUser() {
         const newList = global.users.map((item) => {
-            if ((item.mail == name || item.moblie == name) && item.password == password) {
+            if (item.mail == name || item.moblie == name) {
+                if (item.password == password) {
+                    setLoginState(LOGIN_STATUS.SUCCESS);
+                    setGlobal({
+                        ...global,
+                        CurrentUser: {
+                            name: name,
+                            password: password
+                        },
 
-                flag = true;
-                return true;
+                    });
+                } else {
+                    setLoginState(LOGIN_STATUS.FAILPASS);
+                }
+                
             }
             else {
 
-                flag = false;
-                return false;
+                setLoginState(LOGIN_STATUS.FAILNAME);
             }
         });
 
-        setGlobal({
-            ...global,
-            CurrentUser: {
-                name: name,
-                password: password
-            },
-            
-        });
-        if (flag == true) {
+
+        if (loginState == LOGIN_STATUS.SUCCESS) {
             navigation.navigate('Root');
         } else {
             navigation.navigate('Login');
         }
     }
-  return (
-      <View style={styles.container}>
-          <Text style={styles.title}>Welcome Back</Text>
-          <Text>Email/Phone:</Text>
-          <TextInput
-              style={styles.textInput}
-              value={name}
-              onChangeText={text => setName(text)}
-          />
-          <Text>Password:</Text>
-          <TextInput
-              style={styles.textInput}
-              value={password}
-              onChangeText={text => setPassword(text)}
-          />
-          <TouchableOpacity onPress={() => navigation.replace('Forgot')} style={styles.link}>
-              <Text style={styles.linkText}>forgot?</Text>
-          </TouchableOpacity>
-          <View style={styles.button}>
-              <Button title="Login" onPress={submitUser} />
-          </View>
 
-          <Text>Don't have a account?</Text>
-          <TouchableOpacity onPress={() => navigation.replace('Sign')} style={styles.link}>
-              <Text style={styles.linkText}>Sign up</Text>
-          </TouchableOpacity>
-      </View>
-  );
+    switch (loginState) {
+        case LOGIN_STATUS.READY:
+            return (
+                <View style={styles.container}>
+                    <Text style={styles.title}>Welcome Back</Text>
+                    <Text>Email/Phone:</Text>
+                    <TextInput
+                        textContentType='username'
+                        style={styles.textInput}
+                        value={name}
+                        onChangeText={text => setName(text)}
+                    />
+                    <Text>Password:</Text>
+                    <TextInput
+                        textContentType='password'
+                        style={styles.textInput}
+                        value={password}
+                        onChangeText={text => setPassword(text)}
+                    />
+                    <TouchableOpacity onPress={() => navigation.replace('Forgot')} style={styles.link}>
+                        <Text style={styles.linkText}>forgot?</Text>
+                    </TouchableOpacity>
+                    <View style={styles.button}>
+                        <Button title="Login" onPress={submitUser} />
+                    </View>
+
+                    <Text>Don't have a account?</Text>
+                    <TouchableOpacity onPress={() => navigation.replace('Sign')} style={styles.link}>
+                        <Text style={styles.linkText}>Sign up</Text>
+                    </TouchableOpacity>
+                </View>
+            );
+        case LOGIN_STATUS.FAILNAME:
+            return (
+                <View style={styles.container}>
+                    <Text style={styles.title}>Welcome Back</Text>
+                    <Text>Email/Phone:</Text>
+                    <TextInput
+                        textContentType='username'
+                        style={styles.textInput}
+                        value={name}
+                        onChangeText={text => setName(text)}
+                    />
+                    <Text style={styles.warn}>Email/Phone Wrong!</Text>
+                    <Text>Password:</Text>
+                    <TextInput
+                        textContentType='password'
+                        style={styles.textInput}
+                        value={password}
+                        onChangeText={text => setPassword(text)}
+                    />
+                    <TouchableOpacity onPress={() => navigation.replace('Forgot')} style={styles.link}>
+                        <Text style={styles.linkText}>forgot?</Text>
+                    </TouchableOpacity>
+                    <View style={styles.button}>
+                        <Button title="Login" onPress={submitUser} />
+                    </View>
+
+                    <Text>Don't have a account?</Text>
+                    <TouchableOpacity onPress={() => navigation.replace('Sign')} style={styles.link}>
+                        <Text style={styles.linkText}>Sign up</Text>
+                    </TouchableOpacity>
+                </View>
+            );
+        case LOGIN_STATUS.FAILPASS:
+            return (
+                <View style={styles.container}>
+                    <Text style={styles.title}>Welcome Back</Text>
+                    <Text>Email/Phone:</Text>
+                    <TextInput
+                        textContentType='username'
+                        style={styles.textInput}
+                        value={name}
+                        onChangeText={text => setName(text)}
+                    />
+                    <Text>Password:</Text>
+                    <TextInput
+                        textContentType='password'
+                        style={styles.textInput}
+                        value={password}
+                        onChangeText={text => setPassword(text)}
+                    />
+                    <Text style={styles.warn}>Password Wrong!</Text>
+                    <TouchableOpacity onPress={() => navigation.replace('Forgot')} style={styles.link}>
+                        <Text style={styles.linkText}>forgot?</Text>
+                    </TouchableOpacity>
+                    <View style={styles.button}>
+                        <Button title="Login" onPress={submitUser} />
+                    </View>
+
+                    <Text>Don't have a account?</Text>
+                    <TouchableOpacity onPress={() => navigation.replace('Sign')} style={styles.link}>
+                        <Text style={styles.linkText}>Sign up</Text>
+                    </TouchableOpacity>
+                </View>
+            );
+        default: return (<Text>Login Success!</Text>)
+    }
 }
 
 const styles = StyleSheet.create({
@@ -115,5 +189,8 @@ const styles = StyleSheet.create({
     link: {
         marginTop: 15,
         paddingVertical: 15,
+    },
+    warn: {
+        color: 'red'
     }
 });
