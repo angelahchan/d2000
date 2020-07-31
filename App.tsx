@@ -14,7 +14,8 @@ export default function App() {
   const [global, setGlobal] = React.useState({
     cards: [],
         selectedCard:{},
-    tripState:PSTATE.PAYMENT_STATUS.NOT_READY
+    tripState:PSTATE.PAYMENT_STATUS.NOT_READY,
+    users: [ ]
   });
   // users [] 
 

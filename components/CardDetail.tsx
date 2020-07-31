@@ -13,7 +13,7 @@ export default function CardDetail(props:any){ return (
     <View style={styles.paymentBox}>
          <Text style={styles.title}>Selected Card </Text>
         <Text style={styles.details}>Card No: {props.cardNumber}</Text>
-        <Text style={styles.details}>Balance: {props.balance}</Text>
+        <Text style={styles.details}>Balance: ${props.balance}</Text>
     </View>
 )
 }
