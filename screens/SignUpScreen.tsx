@@ -21,6 +21,7 @@ export default function SignUpScreen({
 
 
     function submitUser() {
+
         setGlobal({
             ...global,
             users: [
@@ -29,7 +30,7 @@ export default function SignUpScreen({
                     name: name,
                     password: password,
                     mobile: mobile
-                },
+                }
             ]
         });
         navigation.navigate('Login')
@@ -40,7 +41,7 @@ export default function SignUpScreen({
           <Text style={styles.title}>Sign up</Text>
           <Text>Email:</Text>
           <TextInput
-              textContentType='username'
+              //textContentType='username'
               style={styles.textInput}
               value={name}
               onChangeText={text => setName(text)}
@@ -48,13 +49,13 @@ export default function SignUpScreen({
           <Text>Password:</Text>
           <TextInput
               style={styles.textInput}
-              textContentType='newPassword'
+              //textContentType='newPassword'
               value={password}
               onChangeText={text => setPassword(text)}
           />
           <Text>Mobile:</Text>
           <TextInput
-              textContentType='telephoneNumber'
+             // textContentType='telephoneNumber'
               style={styles.textInput}
               value={mobile}
               onChangeText={text => setmobile(text)}

@@ -22,10 +22,15 @@ export default function LoginScreen({
 
 
     function submitUser() {
-        const newList = global.users.map((item) => {
-            if (item.mail == name || item.moblie == name) {
-                if (item.password == password) {
-                    setLoginState(LOGIN_STATUS.SUCCESS);
+        console.log(global);
+
+        let canfinduser = false;
+        let correctpass = false;
+        for (var i = 0; i < global.users.length;i++) {
+            if (global.users[i].name == name || global.users[i].moblie == name) {
+                canfinduser = true;
+                if (global.users[i].password == password) {
+                    correctpass = true;
                     setGlobal({
                         ...global,
                         CurrentUser: {
@@ -34,23 +39,29 @@ export default function LoginScreen({
                         },
 
                     });
-                } else {
-                    setLoginState(LOGIN_STATUS.FAILPASS);
+                    navigation.navigate('Root');
+                    return 0;
                 }
-                
+
             }
-            else {
-
-                setLoginState(LOGIN_STATUS.FAILNAME);
-            }
-        });
-
-
-        if (loginState == LOGIN_STATUS.SUCCESS) {
-            navigation.navigate('Root');
-        } else {
-            navigation.navigate('Login');
         }
+   //     const newList = global.users.map((item) => {
+
+   //     });
+
+        console.log(loginState);
+
+
+        if (canfinduser == true && correctpass == false) {
+            setLoginState(LOGIN_STATUS.FAILPASS);
+        }
+
+        if (canfinduser == false) {
+            setLoginState(LOGIN_STATUS.FAILNAME);
+        }
+
+        navigation.navigate('Login');
+        
     }
 
     switch (loginState) {
