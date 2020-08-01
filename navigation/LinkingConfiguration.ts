@@ -26,6 +26,7 @@ export default {
           Account: {
             screens: {
               AccountScreen: 'four',
+              AddNotifScreen:'addnotif'
             },
           },
         },

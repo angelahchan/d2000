@@ -11,6 +11,7 @@ import AccountScreen from '../screens/AccountScreen';
 import PlannerScreen from '../screens/PlannerScreen';
 import AddCardScreen from '../screens/AddCardScreen';
 import PaymentCompleteScreen from '../screens/PaymentCompleteScreen';
+import AddNotifScreen from '../screens/AddNotifScreen';
 import * as COL from '../constants/MainColors'
 import {
     BottomTabParamList,
@@ -137,6 +138,17 @@ const AccountStack = createStackNavigator<AccountParamList>();
 function AccountNavigator() {
     return (
         <AccountStack.Navigator>
+                        <AccountStack.Screen
+                name="AddNotifScreen"
+                component={AddNotifScreen}
+                options={{ headerTitle: 'Add Notification',
+                headerStyle: {
+                  backgroundColor:COL.COLS.MAIN_COL,
+                },
+                headerTitleStyle: {
+                  color: 'white',
+                }, }}
+            />
             <AccountStack.Screen
                 name="AccountScreen"
                 component={AccountScreen}

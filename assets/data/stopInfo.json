@@ -1,0 +1,134 @@
+[
+  {
+    "name": "Honeysuckle Light Rail",
+    "id": 1
+  },
+  {
+    "name": "Lilyfield Light Rail",
+    "id": 2
+  },
+  {
+    "name": "John Street Square Light Rail",
+    "id": 3
+  },
+  {
+    "name": "Haymarket Light Rail Stop",
+    "id": 4
+  },
+  {
+    "name": "Glebe Light Rail",
+    "id": 5
+  },
+  {
+    "name": "UNSW Anzac Parade Light Rail",
+    "id": 6
+  },
+  {
+    "name": "Lilyfield Light Rail",
+    "id": 7
+  },
+  {
+    "name": "Wansey Road Light Rail",
+    "id": 8
+  },
+  {
+    "name": "Surry Hills Light Rail",
+    "id": 9
+  },
+  {
+    "name": "Central Chalmers Street Light Rail",
+    "id": 10
+  },
+  {
+    "name": "Jubilee Park Light Rail",
+    "id": 11
+  },
+  {
+    "name": "Glebe Light Rail",
+    "id": 12
+  },
+  {
+    "name": "Moore Park Light Rail",
+    "id": 13
+  },
+  {
+    "name": "Bridge Street Light Rail",
+    "id": 14
+  },
+  {
+    "name": "QVB Light Rail",
+    "id": 15
+  },
+  {
+    "name": "Wynyard Light Rail",
+    "id": 16
+  },
+  {
+    "name": "Town Hall Light Rail",
+    "id": 17
+  },
+  {
+    "name": "Dulwich Grove Light Rail",
+    "id": 18
+  },
+  {
+    "name": "Waratah Mills Light Rail",
+    "id": 19
+  },
+  {
+    "name": "Arlington Light Rail",
+    "id": 20
+  },
+  {
+    "name": "Circular Quay Light Rail",
+    "id": 21
+  },
+  {
+    "name": "Lewisham West Light Rail",
+    "id": 22
+  },
+  {
+    "name": "Hawthorne Light Rail",
+    "id": 23
+  },
+  {
+    "name": "Kingsford Light Rail",
+    "id": 24
+  },
+  {
+    "name": "Juniors Kingsford Light Rail",
+    "id": 25
+  },
+  {
+    "name": "Randwick Light Rail",
+    "id": 26
+  },
+  {
+    "name": "UNSW High Street Light Rail",
+    "id": 27
+  },
+  {
+    "name": "Leichhardt North Light Rail",
+    "id": 28
+  },
+  {
+    "name": "Crown Street Light Rail",
+    "id": 29
+  },
+  {
+    "name": "Civic Light Rail",
+    "id": 30
+  },
+  {
+    "name": "ES Marks Light Rail",
+    "id": 31
+  },
+  {
+    "name": "Exhibition Centre Light Rail",
+    "id": 32
+  },
+  {
+    "name": "Convention Light Rail",
+    "id": 33
+  }
+ ]
