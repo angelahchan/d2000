@@ -20,24 +20,7 @@ export default function AddNotifScreen() {
     const [selectedItems, setSelectedItems] = React.useState([]);
     const [destination, setDestination] = React.useState([]);
   
-    const onChange =  (event, selectedDate) => {
-      const currentDate = selectedDate || date;
-      setShow(Platform.OS === 'android');
-      setDate(currentDate);
-    };
-  
-    const showMode = currentMode => {
-      setShow(true);
-      setMode(currentMode);
-    };
-  
-    const showDatepicker = () => {
-      showMode('date');
-    };
-  
-    const showTimepicker = () => {
-      showMode('time');
-    };
+
   return (
     <View style={styles.container}>
         <TouchableOpacity style={styles.timePicker}
@@ -67,6 +50,7 @@ export default function AddNotifScreen() {
                     }
                 }}
             />)}
+            <Text style={styles.stopLabel}>Start Stop</Text>
              <SearchableDropdown
             onItemSelect={(item:any) => {
               const items = selectedItems;
@@ -109,6 +93,7 @@ export default function AddNotifScreen() {
               }
             }
         />
+          <Text style={styles.stopLabel}>End Stop</Text>
          <SearchableDropdown
             onItemSelect={(item:any) => {
               const items = destination;
@@ -183,5 +168,15 @@ const styles = StyleSheet.create({
   btn:{
     width:'90%',
     marginVertical:20
+  },
+  stopLabel:{
+    width:'90%',
+    textAlign:'left',
+    marginLeft:15,
+    
+    fontWeight:'bold',
+    color:'gray',
+    fontSize:15
+    
   }
 });

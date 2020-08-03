@@ -15,7 +15,7 @@ export default function App() {
     cards: [],
         selectedCard:{},
     tripState:PSTATE.PAYMENT_STATUS.NOT_READY,
-    users: [ ]
+    tripHistory:[],
   });
   // users [] 
 
