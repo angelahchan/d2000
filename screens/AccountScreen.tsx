@@ -3,15 +3,16 @@ import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-import{ AppRegistry, ScrollView, Image,TextInput,Picker} from 'react-native'
+import{ AppRegistry, ScrollView, Image,TextInput,Picker} from 'react-native';
+import  { COLS } from '../constants/MainColors';
 
 var start : string;
 var des : string;
 var obj :object;
 var sortKey='time';
 var displayList: JSX.Element[] =[];
-displayList.push(<Text key='0'>Free Trip</Text>)
-displayList.push(<Text key='1'>Free Trip</Text>)
+displayList.push(<Text key='0'>50% Off</Text>)
+displayList.push(<Text key='1'>30% Off</Text>)
 var index=2;
 class ScrollList extends React.Component {
   constructor(state:[]) {
@@ -25,7 +26,7 @@ class ScrollList extends React.Component {
 
   render(){
     return (
-      <ScrollView style={styles.con} contentContainerStyle = {{alignItems: 'center'}}>
+      <ScrollView contentContainerStyle = {{alignItems: 'center', height: 10}}>
           {this.state.innerList.map(function(ele: React.ReactNode){index++;return <Text key={index}>{ele}</Text>})}
       </ScrollView>
     );
@@ -37,8 +38,16 @@ export default function AccountScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>Welcome, Jess</Text>
       <Text style={styles.subtitle}>Adult No Concession</Text>
+      <hr  style={{
+          backgroundColor: '#eee',
+          height: "0.5",
+          width: "100%",
+          borderColor : '#eee',
+          margin: 12,
+      }}/>
       <Text style={styles.h2}>Rewards</Text>
       <ScrollList></ScrollList>
+      <Text style={styles.body}>4 more trips until next reward</Text>
     </View>
   );
 }
@@ -49,28 +58,34 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  body : {
+    fontSize: 12,
+    fontWeight: 'bold',
+    width:'80%',
+    textAlign:'left',
+    margin:2,
+  },
   h2: {
     fontSize: 20,
     fontWeight: 'bold',
     width:'80%',
     textAlign:'left',
-    margin:12
-    
+    margin:2,
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
     width:'80%',
     textAlign:'center',
-    margin:12
-    
+    margin:12,
+    color:COLS.MAIN_COL
   },
   subtitle: {
     fontSize: 14,
     width:'80%',
     textAlign:'center',
-    margin:10
-    
+    margin:0,
+    color:COLS.MAIN_COL
   },
   separator: {
     marginVertical: 30,

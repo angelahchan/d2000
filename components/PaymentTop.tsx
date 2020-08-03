@@ -33,15 +33,32 @@ export default function PaymentTop(props:any){
                 return updatedItem;
             }
           });
-       
+          /*
+          let oldHistory = global.tripHistory;
+          const newHistory = oldHistory.push({
+              cost:6.1,
+              startTime: global.startTime,
+              endTime: global.endTime,
+              selectedCard: global.selectedCard
+
+          })
+          */
+         const newHistory = [...global.tripHistory, {
+            cost:6.1,
+            startTime: global.startTime,
+            endTime: global.endTime,
+            selectedCard: global.selectedCard
+         }]
           setGlobal({
             ...global,
             cards: newList,
             selectedCard: selectedItem,
             tripState:PSTATE.PAYMENT_STATUS.READY,
             endTime: moment()
-          .utcOffset('+10')
-          .format('YYYY/MM/DD hh:mm:ss')
+            .utcOffset('+10')
+            .format('YYYY/MM/DD hh:mm:ss'),
+            tripHistory:newHistory
+
           });
     }
 
@@ -108,20 +125,17 @@ const styles = StyleSheet.create({
       marginVertical: 15,
       borderColor:'gray',
       alignItems:'center',
-      textAlignVertical:'bottom',
 
     },
     title:{
         fontWeight:'bold',
         textAlign:'center',
-        textAlignVertical:'top',
         padding:2,
         fontSize:20,
         width:'90%'
  
     },
     description:{
-        textAlignVertical:'bottom',
         padding:5,
         textAlign:'center',
         fontSize:12,
