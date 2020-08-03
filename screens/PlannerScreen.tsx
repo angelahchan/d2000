@@ -1,38 +1,55 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import lines from '../test.json';
+import images from '../routes';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-import{ AppRegistry, ScrollView, Image,TextInput,Picker} from 'react-native'
+import * as Progress from 'react-native-progress';
+import{ProgressBarAndroid,TouchableOpacity,Button, AppRegistry, ScrollView, Image,TextInput,Picker,TouchableHighlight} from 'react-native'
 
 var start : string;
 var des : string;
-var obj :object;
+var obj :ScrollList;
 var sortKey='time';
 var displayList: JSX.Element[] =[];
-displayList.push(<Text key='0'>Test</Text>)
-displayList.push(<Text key='1'>Test2</Text>)
+var imageSrc:any;
+displayList.push(<Text key='0'>Test</Text>);
+displayList.push(<Text key='1'>Test2</Text>);
 class ScrollList extends React.Component {
   constructor(state:[]) {
     super(state);
     obj=this;
-    this.state={innerList:displayList}
+    this.state={innerList:displayList, val:null}
   }
   search(li:[]){
     this.setState({innerList:li});
   }
-
+  setTag(tag:object){
+    this.setState({val:tag});
+  }
   render(){
+    if(this.state.val==null)
     return (
       <ScrollView style={styles.con} contentContainerStyle = {{alignItems: 'center'}}>
           {this.state.innerList.map(function(ele: React.ReactNode){index++;return <Text key={index}>{ele}</Text>})}
       </ScrollView>
+    );
+    else 
+    return (
+      <View>
+        <TouchableOpacity onPress={()=>this.setTag(null)}>
+          <Image style={styles.back} source={require('../assets/images/back.png')}/>
+        </TouchableOpacity>
+        <Image style={styles.route} source={images['png'+this.state.val.id]}/>
+        <Text>{this.state.val.arrive}</Text>
+      </View>
     );
   }
 }
 
 var index=2;
 export default function PlannerScreen() {
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tab One</Text>
@@ -43,7 +60,7 @@ export default function PlannerScreen() {
         <Picker.Item label="Time" value="time" />
         <Picker.Item label="Money" value="cost" />
       </Picker>
-    <ScrollList></ScrollList>
+      <ScrollList></ScrollList>
     
       <EditScreenInfo path="/screens/PlannerScreen.tsx" />
     </View>
@@ -67,20 +84,27 @@ function setDes(desT:string){
 function display(){
   var Li: JSX.Element[]=[];
   var reg: any[]=[];
-  switch(sortKey){
-    case "time":
-      reg=lines.lines.sort((a,b)=>parseInt(a.duration)-parseInt(b.duration));
-      break;
-    case "cost":
-      reg=lines.lines.sort((a,b)=>parseInt(a.price)-parseInt(b.price));
-      break;
-
-
-  }
-  reg.forEach((element) => {
+  var temp: any[]=[];
+  
+  lines.lines.forEach((element) => {
     if(start==element.start && des==element.des){
       console.log(element.arrive);
-      Li.push(
+      temp.push(element);
+    }
+    
+  });
+  switch(sortKey){
+    case "time":
+      reg=temp.sort((a,b)=>parseInt(a.duration)-parseInt(b.duration));
+      break;
+    case "cost":
+      reg=temp.sort((a,b)=>parseInt(a.price)-parseInt(b.price));
+      break;
+    default:
+  }
+  temp.forEach((element)=>{
+    Li.push(
+      <TouchableOpacity onPress = {()=>obj.setTag(element)}>
       <View key={index} style={styles.seg}>
         <Text>{"start: "+element.start}</Text>
         <Text>{"end: "+element.des}</Text>
@@ -88,10 +112,9 @@ function display(){
         <Text>{"seats left: "+element.seats}</Text>
         <Text>{"cost: "+element.price}</Text>
       </View>
+      </TouchableOpacity>
       );
-        
-    }
-    index++;
+      index++;
   });
    obj.search(Li);
 }
@@ -99,7 +122,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
   },
   title: {
     fontSize: 20,
@@ -121,5 +143,23 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  back:{
+    float:'left',
+    width:'50px',
+    height:'50px'
+  },
+  route:{
+    width:'500px',
+    height:'500px'
+  },
+  progressBar:{
+    width:'30px',
+    height:'30px'
+  },inner: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
   }
 });
