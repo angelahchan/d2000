@@ -23,6 +23,10 @@ export default function LoginScreen({
 
     function submitUser() {
         console.log(global);
+        if (!global.users) {
+            setLoginState(LOGIN_STATUS.FAILNAME);
+            return 0;
+        }
 
         let canfinduser = false;
         let correctpass = false;
@@ -69,7 +73,7 @@ export default function LoginScreen({
             return (
                 <View style={styles.container}>
                     <Text style={styles.title}>Welcome Back</Text>
-                    <Text>Email/Phone:</Text>
+                    <Text>Name:</Text>
                     <TextInput
                         textContentType='username'
                         style={styles.textInput}
@@ -107,7 +111,7 @@ export default function LoginScreen({
                         value={name}
                         onChangeText={text => setName(text)}
                     />
-                    <Text style={styles.warn}>Email/Phone Wrong!</Text>
+                    <Text style={styles.warn}>Name Wrong!</Text>
                     <Text>Password:</Text>
                     <TextInput
                         textContentType='password'

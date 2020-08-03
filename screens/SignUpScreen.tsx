@@ -22,24 +22,39 @@ export default function SignUpScreen({
 
     function submitUser() {
 
-        setGlobal({
-            ...global,
-            users: [
-                ...global.users,
-                {
-                    name: name,
-                    password: password,
-                    mobile: mobile
-                }
-            ]
-        });
+
+        if (global.users) {
+            setGlobal({
+                ...global,
+                users: [
+                    ...global.users,
+                    {
+                        name: name,
+                        password: password,
+                        mobile: mobile
+                    }
+                ]
+            });
+        } else {
+            setGlobal({
+                ...global,
+                users: [
+                    {
+                        name: name,
+                        password: password,
+                        mobile: mobile
+                    }
+                ]
+            });
+        }
+
         navigation.navigate('Login')
     }
 
   return (
       <View style={styles.container}>
           <Text style={styles.title}>Sign up</Text>
-          <Text>Email:</Text>
+          <Text>Name:</Text>
           <TextInput
               //textContentType='username'
               style={styles.textInput}

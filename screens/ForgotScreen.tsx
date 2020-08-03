@@ -24,41 +24,56 @@ export default function SignUpScreen({
 
     function submitUser() {
 
-
-        const newList = global.users.map((item) => {
-            if (item.mail == name) {
-                if (item.mail == mobile) {
-                    if (password != confimPass) {
-                        item.password = password;
+        let canfinduser = false;
+        let correctpass = false;
+        let correctmobile = false;
+        let newusers = global.users;
+        for (var i = 0; i < newusers.length; i++) {
+            if (newusers[i].name == name ) {
+                canfinduser = true;
+                if (newusers[i].mobile == mobile) {
+                    correctmobile = true;
+                    if (password == confimPass) {
+                        correctpass = true;
+                        newusers[i].password = password;
+                        setGlobal({
+                            ...global,
+                            users: newusers,
+                        });
                         setforgotState(FORGOT_STATUS.SUCCESS);
-                    } else {
-                        setforgotState(FORGOT_STATUS.FAILPASS);
+                        navigation.navigate('Login');
+                        return 0;
                     }
-
-                } else {
-                    setforgotState(FORGOT_STATUS.FAILMOBILE);
                 }
 
             }
-            else {
-
-                setforgotState(FORGOT_STATUS.FAILMAIL);
-            }
-        });
-
-
-        if (forgotstate == FORGOT_STATUS.SUCCESS) {
-            navigation.navigate('Login');
-        } else {
-            navigation.navigate('Forgot');
         }
+        //     const newList = global.users.map((item) => {
+
+        //     });
+
+
+
+        if (canfinduser == true && correctmobile == true &&correctpass == false) {
+            setforgotState(FORGOT_STATUS.FAILPASS);
+        }
+
+        if (canfinduser == true && correctmobile == false) {
+            setforgotState(FORGOT_STATUS.FAILMOBILE);
+        }
+
+        if (canfinduser == false) {
+            setforgotState(FORGOT_STATUS.FAILMAIL);
+        }
+
+        navigation.navigate('Login');
     }
     switch (forgotstate) {
         case FORGOT_STATUS.READY:
             return (
                 <View style={styles.container}>
                     <Text style={styles.title}>Forgot</Text>
-                    <Text>Email:</Text>
+                    <Text>Name:</Text>
                     <TextInput
                         style={styles.textInput}
                         value={name}
@@ -95,13 +110,13 @@ export default function SignUpScreen({
             return (
                 <View style={styles.container}>
                     <Text style={styles.title}>Forgot</Text>
-                    <Text>Email:</Text>
+                    <Text>Name:</Text>
                     <TextInput
                         style={styles.textInput}
                         value={name}
                         onChangeText={text => setName(text)}
                     />
-                    <Text style={styles.warn}>Email Wrong!</Text>
+                    <Text style={styles.warn}>Name Wrong!</Text>
                     <Text>Password:</Text>
                     <TextInput
                         style={styles.textInput}
@@ -133,7 +148,7 @@ export default function SignUpScreen({
             return (
                 <View style={styles.container}>
                     <Text style={styles.title}>Forgot</Text>
-                    <Text>Email:</Text>
+                    <Text>Name:</Text>
                     <TextInput
                         style={styles.textInput}
                         value={name}
