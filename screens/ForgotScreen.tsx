@@ -66,7 +66,7 @@ export default function SignUpScreen({
             setforgotState(FORGOT_STATUS.FAILMAIL);
         }
 
-        navigation.navigate('Login');
+        navigation.navigate('Forgot');
     }
     switch (forgotstate) {
         case FORGOT_STATUS.READY:
