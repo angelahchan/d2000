@@ -2,7 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\assets",
-    "\\assets\\fonts",
+    "\\assets\\data",
     "\\assets\\images",
     "\\components",
     "\\constants",
@@ -11,6 +11,6 @@
     "\\navigation",
     "\\screens"
   ],
-  "SelectedNode": "\\screens\\ForgotScreen.tsx",
+  "SelectedNode": "\\screens\\HistoryScreen.tsx",
   "PreviewInSolutionExplorer": false
 }

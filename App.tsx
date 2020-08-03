@@ -12,10 +12,12 @@ export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
   const [global, setGlobal] = React.useState({
+    users:[],
     cards: [],
-        selectedCard:{},
+    selectedCard:{},
     tripState:PSTATE.PAYMENT_STATUS.NOT_READY,
-    tripHistory:[],
+    tripHistory: [],
+    CurrentUser: {},
   });
   // users [] 
 

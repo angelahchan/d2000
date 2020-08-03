@@ -24,7 +24,8 @@ export type PaymentParamList = {
 };
 
 export type AccountParamList = {
-  AccountScreen: undefined;
+    AccountScreen: undefined;
+    HistoryScreen: undefined;
 };
 
 export type PlannerParamList = {

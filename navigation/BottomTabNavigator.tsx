@@ -12,6 +12,7 @@ import PlannerScreen from '../screens/PlannerScreen';
 import AddCardScreen from '../screens/AddCardScreen';
 import PaymentCompleteScreen from '../screens/PaymentCompleteScreen';
 import AddNotifScreen from '../screens/AddNotifScreen';
+import HistoryScreen from '../screens/HistoryScreen';
 import * as COL from '../constants/MainColors'
 import {
     BottomTabParamList,
@@ -148,6 +149,19 @@ function AccountNavigator() {
                 headerTitleStyle: {
                   color: 'white',
                 }, }}
+            />
+            <AccountStack.Screen
+                name="HistoryScreen"
+                component={HistoryScreen}
+                options={{
+                    headerTitle: 'History',
+                    headerStyle: {
+                        backgroundColor: COL.COLS.MAIN_COL,
+                    },
+                    headerTitleStyle: {
+                        color: 'white',
+                    },
+                }}
             />
         </AccountStack.Navigator>
     );

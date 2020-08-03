@@ -4,7 +4,9 @@ import { StyleSheet } from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import{ AppRegistry, ScrollView, Image,TextInput,Picker} from 'react-native';
-import  { COLS } from '../constants/MainColors';
+import { COLS } from '../constants/MainColors';
+import GlobalContext from '../context/GlobalContext';
+
 
 var start : string;
 var des : string;
@@ -33,10 +35,12 @@ class ScrollList extends React.Component {
   }
 }
 
-export default function AccountScreen() {
+export default function AccountScreen(props: any) {
+    const [global, setGlobal] = React.useContext(GlobalContext);
+    props.navigation.navigate('HistoryScreen')
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome, Jess</Text>
+          <Text style={styles.title}>Welcome,{ global.CurrentUser.name } </Text>
       <Text style={styles.subtitle}>Adult No Concession</Text>
       <hr  style={{
           backgroundColor: '#eee',

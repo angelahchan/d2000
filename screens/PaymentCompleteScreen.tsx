@@ -5,10 +5,8 @@ import GlobalContext from '../context/GlobalContext';
 import { useLinkProps } from '@react-navigation/native';
 import * as PSTATE from '../constants/PaymentState';
 import { Ionicons } from '@expo/vector-icons';
-
 export default function PaymentCompleteScreen(props:any) {
   const [global, setGlobal] = React.useContext(GlobalContext)
-
   return (
     <View style={styles.container}>
       <AddIcon name='ios-checkmark-circle-outline' color='green'></AddIcon>
