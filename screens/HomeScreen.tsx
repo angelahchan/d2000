@@ -28,4 +28,11 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
+  button_yellow: {
+    borderRadius: 25,
+    background: '#73AD21',
+    padding: '20px',
+    width: '200px',
+    height: '150px',
+  }
 });
