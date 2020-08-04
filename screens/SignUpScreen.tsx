@@ -88,7 +88,6 @@ export default function SignUpScreen({
                   leftIcon={{ type: 'font-awesome', name: 'phone' }}
                   errorStyle={{ color: 'red' }}
                   onChangeText={text => setmobile(text)}
-                  secureTextEntry={true}
               />
           </View>
           <View style={styles.button}>

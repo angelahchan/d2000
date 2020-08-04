@@ -3,8 +3,13 @@
     "",
     "\\.expo",
     "\\assets",
+    "\\assets\\images",
+    "\\components",
+    "\\constants",
+    "\\context",
+    "\\navigation",
     "\\screens"
   ],
-  "SelectedNode": "\\context",
+  "SelectedNode": "\\screens\\ForgotScreen.tsx",
   "PreviewInSolutionExplorer": false
 }

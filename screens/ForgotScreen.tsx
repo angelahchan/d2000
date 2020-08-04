@@ -119,7 +119,6 @@ export default function SignUpScreen({
                             leftIcon={{ type: 'font-awesome', name: 'phone' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setmobile(text)}
-                            secureTextEntry={true}
                         />
                     </View>
 
@@ -185,7 +184,6 @@ export default function SignUpScreen({
                             leftIcon={{ type: 'font-awesome', name: 'phone' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setmobile(text)}
-                            secureTextEntry={true}
                         />
                     </View>
 
@@ -249,7 +247,6 @@ export default function SignUpScreen({
                             leftIcon={{ type: 'font-awesome', name: 'phone' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setmobile(text)}
-                            secureTextEntry={true}
                         />
                         <Text style={styles.warn}>Phone Wrong!</Text>
                     </View>
@@ -314,7 +311,6 @@ export default function SignUpScreen({
                             leftIcon={{ type: 'font-awesome', name: 'phone' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setmobile(text)}
-                            secureTextEntry={true}
                         />
                     </View>
 

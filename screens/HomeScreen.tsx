@@ -1,39 +1,278 @@
 ﻿import * as React from 'react';
-import { StyleSheet } from 'react-native';
-
-import EditScreenInfo from '../components/EditScreenInfo';
+import { StyleSheet, Platform, Button, TouchableOpacity } from 'react-native';
+import { StackScreenProps } from '@react-navigation/stack';
 import { Text, View } from '../components/Themed';
 import GlobalContext from '../context/GlobalContext';
+import { HISTORY_STATUS } from '../constants/HistoryState ';
+import { BottomTabParamList, AccountParamList } from '../types';
 
-export default function HomeScreen() {
+export default function HomeScreen({
+    navigation,
+}: StackScreenProps<BottomTabParamList, 'Home'>) {
+
+    function naviPay() {
+
+
+        navigation.navigate('Payment')
+    }
+
+
     const [global, setGlobal] = React.useContext(GlobalContext);
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome! {global.CurrentUser.name}</Text>
-          <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <Text style={styles.title}>Nearest Trip</Text>
-          <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <Text style={styles.title}>NEWS</Text>
-    </View>
-  );
+
+    switch (global.History) {
+        case HISTORY_STATUS.YES:
+            return (
+                <View style={styles.container}>
+                    <Text style={styles.title}>   Welcome! {global.CurrentUser.name}</Text>
+                    <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+                    <Text style={styles.title1}>   Nearest Trip</Text>
+                    <View style={styles.body}>
+                    <View style={styles.seg1}>
+                        <View style={styles.seg}>
+                            <View style={styles.seg3}>
+                                <Text style={styles.left} > {"Randwick Line"}</Text>
+                                <Text style={styles.right}>{"$" + global.nearHistory.cost}</Text>
+                            </View>
+
+                            <View style={styles.seg2}>
+                                <img src={require('../assets/images/time.png')} />
+                                <Text style={styles.grey}>{"Start at " + global.nearHistory.startTime}</Text>
+                            </View>
+                            <View style={styles.seg2}>
+                                <img src={require('../assets/images/start.png')} />
+                                <Text style={styles.grey}>{"UNSW High Street"}</Text>
+                            </View>
+
+                            <View style={styles.seg2}>
+                                <img src={require('../assets/images/end.png')} />
+                                <Text style={styles.grey}>{"Central Chalmers Street"}</Text>
+                            </View>
+
+                            <View style={styles.seg2}>
+                                <img src={require('../assets/images/time.png')} />
+                                <Text style={styles.grey}>{"Pay by " + global.nearHistory.selectedCard.type + " card-" + global.nearHistory.selectedCard.cardNumber}</Text>
+                            </View>
+
+
+                        </View>
+                    </View>
+                    </View>
+                    <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+                    <TouchableOpacity
+                        onPress={() => naviPay}
+                        style={styles.body}
+                    >   
+                        <View style={styles.a1}>
+                            <Text style={styles.center1} > {"Make payment"}</Text>
+                        </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => naviPay}
+                        style={styles.body}
+                    >
+                        <View style={styles.a2}>
+                            <Text style={styles.center1} > {"Connect Concessionary Account"}</Text>
+                        </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        onPress={() => naviPay}
+                        style={styles.body}
+                    >
+                        <View style={styles.a3}>
+                            <Text style={styles.center1} > {"Plan a Trip"}</Text>
+                        </View>
+                    </TouchableOpacity>
+
+                </View>
+            );
+        default: return (
+            <View style={styles.container}>
+            <Text style={styles.title}>   Welcome! {global.CurrentUser.name}</Text>
+
+            <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+
+                <Text style={styles.title1}>   Nearest Trip</Text>
+                <View style={styles.body}>
+            <View style={styles.seg1}>
+                <View style={styles.seg}>
+                        <View style={styles.seg3}>
+                            <Text style={styles.center} > {"No nearest trip now!"}</Text>
+                    </View>
+                </View>
+            </View>
+                </View>
+            
+            <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+                <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+                <TouchableOpacity
+                    onPress={() => naviPay}
+                    style={styles.body}
+                >
+                    <View style={styles.a1}>
+                        <Text style={styles.center1} > {"Make payment"}</Text>
+                    </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    onPress={() => naviPay}
+                    style={styles.body}
+                >
+                    <View style={styles.a2}>
+                        <Text style={styles.center1} > {"Connect Concessionary Account"}</Text>
+                    </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    onPress={() => naviPay}
+                    style={styles.body}
+                >
+                    <View style={styles.a3}>
+                        <Text style={styles.center1} > {"Plan a Trip"}</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
+        )
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    container: {
+        width: '100%',
+        height: '100%',
+        flex: 1,
+        alignItems: 'stretch',
+        justifyContent: 'flex-start',    
+    },
+  body: {
+      alignItems: 'center',
+      justifyContent: 'center',
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+      marginTop: "2%",
+      marginleft:"10%",
+      color: '#006666',
   },
   separator: {
     marginVertical: 30,
     height: 1,
     width: '80%',
    },
-    left: {
+    left1: {
         alignItems: 'baseline',
-    }
+    },
+    seg1: {
+        width: '20%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 12,
+        borderColor: '#006666',
+        borderWidth: 3,
+        borderRadius: 8,
+    },
+    seg3: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 5,
+    },
+    seg2: {
+        marginLeft: 25,
+        flexDirection: 'row',
+        justifyContent: 'flex-start'
+    },
+    left: {
+        textAlign: 'left',
+        fontSize: 14,
+        color: '#006666',
+        fontWeight: '900',
+        marginLeft: 20,
+        marginRight: 25,
+    },
+    grey: {
+
+        textAlign: 'left',
+        fontSize: 14,
+        color: '#999999',
+        fontWeight: '500',
+        marginTop: 5,
+    },
+    right: {
+
+        textAlign: 'right',
+        fontSize: 14,
+        color: '#000000',
+        fontWeight: '700',
+        marginLeft: 25,
+        marginRight: 25,
+    },
+    icon: {
+        marginLeft: 20,
+    },
+    seg: {
+        width: '300px',
+        margin: 20,
+        backgroundColor: '#fff',
+        flex: 1,
+        alignItems: 'stretch',
+        justifyContent: 'center',
+        marginTop: 12,
+    },
+    center: {
+        textAlign: 'center',
+        fontSize: 14,
+        color: '#000000',
+        fontWeight: '900',
+        marginLeft: 20,
+        marginRight: 25,
+    },
+    title1: {
+        textAlign: 'left',
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginleft: 25,
+        color: '#006666',
+    },
+    a1: {
+        width: '85%',
+        height:'40%',
+        margin: 20,
+        backgroundColor: '#ff9900',
+        flex: 1,
+        alignItems: 'stretch',
+        justifyContent: 'center',
+        marginTop: 12,
+    },
+    center1: {
+        textAlign: 'center',
+        marginTop: 12,
+        marginBottom: 12,
+        fontSize: 24,
+        color: 'white',
+        fontWeight: '900',
+        marginLeft: 20,
+        marginRight: 25,
+    },
+    a2: {
+        width: '85%',
+        height: '40%',
+        margin: 20,
+        backgroundColor: '#009966',
+        flex: 1,
+        alignItems: 'stretch',
+        justifyContent: 'center',
+        marginTop: 12,
+    },
+    a3: {
+        width: '85%',
+        height: '40%',
+        margin: 20,
+        backgroundColor: '#0099ff',
+        flex: 1,
+        alignItems: 'stretch',
+        justifyContent: 'center',
+        marginTop: 12,
+    },
 });

@@ -7,6 +7,7 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import GlobalContext from './context/GlobalContext';
+import { HISTORY_STATUS } from './constants/HistoryState ';
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -17,7 +18,9 @@ export default function App() {
     selectedCard:{},
     tripState:PSTATE.PAYMENT_STATUS.NOT_READY,
     tripHistory: [],
+    nearHistory: {},
     CurrentUser: {},
+    History: HISTORY_STATUS.NO
   });
   // users [] 
 
