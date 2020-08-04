@@ -8,6 +8,7 @@ import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import GlobalContext from './context/GlobalContext';
 
+
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
@@ -16,6 +17,7 @@ export default function App() {
         selectedCard:{},
     tripState:PSTATE.PAYMENT_STATUS.NOT_READY,
     tripHistory:[],
+    notifs:[],
   });
   // users [] 
 
