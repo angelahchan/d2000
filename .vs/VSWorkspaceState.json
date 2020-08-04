@@ -1,16 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\.expo",
     "\\assets",
-    "\\assets\\data",
-    "\\assets\\images",
-    "\\components",
-    "\\constants",
-    "\\context",
-    "\\hooks",
-    "\\navigation",
     "\\screens"
   ],
-  "SelectedNode": "\\screens\\HistoryScreen.tsx",
+  "SelectedNode": "\\context",
   "PreviewInSolutionExplorer": false
 }

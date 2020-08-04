@@ -8,7 +8,7 @@ import { FORGOT_STATUS } from '../constants/ForgotState';
 import { StackScreenProps } from '@react-navigation/stack';
 
 import { StyleSheet, AsyncStorage, Button, TextInput, TouchableOpacity } from 'react-native';
-
+import { Input } from 'react-native-elements';
 import GlobalContext from '../context/GlobalContext';
 import { RootStackParamList } from '../types';
 
@@ -72,31 +72,58 @@ export default function SignUpScreen({
         case FORGOT_STATUS.READY:
             return (
                 <View style={styles.container}>
-                    <Text style={styles.title}>Forgot</Text>
-                    <Text>Name:</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        value={name}
-                        onChangeText={text => setName(text)}
-                    />
-                    <Text>Password:</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        value={password}
-                        onChangeText={text => setPassword(text)}
-                    />
-                    <Text>ConfimPassword:</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        value={confimPass}
-                        onChangeText={text => setconfimPass(text)}
-                    />
-                    <Text>Mobile:</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        value={mobile}
-                        onChangeText={text => setmobile(text)}
-                    />
+
+                    <div className="about-backgroundImage" >
+                        <img src={require('../assets/images/train.png')} />
+                    </div>
+                    <div className="about-backgroundImage" >
+                        <img src={require('../assets/images/reset.png')} />
+                    </div>
+
+                    <View style={styles.body}>
+                        <Input
+                            label='Username'
+                            placeholder='  Enter Username'
+                            leftIcon={{ type: 'font-awesome', name: 'user' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setName(text)}
+                        />
+                    </View>
+
+                    <View style={styles.body}>
+                        <Input
+                            label='Password'
+                            placeholder='   Enter password'
+                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setPassword(text)}
+                            secureTextEntry={true}
+                        />
+                    </View>
+
+                    <View style={styles.body}>
+                        <Input
+                            label='ConfimPassword'
+                            placeholder='   Enter ConfimPassword'
+                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setconfimPass(text)}
+                            secureTextEntry={true}
+                        />
+                    </View>
+
+                    <View style={styles.body}>
+                        <Input
+                            label='Mobile'
+                            placeholder='   Enter mobile'
+                            leftIcon={{ type: 'font-awesome', name: 'phone' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setmobile(text)}
+                            secureTextEntry={true}
+                        />
+                    </View>
+
+
                     <View style={styles.button}>
                         <Button title="Submit" onPress={submitUser} />
                     </View>
@@ -109,32 +136,60 @@ export default function SignUpScreen({
         case FORGOT_STATUS.FAILMAIL:
             return (
                 <View style={styles.container}>
-                    <Text style={styles.title}>Forgot</Text>
-                    <Text>Name:</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        value={name}
-                        onChangeText={text => setName(text)}
-                    />
-                    <Text style={styles.warn}>Name Wrong!</Text>
-                    <Text>Password:</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        value={password}
-                        onChangeText={text => setPassword(text)}
-                    />
-                    <Text>ConfimPassword:</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        value={confimPass}
-                        onChangeText={text => setconfimPass(text)}
-                    />
-                    <Text>Mobile:</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        value={mobile}
-                        onChangeText={text => setmobile(text)}
-                    />
+
+                    <div className="about-backgroundImage" >
+                        <img src={require('../assets/images/train.png')} />
+                    </div>
+                    <div className="about-backgroundImage" >
+                        <img src={require('../assets/images/reset.png')} />
+                    </div>
+
+                    <View style={styles.body}>
+                        <Input
+                            label='Username'
+                            placeholder='  Enter Username'
+                            leftIcon={{ type: 'font-awesome', name: 'user' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setName(text)}
+
+                        />
+                        <Text style={styles.warn}>Name Wrong!</Text>
+                    </View>
+
+                    <View style={styles.body}>
+                        <Input
+                            label='Password'
+                            placeholder='   Enter password'
+                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setPassword(text)}
+                            secureTextEntry={true}
+                        />
+                    </View>
+
+                    <View style={styles.body}>
+                        <Input
+                            label='ConfimPassword'
+                            placeholder='   Enter ConfimPassword'
+                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setconfimPass(text)}
+                            secureTextEntry={true}
+                        />
+                    </View>
+
+                    <View style={styles.body}>
+                        <Input
+                            label='Mobile'
+                            placeholder='   Enter mobile'
+                            leftIcon={{ type: 'font-awesome', name: 'phone' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setmobile(text)}
+                            secureTextEntry={true}
+                        />
+                    </View>
+
+                 
                     <View style={styles.button}>
                         <Button title="Submit" onPress={submitUser} />
                     </View>
@@ -147,32 +202,58 @@ export default function SignUpScreen({
         case FORGOT_STATUS.FAILMOBILE:
             return (
                 <View style={styles.container}>
-                    <Text style={styles.title}>Forgot</Text>
-                    <Text>Name:</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        value={name}
-                        onChangeText={text => setName(text)}
-                    />
-                    <Text>Password:</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        value={password}
-                        onChangeText={text => setPassword(text)}
-                    />
-                    <Text>ConfimPassword:</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        value={confimPass}
-                        onChangeText={text => setconfimPass(text)}
-                    />
-                    <Text>Mobile:</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        value={mobile}
-                        onChangeText={text => setmobile(text)}
-                    />
-                    <Text style={styles.warn}>Phone Wrong!</Text>
+
+                    <div className="about-backgroundImage" >
+                        <img src={require('../assets/images/train.png')} />
+                    </div>
+                    <div className="about-backgroundImage" >
+                        <img src={require('../assets/images/reset.png')} />
+                    </div>
+
+                    <View style={styles.body}>
+                        <Input
+                            label='Username'
+                            placeholder='  Enter Username'
+                            leftIcon={{ type: 'font-awesome', name: 'user' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setName(text)}
+                        />
+                    </View>
+
+                    <View style={styles.body}>
+                        <Input
+                            label='Password'
+                            placeholder='   Enter password'
+                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setPassword(text)}
+                            secureTextEntry={true}
+                        />
+                    </View>
+
+                    <View style={styles.body}>
+                        <Input
+                            label='ConfimPassword'
+                            placeholder='   Enter ConfimPassword'
+                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setconfimPass(text)}
+                            secureTextEntry={true}
+                        />
+                    </View>
+
+                    <View style={styles.body}>
+                        <Input
+                            label='Mobile'
+                            placeholder='   Enter mobile'
+                            leftIcon={{ type: 'font-awesome', name: 'phone' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setmobile(text)}
+                            secureTextEntry={true}
+                        />
+                        <Text style={styles.warn}>Phone Wrong!</Text>
+                    </View>
+
                     <View style={styles.button}>
                         <Button title="Submit" onPress={submitUser} />
                     </View>
@@ -185,32 +266,58 @@ export default function SignUpScreen({
         case FORGOT_STATUS.FAILPASS:
             return (
                 <View style={styles.container}>
-                    <Text style={styles.title}>Forgot</Text>
-                    <Text>Email:</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        value={name}
-                        onChangeText={text => setName(text)}
-                    />
-                    <Text>Password:</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        value={password}
-                        onChangeText={text => setPassword(text)}
-                    />
-                    <Text>ConfimPassword:</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        value={confimPass}
-                        onChangeText={text => setconfimPass(text)}
-                    />
-                    <Text style={styles.warn}>ComfimPassword should be same as Password!</Text>
-                    <Text>Mobile:</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        value={mobile}
-                        onChangeText={text => setmobile(text)}
-                    />
+
+                    <div className="about-backgroundImage" >
+                        <img src={require('../assets/images/train.png')} />
+                    </div>
+                    <div className="about-backgroundImage" >
+                        <img src={require('../assets/images/reset.png')} />
+                    </div>
+
+                    <View style={styles.body}>
+                        <Input
+                            label='Username'
+                            placeholder='  Enter Username'
+                            leftIcon={{ type: 'font-awesome', name: 'user' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setName(text)}
+                        />
+                    </View>
+
+                    <View style={styles.body}>
+                        <Input
+                            label='Password'
+                            placeholder='   Enter password'
+                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setPassword(text)}
+                            secureTextEntry={true}
+                        />
+                    </View>
+
+                    <View style={styles.body}>
+                        <Input
+                            label='ConfimPassword'
+                            placeholder='   Enter ConfimPassword'
+                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setconfimPass(text)}
+                            secureTextEntry={true}
+                        />
+                        <Text style={styles.warn}>ComfimPassword should be same as Password!</Text>
+                    </View>
+
+                    <View style={styles.body}>
+                        <Input
+                            label='Mobile'
+                            placeholder='   Enter mobile'
+                            leftIcon={{ type: 'font-awesome', name: 'phone' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setmobile(text)}
+                            secureTextEntry={true}
+                        />
+                    </View>
+
                     <View style={styles.button}>
                         <Button title="Submit" onPress={submitUser} />
                     </View>
@@ -251,18 +358,24 @@ const styles = StyleSheet.create({
         marginBottom: 25
     },
     button: {
-        marginVertical: 10
+        marginVertical: 10,
+        backgroundColor: '#006666',
+        width: '40%'
     },
     linkText: {
-        fontSize: 14,
-        color: '#2e78b7',
+        fontSize: 16,
+        color: '#006666'
     },
     link: {
         marginTop: 15,
         paddingVertical: 15,
     },
     warn: {
-        color: 'red'
-    }
+        color: 'red',
+        textAlign: 'center'
+    },
+    body: {
+        width: '40%'
+    },
 
 });

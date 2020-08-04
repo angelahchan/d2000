@@ -13,6 +13,7 @@ import AddCardScreen from '../screens/AddCardScreen';
 import PaymentCompleteScreen from '../screens/PaymentCompleteScreen';
 import AddNotifScreen from '../screens/AddNotifScreen';
 import HistoryScreen from '../screens/HistoryScreen';
+import AddSaleScreen  from '../screens/AddSaleScreen ';
 import * as COL from '../constants/MainColors'
 import {
     BottomTabParamList,
@@ -155,6 +156,32 @@ function AccountNavigator() {
                 component={HistoryScreen}
                 options={{
                     headerTitle: 'History',
+                    headerStyle: {
+                        backgroundColor: COL.COLS.MAIN_COL,
+                    },
+                    headerTitleStyle: {
+                        color: 'white',
+                    },
+                }}
+            />
+            <AccountStack.Screen
+                name="AddNotifScreen"
+                component={AddNotifScreen}
+                options={{
+                    headerTitle: 'AddNotifScreen',
+                    headerStyle: {
+                        backgroundColor: COL.COLS.MAIN_COL,
+                    },
+                    headerTitleStyle: {
+                        color: 'white',
+                    },
+                }}
+            />
+            <AccountStack.Screen
+                name="AddSaleScreen"
+                component={AddSaleScreen}
+                options={{
+                    headerTitle: 'AddSaleScreen',
                     headerStyle: {
                         backgroundColor: COL.COLS.MAIN_COL,
                     },

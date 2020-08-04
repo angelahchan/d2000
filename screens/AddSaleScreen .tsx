@@ -39,34 +39,15 @@ export default function AddSaleScreen() {
       showMode('time');
     };
   return (
-    <View style={styles.container}>
-        <TouchableOpacity style={styles.timePicker}
-            onPress={() => setPickerVisible(true)}
-        >
+      <View style={styles.container}>
+          <View style={styles.timePicker}>
             <Input
                 label='Name'
-                placeholder={"3:20PM"}
-                editable={false}
-                value={date.toLocaleTimeString()}
-            />
-        </TouchableOpacity>
-        {pickerVisible &&
-            (<DateTimePicker
-                mode={"time"} 
-                display='clock'
-                is24Hour={true} 
-                value={date}
-
-                onChange={(event, value) => {
-                    setPickerVisible(false)
-                    if (event.type === "set"){
-                        setDate(value)
-                    }
-                    if (event.type === "cancel"){
-                        setPickerVisible(false)
-                    }
-                }}
-            />)}
+                placeholder={"Opal Card account"}
+                editable={true}
+               
+              />
+         </View>
          <SearchableDropdown
             onItemSelect={(item:any) => {
               const items = destination;
@@ -141,5 +122,5 @@ const styles = StyleSheet.create({
   btn:{
     width:'90%',
     marginVertical:20
-  }
+    }
 });

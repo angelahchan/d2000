@@ -8,6 +8,8 @@ import { StackScreenProps } from '@react-navigation/stack';
 
 import { StyleSheet, AsyncStorage, Button, TextInput, TouchableOpacity } from 'react-native';
 
+import { Input } from 'react-native-elements';
+
 import GlobalContext from '../context/GlobalContext';
 import { RootStackParamList } from '../types';
 
@@ -72,23 +74,35 @@ export default function LoginScreen({
         case LOGIN_STATUS.READY:
             return (
                 <View style={styles.container}>
-                    <Text style={styles.title}>Welcome Back</Text>
-                    <Text>Name:</Text>
-                    <TextInput
-                        textContentType='username'
-                        style={styles.textInput}
-                        value={name}
-                        onChangeText={text => setName(text)}
-                    />
-                    <Text>Password:</Text>
-                    <TextInput
-                        textContentType='password'
-                        style={styles.textInput}
-                        value={password}
-                        onChangeText={text => setPassword(text)}
-                    />
+                    <div className="about-backgroundImage" >
+                        <img src={require('../assets/images/train.png')} />
+                    </div>
+                    <div className="about-backgroundImage" >
+                        <img src={require('../assets/images/welcome.png')} />
+                    </div>
+                    <View style={styles.body}>
+                        <Input
+                            label='Username'
+                            placeholder='  Enter Username'
+                            leftIcon={{ type: 'font-awesome', name: 'user' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setName(text)}
+                        />
+                    </View>
+
+                    <View style={styles.body}>
+                        <Input
+                            label='Password'
+                            placeholder='   Enter password'
+                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setPassword(text)}
+                            secureTextEntry={true}
+                        />
+                    </View>
+
                     <TouchableOpacity onPress={() => navigation.replace('Forgot')} style={styles.link}>
-                        <Text style={styles.linkText}>forgot?</Text>
+                        <Text style={styles.right}>forgot?</Text>
                     </TouchableOpacity>
                     <View style={styles.button}>
                         <Button title="Login" onPress={submitUser} />
@@ -103,24 +117,38 @@ export default function LoginScreen({
         case LOGIN_STATUS.FAILNAME:
             return (
                 <View style={styles.container}>
-                    <Text style={styles.title}>Welcome Back</Text>
-                    <Text>Email/Phone:</Text>
-                    <TextInput
-                        textContentType='username'
-                        style={styles.textInput}
-                        value={name}
-                        onChangeText={text => setName(text)}
-                    />
-                    <Text style={styles.warn}>Name Wrong!</Text>
-                    <Text>Password:</Text>
-                    <TextInput
-                        textContentType='password'
-                        style={styles.textInput}
-                        value={password}
-                        onChangeText={text => setPassword(text)}
-                    />
+                    <div className="about-backgroundImage" >
+                        <img src={require('../assets/images/train.png')} />
+                    </div>
+                    <div className="about-backgroundImage" >
+                        <img src={require('../assets/images/welcome.png')} />
+                    </div>
+
+                    <View style={styles.body}>
+                        <Input
+                            label='Username'
+                            placeholder='  Enter Username'
+                            leftIcon={{ type: 'font-awesome', name: 'user' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setName(text)}
+                        />
+                        <Text style={styles.warn}>Name Wrong!</Text>
+                    </View>
+
+                    <View style={styles.body}>
+                        <Input
+
+                            label='Password'
+                            placeholder='   Enter password'
+                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setPassword(text)}
+                            secureTextEntry = {true}
+                        />
+                    </View>
+
                     <TouchableOpacity onPress={() => navigation.replace('Forgot')} style={styles.link}>
-                        <Text style={styles.linkText}>forgot?</Text>
+                        <Text style={styles.right}>forgot?</Text>
                     </TouchableOpacity>
                     <View style={styles.button}>
                         <Button title="Login" onPress={submitUser} />
@@ -135,24 +163,39 @@ export default function LoginScreen({
         case LOGIN_STATUS.FAILPASS:
             return (
                 <View style={styles.container}>
-                    <Text style={styles.title}>Welcome Back</Text>
-                    <Text>Email/Phone:</Text>
-                    <TextInput
-                        textContentType='username'
-                        style={styles.textInput}
-                        value={name}
-                        onChangeText={text => setName(text)}
-                    />
-                    <Text>Password:</Text>
-                    <TextInput
-                        textContentType='password'
-                        style={styles.textInput}
-                        value={password}
-                        onChangeText={text => setPassword(text)}
-                    />
-                    <Text style={styles.warn}>Password Wrong!</Text>
+                    <div className="about-backgroundImage" >
+                        <img src={require('../assets/images/train.png')} />
+                    </div>
+                    <div className="about-backgroundImage" >
+                        <img src={require('../assets/images/welcome.png')} />
+                    </div>
+
+                    <View style={styles.body}>
+                        <Input
+                            label='Username'
+                            placeholder='  Enter Username'
+                            leftIcon={{ type: 'font-awesome', name: 'user' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setName(text)}
+                        />
+                    </View>
+
+                    <View style={styles.body}>
+                        <Input
+
+                            label='Password'
+                            placeholder='   Enter password'
+                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            errorStyle={{ color: 'red' }}
+                            onChangeText={text => setPassword(text)}
+                            secureTextEntry={true}
+                        />
+                        <Text style={styles.warn}>Password Wrong!</Text>
+                    </View>
+
+                    
                     <TouchableOpacity onPress={() => navigation.replace('Forgot')} style={styles.link}>
-                        <Text style={styles.linkText}>forgot?</Text>
+                        <Text style={styles.right}>forgot?</Text>
                     </TouchableOpacity>
                     <View style={styles.button}>
                         <Button title="Login" onPress={submitUser} />
@@ -195,17 +238,29 @@ const styles = StyleSheet.create({
         marginBottom: 25
     },
     button: {
-        marginVertical: 10
+        marginVertical: 10,
+        backgroundColor: '#006666',
+        width:'40%'
     },
     linkText: {
-        fontSize: 14,
-        color: '#2e78b7',
+        fontSize: 16,
+        color: '#006666'
     },
     link: {
         marginTop: 15,
         paddingVertical: 15,
     },
     warn: {
-        color: 'red'
+        color: 'red',
+        textAlign: 'center'
+    },
+    body: {
+        width: '40%'
+    },
+    right: {
+        textAlign: 'right',
+        fontSize: 14,
+        color: '#006666'
     }
+    
 });

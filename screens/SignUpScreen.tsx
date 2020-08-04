@@ -3,7 +3,7 @@ import * as React from 'react';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
-
+import { Input } from 'react-native-elements';
 import { StackScreenProps } from '@react-navigation/stack';
 
 import { StyleSheet, AsyncStorage, Button, TextInput, TouchableOpacity } from 'react-native';
@@ -53,28 +53,44 @@ export default function SignUpScreen({
 
   return (
       <View style={styles.container}>
-          <Text style={styles.title}>Sign up</Text>
-          <Text>Name:</Text>
-          <TextInput
-              //textContentType='username'
-              style={styles.textInput}
-              value={name}
-              onChangeText={text => setName(text)}
-          />
-          <Text>Password:</Text>
-          <TextInput
-              style={styles.textInput}
-              //textContentType='newPassword'
-              value={password}
-              onChangeText={text => setPassword(text)}
-          />
-          <Text>Mobile:</Text>
-          <TextInput
-             // textContentType='telephoneNumber'
-              style={styles.textInput}
-              value={mobile}
-              onChangeText={text => setmobile(text)}
-          />
+          <div className="about-backgroundImage" >
+              <img src={require('../assets/images/train.png')} />
+          </div>
+          <div className="about-backgroundImage" >
+              <img src={require('../assets/images/sign.png')} />
+          </div>
+
+          <View style={styles.body}>
+              <Input
+                  label='Username'
+                  placeholder='  Enter Username'
+                  leftIcon={{ type: 'font-awesome', name: 'user' }}
+                  errorStyle={{ color: 'red' }}
+                  onChangeText={text => setName(text)}
+              />
+          </View>
+
+          <View style={styles.body}>
+              <Input
+                  label='Password'
+                  placeholder='   Enter password'
+                  leftIcon={{ type: 'font-awesome', name: 'password' }}
+                  errorStyle={{ color: 'red' }}
+                  onChangeText={text => setPassword(text)}
+                  secureTextEntry={true}
+              />
+          </View>
+
+          <View style={styles.body}>
+              <Input
+                  label='Mobile'
+                  placeholder='   Enter mobile'
+                  leftIcon={{ type: 'font-awesome', name: 'phone' }}
+                  errorStyle={{ color: 'red' }}
+                  onChangeText={text => setmobile(text)}
+                  secureTextEntry={true}
+              />
+          </View>
           <View style={styles.button}>
               <Button title="SignUp" onPress={submitUser} />
           </View>
@@ -113,14 +129,19 @@ const styles = StyleSheet.create({
         marginBottom: 25
     },
     button: {
-        marginVertical: 10
+        marginVertical: 10,
+        backgroundColor: '#006666',
+        width: '40%'
     },
     linkText: {
-        fontSize: 14,
-        color: '#2e78b7',
+        fontSize: 16,
+        color: '#006666'
     },
     link: {
         marginTop: 15,
         paddingVertical: 15,
-    }
+    },
+    body: {
+        width: '40%'
+    },
 });
