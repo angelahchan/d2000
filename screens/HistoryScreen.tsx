@@ -29,7 +29,7 @@ class ScrollList extends React.Component {
 }
 
 var index = 2;
-export default function HistoryScreen() {
+export default function HistoryScreen(props: any) {
     const [global, setGlobal] = React.useContext(GlobalContext);
     return (
         <View style={styles.container}>
@@ -42,10 +42,33 @@ export default function HistoryScreen() {
                             return (
                                 <View style={styles.seg1}>
                                     <View key={index} style={styles.seg}>
+                                        <View key={index} style={styles.seg3}>
+                                            <Text style={styles.left} > {"Randwick Line"}</Text>
+                                            <Text style={styles.right}>{"$" + element.cost}</Text>
+                                        </View>
+
+
+                                        <View key={index} style={styles.seg2}>
+                                            <img src={require('../assets/images/time.png')} />
+                                            <Text style={styles.grey}>{"Start at " + element.startTime}</Text>
+                                        </View>
+                                        <View key={index} style={styles.seg2}>
+                                            <img src={require('../assets/images/start.png')} />
+                                            <Text style={styles.grey}>{"UNSW High Street"}</Text>
+                                        </View>
+
+                                        <View key={index} style={styles.seg2}>
+                                            <img src={require('../assets/images/end.png')} />
+                                            <Text style={styles.grey}>{"Central Chalmers Street"}</Text>
+                                        </View>
+
+                                        <View key={index} style={styles.seg2}>
+                                            <img src={require('../assets/images/time.png')} />
+                                            <Text style={styles.grey}>{"Pay by " + element.selectedCard.type + " card-" + element.selectedCard.cardNumber}</Text>
+                                        </View>
                                         
-                                        <Text>{"Starttime " + element.startTime}</Text>
-                                        <Text>{"Card: " + element.selectedCard.type + " card: " + element.selectedCard.cardNumber}</Text>
-                                        <Text>{"Cost: " + element.cost}</Text>
+                                        
+                                        
                                     
                                     </View>
                                 </View>
@@ -84,18 +107,53 @@ const styles = StyleSheet.create({
         margin: 20,
         backgroundColor: '#fff',
         flex: 1,
-        alignItems: 'center',
+        alignItems: 'stretch',
         justifyContent: 'center',
+        marginTop: 12,
     },
 
     seg1: {
-        width: '400px',
-        height: '200px',
-        margin: 20,
-        backgroundColor: '#eee',
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 12,
+    },
+    seg3: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 5,
+    },
+    seg2: {
+        marginLeft: 25,
+        flexDirection: 'row',
+        justifyContent: 'flex-start'
+    },
+    left: {
+        textAlign: 'left',
+        fontSize: 14,
+        color: '#006666',
+        fontWeight: '900',
+        marginLeft: 20,
+        marginRight: 25,
+    },
+    grey: {
+
+        textAlign: 'left',
+        fontSize: 14,
+        color: '#999999',
+        fontWeight: '500',
+        marginTop: 5,
+    },
+    right: {
+
+        textAlign: 'right',
+        fontSize: 14,
+        color: '#000000',
+        fontWeight: '700',
+        marginLeft: 25,
+        marginRight: 25,
+    },
+    icon: {
+        marginLeft: 20,
     }
 });
 

@@ -105,7 +105,7 @@ export default function LoginScreen({
                         <Text style={styles.right}>forgot?</Text>
                     </TouchableOpacity>
                     <View style={styles.button}>
-                        <Button title="Login" onPress={submitUser} />
+                        <Button background-color="#006666" title="Login" onPress={submitUser} />
                     </View>
 
                     <Text>Don't have a account?</Text>
@@ -151,7 +151,7 @@ export default function LoginScreen({
                         <Text style={styles.right}>forgot?</Text>
                     </TouchableOpacity>
                     <View style={styles.button}>
-                        <Button title="Login" onPress={submitUser} />
+                        <Button background-color="#006666" title="Login" onPress={submitUser} />
                     </View>
 
                     <Text>Don't have a account?</Text>
@@ -198,7 +198,7 @@ export default function LoginScreen({
                         <Text style={styles.right}>forgot?</Text>
                     </TouchableOpacity>
                     <View style={styles.button}>
-                        <Button title="Login" onPress={submitUser} />
+                        <Button background-color="#006666" title="Login" onPress={submitUser} />
                     </View>
 
                     <Text>Don't have a account?</Text>
