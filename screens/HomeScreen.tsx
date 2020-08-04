@@ -3,13 +3,12 @@ import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import  { COLS } from '../constants/MainColors';
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/HomeScreen.tsx" />
+      <Text style={styles.title}>Welcome Home</Text>
     </View>
   );
 }
@@ -21,12 +20,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 36,
+    color:COLS.MAIN_COL
   },
   separator: {
     marginVertical: 30,
     height: 1,
     width: '80%',
   },
+  button_yellow: {
+    borderRadius: 25,
+    background: '#73AD21',
+    padding: '20px',
+    width: '200px',
+    height: '150px',
+  }
 });

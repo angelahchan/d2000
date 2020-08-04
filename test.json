@@ -1,6 +1,7 @@
 {
     "lines":[
         {
+            "id":"1",
             "start":"UNSW",
             "des":"Bondi beach",
             "duration":"15",
@@ -9,6 +10,7 @@
             "arrive":"16:30"
         },
         {
+            "id":"2",
             "start":"UNSW",
             "des":"Bondi beach",
             "duration":"30",
@@ -17,6 +19,7 @@
             "arrive":"16:40"
         },
         {
+            "id":"3",
             "start":"UNSW",
             "des":"Bondi beach",
             "duration":"20",
@@ -25,6 +28,7 @@
             "arrive":"16:35"
         },
         {
+            "id":"4",
             "start":"Zetland",
             "des":"central station",
             "duration":"30",

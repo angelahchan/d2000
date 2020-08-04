@@ -159,7 +159,7 @@ function AccountNavigator() {
                 }, }}
                 
             />
-                        <AccountStack.Screen
+            <AccountStack.Screen
                 name="AddNotifScreen"
                 component={AddNotifScreen}
                 options={{ headerTitle: 'Add Notification',
