@@ -2,11 +2,9 @@ import * as React from 'react';
 import { StyleSheet, Platform, Button, Switch, FlatList, ScrollView, TouchableOpacity} from 'react-native';
 
 import { Text, View } from '../components/Themed';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import GlobalContext from '../context/GlobalContext';
 import { Input } from 'react-native-elements';
 import * as COL from '../constants/MainColors';
-import stopInfo from '../assets/data/stopInfo.json'
 import { Ionicons } from '@expo/vector-icons';
 
 
