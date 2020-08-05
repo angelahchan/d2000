@@ -52,7 +52,7 @@ class ScrollList extends React.Component {
     );
     else 
     return (
-      <View style={{alignItems: 'center'}}>
+      <View style={{alignItems: 'center',padding:'10%',backgroundColor:'#eee',paddingTop:'0'}}>
         <TouchableOpacity onPress={()=>this.setTag(null)}>
           <Image style={styles.back} source={require('../assets/images/back.png')}/>
         </TouchableOpacity>
@@ -60,14 +60,29 @@ class ScrollList extends React.Component {
           <MapContainer start={this.state.val.start} end={this.state.val.des} id={this.state.val.line}></MapContainer>
           
         </View>
-        <View key={index} style={styles.seg}>
-        <Text>{"start: "+this.state.val.start}</Text>
-        <Text>{"end: "+this.state.val.des}</Text>
-        <Text>{"arrive: "+this.state.val.arrive}</Text>
-        <ProgressBar width={parseInt(this.state.val.seats)}/>
-        <Text>{"seats left: "+this.state.val.seats}</Text>
-        <Text>{"cost: "+this.state.val.price}</Text>
-      </View>
+        <View key={index} style={styles.seg1}>
+        <View  key={index} style={styles.seg}>
+            <View key={index} style={styles.seg3}>
+                <Text style={styles.left} > {"Randwick Line"}</Text>
+                <Text style={styles.right}>{"$" + this.state.val.price}</Text>
+            </View>
+
+
+            <View key={index} style={styles.seg2}>
+                
+                <Text style={styles.grey}>{"Start at " + this.state.val.arrive}</Text>
+            </View>
+            <View key={index} style={styles.seg2}>
+                
+                <Text style={styles.grey}>{this.state.val.start}</Text>
+            </View>
+
+            <View key={index} style={styles.seg2}>
+                
+                <Text style={styles.grey}>{this.state.val.des}</Text>
+            </View>
+        </View>
+    </View>
       </View>
     );
   }

@@ -253,7 +253,7 @@ export class MapContainer extends Component {
         for(var i=startS;i<=endS;i++){
             line.push(linePos[i]);
             segment.push(<Marker key={i} onClick={this.onMarkerClick}
-                name={lineNum}
+                name={lineNum[i]}
                 position={linePos[i]}
             />);
 
