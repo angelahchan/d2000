@@ -67,6 +67,7 @@ export default function SignUpScreen({
                   leftIcon={{ type: 'font-awesome', name: 'user' }}
                   errorStyle={{ color: 'red' }}
                   onChangeText={text => setName(text)}
+                  keyboardType="email-address"
               />
           </View>
 
@@ -88,6 +89,7 @@ export default function SignUpScreen({
                   leftIcon={{ type: 'font-awesome', name: 'phone' }}
                   errorStyle={{ color: 'red' }}
                   onChangeText={text => setmobile(text)}
+                  keyboardType="numeric"
               />
           </View>
           <View style={styles.button}>

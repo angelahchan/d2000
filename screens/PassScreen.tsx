@@ -117,6 +117,7 @@ export default function SignUpScreen(props: any) {
                             leftIcon={{ type: 'font-awesome', name: 'phone' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setmobile(text)}
+                            keyboardType="numeric"
                         />
                     </View>
 

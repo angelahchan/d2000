@@ -88,6 +88,7 @@ export default function LoginScreen({
                             leftIcon={{ type: 'font-awesome', name: 'user' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setName(text)}
+                            keyboardType="email-address"
                         />
                     </View>
 
@@ -132,6 +133,7 @@ export default function LoginScreen({
                             leftIcon={{ type: 'font-awesome', name: 'user' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setName(text)}
+                            keyboardType="email-address"
                         />
                         <Text style={styles.warn}>Name Wrong!</Text>
                     </View>
@@ -178,6 +180,7 @@ export default function LoginScreen({
                             leftIcon={{ type: 'font-awesome', name: 'user' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setName(text)}
+                            keyboardType="email-address"
                         />
                     </View>
 

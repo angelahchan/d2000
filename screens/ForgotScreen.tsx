@@ -87,6 +87,7 @@ export default function SignUpScreen({
                             leftIcon={{ type: 'font-awesome', name: 'user' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setName(text)}
+                            keyboardType="email-address"
                         />
                     </View>
 
@@ -104,7 +105,7 @@ export default function SignUpScreen({
                     <View style={styles.body}>
                         <Input
                             label='ConfimPassword'
-                            placeholder='   Enter ConfimPassword'
+                            placeholder='   Confirm Password'
                             leftIcon={{ type: 'font-awesome', name: 'check' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setconfimPass(text)}
@@ -119,6 +120,7 @@ export default function SignUpScreen({
                             leftIcon={{ type: 'font-awesome', name: 'phone' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setmobile(text)}
+                            keyboardType="numeric"
                         />
                     </View>
 
@@ -150,6 +152,7 @@ export default function SignUpScreen({
                             leftIcon={{ type: 'font-awesome', name: 'user' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setName(text)}
+                            keyboardType="email-address"
 
                         />
                         <Text style={styles.warn}>Name Wrong!</Text>
@@ -215,6 +218,7 @@ export default function SignUpScreen({
                             leftIcon={{ type: 'font-awesome', name: 'user' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setName(text)}
+                            keyboardType="email-address"
                         />
                     </View>
 
@@ -278,6 +282,7 @@ export default function SignUpScreen({
                             leftIcon={{ type: 'font-awesome', name: 'user' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setName(text)}
+                            keyboardType="email-address"
                         />
                     </View>
 
