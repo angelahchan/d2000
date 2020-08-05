@@ -8,7 +8,11 @@ export default {
         screens: {
           Home: {
             screens: {
-              HomeScreen: 'one',
+                  HomeScreen: 'one',
+                  HistoryScreen: 'history',
+
+                  AddNotifScreen: 'addnotif',
+                  NotifListScreen: 'notifs',
             },
           },
           Payment: {
@@ -26,13 +30,15 @@ export default {
           Account: {
             screens: {
               AccountScreen: 'four',
-              AddNotifScreen:'addnotif',
-              NotifListScreen:'notifs'
+              AddSaleScreen: 'sale',
+              PassScreen:'pass'
             },
           },
         },
       },
       NotFound: '*',
+      Login: 'Login',
+      Sign:'Sign',
     },
   },
 };

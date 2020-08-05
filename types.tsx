@@ -1,6 +1,9 @@
 export type RootStackParamList = {
   Root: undefined;
   NotFound: undefined;
+  Login: undefined;
+  Sign: undefined;
+  Forgot: undefined;
 };
 
 export type BottomTabParamList = {
@@ -11,7 +14,10 @@ export type BottomTabParamList = {
 };
 
 export type HomeParamList = {
-  HomeScreen: undefined;
+    HomeScreen: undefined;
+    HistoryScreen: undefined;
+    AddNotifScreen: undefined;
+    NotifListScreen: undefined;
 };
 
 export type PaymentParamList = {
@@ -21,9 +27,9 @@ export type PaymentParamList = {
 };
 
 export type AccountParamList = {
-  AccountScreen: undefined;
-  AddNotifScreen: undefined;
-  NotifListScreen: undefined;
+    AccountScreen: undefined;
+    AddSaleScreen: undefined;
+    PassScreen: undefined;
 };
 
 export type PlannerParamList = {

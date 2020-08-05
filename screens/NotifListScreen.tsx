@@ -51,9 +51,10 @@ export default function NotifListScreen(props:any) {
   }
 // handleToggleComplete(card.cardNumber)
     return (
-       
+
         <ScrollView  snapToAlignment="start"
         >
+
             <View style={styles.switches}>
             {
                 global.notifs.map((notif:any, index:any) => {
@@ -83,6 +84,10 @@ export default function NotifListScreen(props:any) {
             }
 
             </View>
+
+            <TouchableOpacity onPress={() => props.navigation.replace('HomeScreen')} style={styles.container}>
+                <AddIcon name="md-home" color="black" />
+            </TouchableOpacity>
             
         </ScrollView>
 
@@ -146,5 +151,13 @@ const styles = StyleSheet.create({
   },
   add:{
     marginRight:10,
-  }
+    },
+    linkText: {
+        fontSize: 16,
+        color: '#006666'
+    },
+    link: {
+        marginTop: 15,
+        paddingVertical: 15,
+    },
 });

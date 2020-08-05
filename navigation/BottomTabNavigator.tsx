@@ -11,8 +11,11 @@ import AccountScreen from '../screens/AccountScreen';
 import PlannerScreen from '../screens/PlannerScreen';
 import AddCardScreen from '../screens/AddCardScreen';
 import PaymentCompleteScreen from '../screens/PaymentCompleteScreen';
+import HistoryScreen from '../screens/HistoryScreen';
 import AddNotifScreen from '../screens/AddNotifScreen';
+import AddSaleScreen  from '../screens/AddSaleScreen ';
 import NotifListScreen from '../screens/NotifListScreen';
+import PassScreen from '../screens/PassScreen';
 import * as COL from '../constants/MainColors'
 import {Button, TouchableOpacity} from 'react-native';
 
@@ -88,8 +91,51 @@ function HomeNavigator() {
         headerTitleStyle: {
           color: 'white',
         }, }}
-      />
-    </HomeStack.Navigator>
+          />
+       <HomeStack.Screen
+              name="HistoryScreen"
+              component={HistoryScreen}
+              options={{
+                  headerTitle: 'History',
+                  headerStyle: {
+                      backgroundColor: COL.COLS.MAIN_COL,
+                  },
+                  headerTitleStyle: {
+                      color: 'white',
+                  },
+              }}
+          />
+          <HomeStack.Screen
+              name="NotifListScreen"
+              component={NotifListScreen}
+              options={{
+                  headerTitle: 'Notifications',
+                  headerStyle: {
+                      backgroundColor: COL.COLS.MAIN_COL,
+                  },
+                  headerTitleStyle: {
+                      color: 'white',
+                  },
+              }}
+
+          />
+          <HomeStack.Screen
+              name="AddNotifScreen"
+              component={AddNotifScreen}
+              options={{
+                  headerTitle: 'Add Notification',
+                  headerStyle: {
+                      backgroundColor: COL.COLS.MAIN_COL,
+                  },
+                  headerTitleStyle: {
+                      color: 'white',
+                  },
+              }}
+          />
+
+      </HomeStack.Navigator>
+
+
   );
 }
 
@@ -152,28 +198,35 @@ function AccountNavigator() {
                   color: 'white',
                 }, }}
             />
-               <AccountStack.Screen
-                name="NotifListScreen"
-                component={NotifListScreen}
-                options={ { headerTitle: 'Notifications',
-                headerStyle: {
-                  backgroundColor:COL.COLS.MAIN_COL,
-                },
-                headerTitleStyle: {
-                  color: 'white',
-                }, }}
-                
+
+
+            <AccountStack.Screen
+                name="AddSaleScreen"
+                component={AddSaleScreen}
+                options={{
+                    headerTitle: 'AddSaleScreen',
+                    headerStyle: {
+                        backgroundColor: COL.COLS.MAIN_COL,
+                    },
+                    headerTitleStyle: {
+                        color: 'white',
+                    },
+                }}
             />
-                        <AccountStack.Screen
-                name="AddNotifScreen"
-                component={AddNotifScreen}
-                options={{ headerTitle: 'Add Notification',
-                headerStyle: {
-                  backgroundColor:COL.COLS.MAIN_COL,
-                },
-                headerTitleStyle: {
-                  color: 'white',
-                }, }}
+
+
+            <AccountStack.Screen
+                name="PassScreen"
+                component={PassScreen}
+                options={{
+                    headerTitle: 'PassScreen',
+                    headerStyle: {
+                        backgroundColor: COL.COLS.MAIN_COL,
+                    },
+                    headerTitleStyle: {
+                        color: 'white',
+                    },
+                }}
             />
 
         </AccountStack.Navigator>

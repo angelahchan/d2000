@@ -8,6 +8,7 @@ let backgroundCol = COL.COLS.BACKGROUND_COL;
 import GlobalContext from '../context/GlobalContext';
 import { Text, View,} from '../components/Themed';
 import moment from 'moment';
+import { HISTORY_STATUS } from '../constants/HistoryState ';
 export default function PaymentTop(props:any){
     const [global, setGlobal] = React.useContext(GlobalContext);
     let  paymentStat = global.tripState
@@ -58,8 +59,17 @@ export default function PaymentTop(props:any){
             endTime: moment()
             .utcOffset('+10')
             .format('YYYY/MM/DD hh:mm:ss'),
+
             tripHistory:newHistory,
-            currentDiscount:{}
+            currentDiscount:{},
+            nearHistory: {
+                cost: 6.1,
+                startTime: global.startTime,
+                endTime: global.endTime,
+                selectedCard: global.selectedCard
+              },
+            History: HISTORY_STATUS.YES,
+
 
           });
           return (amountCharged)

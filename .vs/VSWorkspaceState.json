@@ -1,7 +1,15 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\.expo",
+    "\\assets",
+    "\\assets\\images",
+    "\\components",
+    "\\constants",
+    "\\context",
+    "\\navigation",
+    "\\screens"
   ],
-  "SelectedNode": "\\hooks",
+  "SelectedNode": "\\screens\\PassScreen.tsx",
   "PreviewInSolutionExplorer": false
 }
