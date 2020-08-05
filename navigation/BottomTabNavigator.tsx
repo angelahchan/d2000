@@ -14,7 +14,8 @@ import PaymentCompleteScreen from '../screens/PaymentCompleteScreen';
 import AddNotifScreen from '../screens/AddNotifScreen';
 import NotifListScreen from '../screens/NotifListScreen';
 import * as COL from '../constants/MainColors'
-import {Button} from 'react-native';
+import {Button, TouchableOpacity} from 'react-native';
+
 import {
     BottomTabParamList,
     HomeParamList,
@@ -140,37 +141,7 @@ const AccountStack = createStackNavigator<AccountParamList>();
 function AccountNavigator() {
     return (
         <AccountStack.Navigator>
-               <AccountStack.Screen
-                name="NotifListScreen"
-                component={NotifListScreen}
-                options={{ headerTitle: 'Notifications',
-                headerStyle: {
-                  backgroundColor:COL.COLS.MAIN_COL,
-                },
-                headerRight: () => (
-                  <Button
-                    onPress={() => alert('This is a button!')}
-                    title="Info"
-                    color="#fff"
-                  />
-                ),
-                headerTitleStyle: {
-                  color: 'white',
-                }, }}
-                
-            />
-            <AccountStack.Screen
-                name="AddNotifScreen"
-                component={AddNotifScreen}
-                options={{ headerTitle: 'Add Notification',
-                headerStyle: {
-                  backgroundColor:COL.COLS.MAIN_COL,
-                },
-                headerTitleStyle: {
-                  color: 'white',
-                }, }}
-            />
-            <AccountStack.Screen
+                <AccountStack.Screen
                 name="AccountScreen"
                 component={AccountScreen}
                 options={{ headerTitle: 'Account',
@@ -181,6 +152,30 @@ function AccountNavigator() {
                   color: 'white',
                 }, }}
             />
+               <AccountStack.Screen
+                name="NotifListScreen"
+                component={NotifListScreen}
+                options={ { headerTitle: 'Notifications',
+                headerStyle: {
+                  backgroundColor:COL.COLS.MAIN_COL,
+                },
+                headerTitleStyle: {
+                  color: 'white',
+                }, }}
+                
+            />
+                        <AccountStack.Screen
+                name="AddNotifScreen"
+                component={AddNotifScreen}
+                options={{ headerTitle: 'Add Notification',
+                headerStyle: {
+                  backgroundColor:COL.COLS.MAIN_COL,
+                },
+                headerTitleStyle: {
+                  color: 'white',
+                }, }}
+            />
+
         </AccountStack.Navigator>
     );
 }

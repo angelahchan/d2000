@@ -1,0 +1,22 @@
+[
+    {
+        "amount": 50,
+        "id":1,
+        "redeemed":false
+    },
+    {
+        "amount": 25,
+        "id":2,
+        "redeemed":false
+    },
+    {
+        "amount": 75,
+        "id":3,
+        "redeemed":false
+    },
+    {
+        "amount": 50,
+        "id":4,
+        "redeemed":false
+    }
+]
