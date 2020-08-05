@@ -1,15 +1,14 @@
+
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import{ AppRegistry, ScrollView, Image,TextInput,Picker, Button} from 'react-native'
-
+import Reward from '../components/Reward'
 
 
 export default function AccountScreen() {
-    const [global, setGlobal] = React.useContext(GlobalContext);
-    //props.navigation.navigate('HistoryScreen')
   return (
     <ScrollView>
       <View style={styles.container}>
