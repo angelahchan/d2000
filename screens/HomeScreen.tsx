@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
-import { StyleSheet, Platform, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Platform, Button, TouchableOpacity, Image } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
-import { Text, View } from '../components/Themed';
+import { Text, View, } from '../components/Themed';
 import GlobalContext from '../context/GlobalContext';
 import { HISTORY_STATUS } from '../constants/HistoryState ';
 import { BottomTabParamList, AccountParamList } from '../types';
@@ -28,21 +28,21 @@ export default function HomeScreen(props: any) {
                             </View>
 
                             <View style={styles.seg2}>
-                                <img src={require('../assets/images/time.png')} />
+                                <Image source={require('../assets/images/time.png')} />
                                 <Text style={styles.grey}>{"Start at " + global.nearHistory.startTime}</Text>
                             </View>
                             <View style={styles.seg2}>
-                                <img src={require('../assets/images/start.png')} />
+                                <Image source={require('../assets/images/start.png')} />
                                 <Text style={styles.grey}>{"UNSW High Street"}</Text>
                             </View>
 
                             <View style={styles.seg2}>
-                                <img src={require('../assets/images/end.png')} />
+                                <Image source={require('../assets/images/end.png')} />
                                 <Text style={styles.grey}>{"Central Chalmers Street"}</Text>
                             </View>
 
                             <View style={styles.seg2}>
-                                <img src={require('../assets/images/time.png')} />
+                                <Image source={require('../assets/images/time.png')} />
                                 <Text style={styles.grey}>{"Pay by " + global.nearHistory.selectedCard.type + " card-" + global.nearHistory.selectedCard.cardNumber}</Text>
                             </View>
 
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
         marginLeft: 20,
     },
     seg: {
-        width: '300px',
+        width: 300,
         margin: 20,
         backgroundColor: '#fff',
         flex: 1,

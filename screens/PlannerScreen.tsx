@@ -16,13 +16,13 @@ var displayList: JSX.Element[] =[];
 var imageSrc:any;
 displayList.push(
   <View style={{
-    width:'300px',
+    width:300,
     margin:20,
     backgroundColor:'#fff',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    height:'100px',
+    height:100,
   }}>
     <Text>Please enter some shit</Text>
 
@@ -56,7 +56,7 @@ class ScrollList extends React.Component {
         <TouchableOpacity onPress={()=>this.setTag(null)}>
           <Image style={styles.back} source={require('../assets/images/back.png')}/>
         </TouchableOpacity>
-        <View style={{height:'500px',width:'500px'}}>
+        <View style={{height:500,width:500}}>
           <MapContainer start={this.state.val.start} end={this.state.val.des} id={this.state.val.id}></MapContainer>
           
         </View>
@@ -165,8 +165,8 @@ const styles = StyleSheet.create({
     width:'80%',
   },
   seg:{
-    width:'300px',
-    height:'150px',
+    width:300,
+    height:150,
     margin:20,
     backgroundColor:'#fff',
     flex: 1,
@@ -174,12 +174,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   back:{
-    width:'50px',
-    height:'50px'
+    width:50,
+    height:50
   },
   route:{
-    width:'500px',
-    height:'500px'
+    width:500,
+    height:500
   },
   progressBar: {
     height: 20,
