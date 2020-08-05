@@ -54,9 +54,7 @@ export default function NotifListScreen(props:any) {
 
         <ScrollView  snapToAlignment="start"
         >
-            <TouchableOpacity onPress={() => props.navigation.replace('HomeScreen')} style={styles.link}>
-                <AddIcon name="ios-menu" color="black" />
-            </TouchableOpacity>
+
             <View style={styles.switches}>
             {
                 global.notifs.map((notif:any, index:any) => {
@@ -86,6 +84,10 @@ export default function NotifListScreen(props:any) {
             }
 
             </View>
+
+            <TouchableOpacity onPress={() => props.navigation.replace('HomeScreen')} style={styles.container}>
+                <AddIcon name="md-home" color="black" />
+            </TouchableOpacity>
             
         </ScrollView>
 

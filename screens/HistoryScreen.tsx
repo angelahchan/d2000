@@ -7,36 +7,12 @@ import { AppRegistry, ScrollView, Image, TextInput, Picker } from 'react-native'
 import {  AsyncStorage, Button,  TouchableOpacity } from 'react-native';
 import GlobalContext from '../context/GlobalContext';
 
-var obj: object;
-var displayList: JSX.Element[] = [];
-
-class ScrollList extends React.Component {
-    constructor(state: []) {
-        super(state);
-        obj = this;
-        this.state = { innerList: displayList }
-    }
-    search(li: []) {
-        this.setState({ innerList: li });
-    }
-
-    render() {
-        return (
-            <ScrollView style={styles.con} contentContainerStyle={{ alignItems: 'center' }}>
-                {this.state.innerList.map(function (ele: React.ReactNode) { index++; return <Text key={index}>{ele}</Text> })}
-            </ScrollView>
-        );
-    }
-}
-
 var index = 2;
 export default function HistoryScreen(props: any) {
     const [global, setGlobal] = React.useContext(GlobalContext);
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={() => props.navigation.replace('HomeScreen')} style={styles.link}>
-                <Text style={styles.linkText}>back home</Text>
-            </TouchableOpacity>
+
             <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
             <ScrollView style={styles.con} contentContainerStyle={{ alignItems: 'center' }} 
             >
@@ -81,6 +57,9 @@ export default function HistoryScreen(props: any) {
                     }
 
             </ScrollView>
+            <TouchableOpacity onPress={() => props.navigation.replace('HomeScreen')} style={styles.link}>
+                <img src={require('../assets/images/home.png')} />
+            </TouchableOpacity>
         </View>
     );
 }
