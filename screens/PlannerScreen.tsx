@@ -145,7 +145,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   back:{
-    float:'left',
     width:'50px',
     height:'50px'
   },
