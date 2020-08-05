@@ -180,8 +180,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#006666',
         fontWeight: '900',
-        marginLeft: 20,
-        marginRight: 25,
+        width:'50%'
     },
     grey: {
 
@@ -195,10 +194,10 @@ const styles = StyleSheet.create({
 
         textAlign: 'right',
         fontSize: 14,
+
         color: '#000000',
         fontWeight: '700',
-        marginLeft: 25,
-        marginRight: 25,
+        width:'50%'
     },
     icon: {
         marginLeft: 20,
