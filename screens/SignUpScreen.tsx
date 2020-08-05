@@ -6,7 +6,7 @@ import { Text, View } from '../components/Themed';
 import { Input } from 'react-native-elements';
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { StyleSheet, AsyncStorage, Button, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, AsyncStorage, Button, TextInput, Image, TouchableOpacity } from 'react-native';
 
 import GlobalContext from '../context/GlobalContext';
 import { RootStackParamList } from '../types';
@@ -53,12 +53,12 @@ export default function SignUpScreen({
 
   return (
       <View style={styles.container}>
-          <div className="about-backgroundImage" >
-              <img src={require('../assets/images/train.png')} />
-          </div>
-          <div className="about-backgroundImage" >
-              <img src={require('../assets/images/sign.png')} />
-          </div>
+          <View  >
+              <Image source={require('../assets/images/train.png')} />
+          </View>
+          <View  >
+              <Image source={require('../assets/images/sign.png')} />
+          </View>
 
           <View style={styles.body}>
               <Input

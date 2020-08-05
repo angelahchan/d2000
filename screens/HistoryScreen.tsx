@@ -29,21 +29,21 @@ export default function HistoryScreen(props: any) {
 
 
                                         <View key={index} style={styles.seg2}>
-                                            <img src={require('../assets/images/time.png')} />
+                                            <Image source={require('../assets/images/time.png')} />
                                             <Text style={styles.grey}>{"Start at " + element.startTime}</Text>
                                         </View>
                                         <View key={index} style={styles.seg2}>
-                                            <img src={require('../assets/images/start.png')} />
+                                            <Image source={require('../assets/images/start.png')} />
                                             <Text style={styles.grey}>{"UNSW High Street"}</Text>
                                         </View>
 
                                         <View key={index} style={styles.seg2}>
-                                            <img src={require('../assets/images/end.png')} />
+                                            <Image source={require('../assets/images/end.png')} />
                                             <Text style={styles.grey}>{"Central Chalmers Street"}</Text>
                                         </View>
 
                                         <View key={index} style={styles.seg2}>
-                                            <img src={require('../assets/images/time.png')} />
+                                            <Image source={require('../assets/images/time.png')} />
                                             <Text style={styles.grey}>{"Pay by " + element.selectedCard.type + " card-" + element.selectedCard.cardNumber}</Text>
                                         </View>
                                         
@@ -58,7 +58,7 @@ export default function HistoryScreen(props: any) {
 
             </ScrollView>
             <TouchableOpacity onPress={() => props.navigation.replace('HomeScreen')} style={styles.link}>
-                <img src={require('../assets/images/home.png')} />
+                <Image source={require('../assets/images/home.png')} />
             </TouchableOpacity>
         </View>
     );
