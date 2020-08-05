@@ -20,7 +20,8 @@ export default function App() {
     tripHistory:[],
     notifs:[],
     discounts:rewards,
-    currentDiscount:{}
+    currentDiscount:{},
+    hasConcession:false,
   });
   // users [] 
 

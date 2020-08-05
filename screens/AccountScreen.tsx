@@ -10,13 +10,26 @@ import GlobalContext from '../context/GlobalContext';
 
 export default function AccountScreen(props:any) {
   const [global, setGlobal] = React.useContext(GlobalContext);
+  let status;
+  if (global.hasConcession)
+    status = 'Student with Concession'
+  else
+    status = 'Adult No Concession'
   return (
     <ScrollView>
       <View style={styles.container}>
         <Text style={styles.title}>Welcome, Jess</Text>
-        <Text style={styles.subtitle}>Adult No Concession</Text>
+        
+        <Text style={styles.subtitle}>{status}</Text>
         <View style={styles.btn}>
-        <Button title='Apply For Concession' onPress={()=>{}}></Button>
+        { !global.hasConcession &&
+            <Button title='Apply For Concession' onPress={()=>{
+              setGlobal({
+                ...global,
+                hasConcession:true
+              })
+            }}></Button>
+      }
         </View>
         <Text style={styles.h2}>Rewards</Text>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}
