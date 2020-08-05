@@ -21,8 +21,8 @@ export default function App() {
     tripHistory: [],
     nearHistory: {},
     CurrentUser: {},
-    History: HISTORY_STATUS.NO
-    notifs:[],
+    History: HISTORY_STATUS.NO,
+    notifs:[]
   });
   // users [] 
 

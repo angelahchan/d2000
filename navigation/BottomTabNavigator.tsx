@@ -12,6 +12,7 @@ import PlannerScreen from '../screens/PlannerScreen';
 import AddCardScreen from '../screens/AddCardScreen';
 import PaymentCompleteScreen from '../screens/PaymentCompleteScreen';
 import HistoryScreen from '../screens/HistoryScreen';
+import AddNotifScreen from '../screens/AddNotifScreen';
 import AddSaleScreen  from '../screens/AddSaleScreen ';
 import NotifListScreen from '../screens/NotifListScreen';
 import * as COL from '../constants/MainColors'
@@ -194,6 +195,19 @@ function AccountNavigator() {
                   color: 'white',
                 }, }}
                 
+            />
+                <AccountStack.Screen
+                name="AddNotifScreen"
+                component={AddNotifScreen}
+                options={{
+                    headerTitle: 'Add Notification',
+                    headerStyle: {
+                        backgroundColor: COL.COLS.MAIN_COL,
+                    },
+                    headerTitleStyle: {
+                        color: 'white',
+                    },
+                }}
             />
 
 
