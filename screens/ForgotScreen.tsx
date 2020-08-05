@@ -94,7 +94,7 @@ export default function SignUpScreen({
                         <Input
                             label='Password'
                             placeholder='   Enter password'
-                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            leftIcon={{ type: 'font-awesome', name: 'check' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setPassword(text)}
                             secureTextEntry={true}
@@ -105,7 +105,7 @@ export default function SignUpScreen({
                         <Input
                             label='ConfimPassword'
                             placeholder='   Enter ConfimPassword'
-                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            leftIcon={{ type: 'font-awesome', name: 'check' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setconfimPass(text)}
                             secureTextEntry={true}
@@ -159,7 +159,7 @@ export default function SignUpScreen({
                         <Input
                             label='Password'
                             placeholder='   Enter password'
-                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            leftIcon={{ type: 'font-awesome', name: 'check' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setPassword(text)}
                             secureTextEntry={true}
@@ -170,7 +170,7 @@ export default function SignUpScreen({
                         <Input
                             label='ConfimPassword'
                             placeholder='   Enter ConfimPassword'
-                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            leftIcon={{ type: 'font-awesome', name: 'check' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setconfimPass(text)}
                             secureTextEntry={true}
@@ -222,7 +222,7 @@ export default function SignUpScreen({
                         <Input
                             label='Password'
                             placeholder='   Enter password'
-                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            leftIcon={{ type: 'font-awesome', name: 'check' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setPassword(text)}
                             secureTextEntry={true}
@@ -233,7 +233,7 @@ export default function SignUpScreen({
                         <Input
                             label='ConfimPassword'
                             placeholder='   Enter ConfimPassword'
-                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            leftIcon={{ type: 'font-awesome', name: 'check' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setconfimPass(text)}
                             secureTextEntry={true}
@@ -285,7 +285,7 @@ export default function SignUpScreen({
                         <Input
                             label='Password'
                             placeholder='   Enter password'
-                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            leftIcon={{ type: 'font-awesome', name: 'check' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setPassword(text)}
                             secureTextEntry={true}
@@ -296,7 +296,7 @@ export default function SignUpScreen({
                         <Input
                             label='ConfimPassword'
                             placeholder='   Enter ConfimPassword'
-                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            leftIcon={{ type: 'font-awesome', name: 'check' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setconfimPass(text)}
                             secureTextEntry={true}

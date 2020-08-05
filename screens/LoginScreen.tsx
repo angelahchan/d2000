@@ -94,7 +94,7 @@ export default function LoginScreen({
                         <Input
                             label='Password'
                             placeholder='   Enter password'
-                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            leftIcon={{ type: 'font-awesome', name: 'check' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setPassword(text)}
                             secureTextEntry={true}
@@ -140,7 +140,7 @@ export default function LoginScreen({
 
                             label='Password'
                             placeholder='   Enter password'
-                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            leftIcon={{ type: 'font-awesome', name: 'check' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setPassword(text)}
                             secureTextEntry = {true}
@@ -185,7 +185,7 @@ export default function LoginScreen({
 
                             label='Password'
                             placeholder='   Enter password'
-                            leftIcon={{ type: 'font-awesome', name: 'password' }}
+                            leftIcon={{ type: 'font-awesome', name: 'check' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setPassword(text)}
                             secureTextEntry={true}

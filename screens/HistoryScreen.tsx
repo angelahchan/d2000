@@ -4,6 +4,7 @@ import lines from '../test.json';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { AppRegistry, ScrollView, Image, TextInput, Picker } from 'react-native'
+import {  AsyncStorage, Button,  TouchableOpacity } from 'react-native';
 import GlobalContext from '../context/GlobalContext';
 
 var obj: object;
@@ -33,6 +34,9 @@ export default function HistoryScreen(props: any) {
     const [global, setGlobal] = React.useContext(GlobalContext);
     return (
         <View style={styles.container}>
+            <TouchableOpacity onPress={() => props.navigation.replace('HomeScreen')} style={styles.link}>
+                <Text style={styles.linkText}>back home</Text>
+            </TouchableOpacity>
             <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
             <ScrollView style={styles.con} contentContainerStyle={{ alignItems: 'center' }} 
             >
@@ -94,7 +98,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     separator: {
-        marginVertical: 30,
+        marginVertical: 15,
         height: 1,
         width: '80%',
     },
@@ -154,6 +158,10 @@ const styles = StyleSheet.create({
     },
     icon: {
         marginLeft: 20,
+    },
+    linkText: {
+        fontSize: 16,
+        color: '#006666'
     }
 });
 

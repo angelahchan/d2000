@@ -35,7 +35,7 @@ class ScrollList extends React.Component {
   }
 }
 
-export default function AccountScreen(props: any) {
+export default function AccountScreen() {
     const [global, setGlobal] = React.useContext(GlobalContext);
     //props.navigation.navigate('HistoryScreen')
   return (

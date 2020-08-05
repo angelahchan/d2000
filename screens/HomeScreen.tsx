@@ -6,15 +6,8 @@ import GlobalContext from '../context/GlobalContext';
 import { HISTORY_STATUS } from '../constants/HistoryState ';
 import { BottomTabParamList, AccountParamList } from '../types';
 
-export default function HomeScreen({
-    navigation,
-}: StackScreenProps<BottomTabParamList, 'Home'>) {
+export default function HomeScreen(props: any) {
 
-    function naviPay() {
-
-
-        navigation.navigate('Payment')
-    }
 
 
     const [global, setGlobal] = React.useContext(GlobalContext);
@@ -59,16 +52,16 @@ export default function HomeScreen({
                     </View>
                     <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
                     <TouchableOpacity
-                        onPress={() => naviPay}
+                        onPress={() => props.navigation.replace('HistoryScreen')}
                         style={styles.body}
                     >   
                         <View style={styles.a1}>
-                            <Text style={styles.center1} > {"Make payment"}</Text>
+                            <Text style={styles.center1} > {"Check History"}</Text>
                         </View>
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        onPress={() => naviPay}
+                        onPress={() => props.navigation.replace('AddSaleScreen')}
                         style={styles.body}
                     >
                         <View style={styles.a2}>
@@ -77,7 +70,7 @@ export default function HomeScreen({
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        onPress={() => naviPay}
+                        onPress={() => props.navigation.replace('HistoryScreen')}
                         style={styles.body}
                     >
                         <View style={styles.a3}>
@@ -105,18 +98,17 @@ export default function HomeScreen({
                 </View>
             
             <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-                <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
                 <TouchableOpacity
-                    onPress={() => naviPay}
+                    onPress={() => props.navigation.replace('HistoryScreen')}
                     style={styles.body}
                 >
                     <View style={styles.a1}>
-                        <Text style={styles.center1} > {"Make payment"}</Text>
+                        <Text style={styles.center1} > {"Check History"}</Text>
                     </View>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={() => naviPay}
+                    onPress={() => props.navigation.replace('AddSaleScreen')}
                     style={styles.body}
                 >
                     <View style={styles.a2}>
@@ -165,7 +157,7 @@ const styles = StyleSheet.create({
         alignItems: 'baseline',
     },
     seg1: {
-        width: '20%',
+        width: 300,
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginTop: 12,
@@ -176,7 +168,7 @@ const styles = StyleSheet.create({
     seg3: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 5,
+        marginTop: 1,
     },
     seg2: {
         marginLeft: 25,
@@ -249,7 +241,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 12,
         marginBottom: 12,
-        fontSize: 24,
+        fontSize: 20,
         color: 'white',
         fontWeight: '900',
         marginLeft: 20,

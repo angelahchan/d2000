@@ -87,8 +87,37 @@ function HomeNavigator() {
         headerTitleStyle: {
           color: 'white',
         }, }}
-      />
-    </HomeStack.Navigator>
+          />
+       <HomeStack.Screen
+              name="HistoryScreen"
+              component={HistoryScreen}
+              options={{
+                  headerTitle: 'History',
+                  headerStyle: {
+                      backgroundColor: COL.COLS.MAIN_COL,
+                  },
+                  headerTitleStyle: {
+                      color: 'white',
+                  },
+              }}
+          />
+
+        <HomeStack.Screen
+              name="AddSaleScreen"
+              component={AddSaleScreen}
+              options={{
+                  headerTitle: 'AddSaleScreen',
+                  headerStyle: {
+                      backgroundColor: COL.COLS.MAIN_COL,
+                  },
+                  headerTitleStyle: {
+                      color: 'white',
+                  },
+              }}
+          />
+      </HomeStack.Navigator>
+
+
   );
 }
 
@@ -151,19 +180,7 @@ function AccountNavigator() {
                   color: 'white',
                 }, }}
             />
-            <AccountStack.Screen
-                name="HistoryScreen"
-                component={HistoryScreen}
-                options={{
-                    headerTitle: 'History',
-                    headerStyle: {
-                        backgroundColor: COL.COLS.MAIN_COL,
-                    },
-                    headerTitleStyle: {
-                        color: 'white',
-                    },
-                }}
-            />
+
             <AccountStack.Screen
                 name="AddNotifScreen"
                 component={AddNotifScreen}
@@ -177,19 +194,7 @@ function AccountNavigator() {
                     },
                 }}
             />
-            <AccountStack.Screen
-                name="AddSaleScreen"
-                component={AddSaleScreen}
-                options={{
-                    headerTitle: 'AddSaleScreen',
-                    headerStyle: {
-                        backgroundColor: COL.COLS.MAIN_COL,
-                    },
-                    headerTitleStyle: {
-                        color: 'white',
-                    },
-                }}
-            />
+
         </AccountStack.Navigator>
     );
 }
