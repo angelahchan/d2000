@@ -9,6 +9,7 @@ import { TouchableHighlight } from 'react-native-gesture-handler';
 import GlobalContext from '../context/GlobalContext';
 import CardDetail from '../components/CardDetail'
 import PaymentCard from '../components/PaymentCard'
+import PaymentBottom from '../components/PaymentBottom';
 
 
 export default function PaymentMiddle(props:any){
@@ -104,6 +105,9 @@ export default function PaymentMiddle(props:any){
         <View style={styles.cardDetailsBox}>
         {Object.keys(global.selectedCard).length != 0 && <CardDetail cardNumber={global.selectedCard.cardNumber} 
         balance={parseFloat(global.selectedCard.balance).toFixed(2)}/> }
+        </View>
+        <View style={styles.cardDetailsBox}>
+            <PaymentBottom/>
         </View>
         </>)
     }

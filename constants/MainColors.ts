@@ -4,4 +4,5 @@ export const COLS = {
     BACKGROUND_COL:'rgb(232,245,245)',
     RED:'rgb(174,22,22)',
     ORANGE:'rgb(255,210,143)',
+    MAIN_ORANGE:'#FF9900'
 }
