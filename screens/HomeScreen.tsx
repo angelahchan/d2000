@@ -61,20 +61,20 @@ export default function HomeScreen(props: any) {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        onPress={() => props.navigation.replace('AddSaleScreen')}
+                        onPress={() => props.navigation.replace('AddNotifScreen')}
                         style={styles.body}
                     >
                         <View style={styles.a2}>
-                            <Text style={styles.center1} > {"Connect Concessionary Account"}</Text>
+                            <Text style={styles.center1} > {"Add notification"}</Text>
                         </View>
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        onPress={() => props.navigation.replace('HistoryScreen')}
+                        onPress={() => props.navigation.replace('NotifListScreen')}
                         style={styles.body}
                     >
                         <View style={styles.a3}>
-                            <Text style={styles.center1} > {"Plan a Trip"}</Text>
+                            <Text style={styles.center1} > {"Check Notification"}</Text>
                         </View>
                     </TouchableOpacity>
 
@@ -108,20 +108,20 @@ export default function HomeScreen(props: any) {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={() => props.navigation.replace('AddSaleScreen')}
+                    onPress={() => props.navigation.replace('AddNotifScreen')}
                     style={styles.body}
                 >
                     <View style={styles.a2}>
-                        <Text style={styles.center1} > {"Connect Concessionary Account"}</Text>
+                        <Text style={styles.center1} > {"Add notification"}</Text>
                     </View>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={() => naviPay}
+                    onPress={() => props.navigation.replace('NotifListScreen')}
                     style={styles.body}
                 >
                     <View style={styles.a3}>
-                        <Text style={styles.center1} > {"Plan a Trip"}</Text>
+                        <Text style={styles.center1} > {"Check Notification"}</Text>
                     </View>
                 </TouchableOpacity>
             </View>

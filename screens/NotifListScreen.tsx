@@ -51,9 +51,12 @@ export default function NotifListScreen(props:any) {
   }
 // handleToggleComplete(card.cardNumber)
     return (
-       
+
         <ScrollView  snapToAlignment="start"
         >
+            <TouchableOpacity onPress={() => props.navigation.replace('HomeScreen')} style={styles.link}>
+                <AddIcon name="ios-menu" color="black" />
+            </TouchableOpacity>
             <View style={styles.switches}>
             {
                 global.notifs.map((notif:any, index:any) => {
@@ -146,5 +149,13 @@ const styles = StyleSheet.create({
   },
   add:{
     marginRight:10,
-  }
+    },
+    linkText: {
+        fontSize: 16,
+        color: '#006666'
+    },
+    link: {
+        marginTop: 15,
+        paddingVertical: 15,
+    },
 });

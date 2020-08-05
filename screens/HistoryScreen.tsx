@@ -162,6 +162,10 @@ const styles = StyleSheet.create({
     linkText: {
         fontSize: 16,
         color: '#006666'
-    }
+    },
+    link: {
+        marginTop: 15,
+        paddingVertical: 15,
+    },
 });
 

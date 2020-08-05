@@ -16,7 +16,8 @@ export type BottomTabParamList = {
 export type HomeParamList = {
     HomeScreen: undefined;
     HistoryScreen: undefined;
-    AddSaleScreen: undefined;
+    AddNotifScreen: undefined;
+    NotifListScreen: undefined;
 };
 
 export type PaymentParamList = {
@@ -26,9 +27,9 @@ export type PaymentParamList = {
 };
 
 export type AccountParamList = {
-  AccountScreen: undefined;
-  AddNotifScreen: undefined;
-  NotifListScreen: undefined;
+    AccountScreen: undefined;
+    AddSaleScreen: undefined;
+    PassScreen: undefined;
 };
 
 export type PlannerParamList = {

@@ -10,7 +10,9 @@ export default {
             screens: {
                   HomeScreen: 'one',
                   HistoryScreen: 'history',
-                  AddSaleScreen: 'sale',
+
+                  AddNotifScreen: 'addnotif',
+                  NotifListScreen: 'notifs',
             },
           },
           Payment: {
@@ -28,8 +30,8 @@ export default {
           Account: {
             screens: {
               AccountScreen: 'four',
-              AddNotifScreen:'addnotif',
-              NotifListScreen:'notifs'
+              AddSaleScreen: 'sale',
+              PassScreen:'pass'
             },
           },
         },
