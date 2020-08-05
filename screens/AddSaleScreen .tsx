@@ -8,7 +8,7 @@ import { Input } from 'react-native-elements';
 import * as COL from '../constants/MainColors';
 //this works idk why it says the import not working
 import SearchableDropdown from 'react-native-searchable-dropdown'
-import sales from '../assets/data/sales.json'
+import sales from '../assets/data/Sales.json'
 
 
 

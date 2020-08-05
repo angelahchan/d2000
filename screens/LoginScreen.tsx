@@ -6,7 +6,7 @@ import { LOGIN_STATUS } from '../constants/LoginState';
 
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { StyleSheet, AsyncStorage, Button, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, AsyncStorage, Button, TextInput, TouchableOpacity, Image } from 'react-native';
 
 import { Input } from 'react-native-elements';
 
@@ -74,12 +74,12 @@ export default function LoginScreen({
         case LOGIN_STATUS.READY:
             return (
                 <View style={styles.container}>
-                    <div className="about-backgroundImage" >
-                        <img src={require('../assets/images/train.png')} />
-                    </div>
-                    <div className="about-backgroundImage" >
-                        <img src={require('../assets/images/welcome.png')} />
-                    </div>
+                    <View  >
+                        <Image source={require('../assets/images/train.png')} />
+                    </View>
+                    <View  >
+                        <Image source={require('../assets/images/welcome.png')} />
+                    </View>
                     <View style={styles.body}>
                         <Input
                             label='Username'
@@ -117,12 +117,12 @@ export default function LoginScreen({
         case LOGIN_STATUS.FAILNAME:
             return (
                 <View style={styles.container}>
-                    <div className="about-backgroundImage" >
-                        <img src={require('../assets/images/train.png')} />
-                    </div>
-                    <div className="about-backgroundImage" >
-                        <img src={require('../assets/images/welcome.png')} />
-                    </div>
+                    <View  >
+                        <Image source={require('../assets/images/train.png')} />
+                    </View>
+                    <View >
+                        <Image source={require('../assets/images/welcome.png')} />
+                    </View>
 
                     <View style={styles.body}>
                         <Input
@@ -163,12 +163,12 @@ export default function LoginScreen({
         case LOGIN_STATUS.FAILPASS:
             return (
                 <View style={styles.container}>
-                    <div className="about-backgroundImage" >
-                        <img src={require('../assets/images/train.png')} />
-                    </div>
-                    <div className="about-backgroundImage" >
-                        <img src={require('../assets/images/welcome.png')} />
-                    </div>
+                    <View  >
+                        <Image source={require('../assets/images/train.png')} />
+                    </View>
+                    <View >
+                        <Image source={require('../assets/images/welcome.png')} />
+                    </View>
 
                     <View style={styles.body}>
                         <Input

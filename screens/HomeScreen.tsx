@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
       marginTop: "2%",
-      marginleft:"10%",
+      marginLeft:"10%",
       color: '#006666',
   },
   separator: {
@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         fontSize: 20,
         fontWeight: 'bold',
-        marginleft: 25,
+        marginLeft: 25,
         color: '#006666',
     },
     a1: {

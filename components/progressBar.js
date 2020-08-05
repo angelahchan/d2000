@@ -64,7 +64,7 @@ export default ProgressBar;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'Column',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: Constants.statusBarHeight,
