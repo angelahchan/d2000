@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     button: {
         marginVertical: 10,
         backgroundColor: '#006666',
-        width: '40%'
+        width: '80%'
     },
     linkText: {
         fontSize: 16,
@@ -141,6 +141,6 @@ const styles = StyleSheet.create({
         paddingVertical: 15,
     },
     body: {
-        width: '40%'
+        width: '80%'
     },
 });

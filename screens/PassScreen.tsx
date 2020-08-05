@@ -72,10 +72,10 @@ export default function SignUpScreen(props: any) {
                 <View style={styles.container}>
 
                     <div className="about-backgroundImage" >
-                        <img src={require('../assets/images/train.png')} />
+                        <Image source={require('../assets/images/train.png')} />
                     </div>
                     <div className="about-backgroundImage" >
-                        <img src={require('../assets/images/reset.png')} />
+                        <Image source={require('../assets/images/reset.png')} />
                     </div>
 
                     <View style={styles.body}>
@@ -135,10 +135,10 @@ export default function SignUpScreen(props: any) {
                 <View style={styles.container}>
 
                     <div className="about-backgroundImage" >
-                        <img src={require('../assets/images/train.png')} />
+                        <Image source={require('../assets/images/train.png')} />
                     </div>
                     <div className="about-backgroundImage" >
-                        <img src={require('../assets/images/reset.png')} />
+                        <Image source={require('../assets/images/reset.png')} />
                     </div>
 
                     <View style={styles.body}>
@@ -200,10 +200,10 @@ export default function SignUpScreen(props: any) {
                 <View style={styles.container}>
 
                     <div className="about-backgroundImage" >
-                        <img src={require('../assets/images/train.png')} />
+                        <Image source={require('../assets/images/train.png')} />
                     </div>
                     <div className="about-backgroundImage" >
-                        <img src={require('../assets/images/reset.png')} />
+                        <Image source={require('../assets/images/reset.png')} />
                     </div>
 
                     <View style={styles.body}>
@@ -263,10 +263,10 @@ export default function SignUpScreen(props: any) {
                 <View style={styles.container}>
 
                     <div className="about-backgroundImage" >
-                        <img src={require('../assets/images/train.png')} />
+                        <Image source={require('../assets/images/train.png')} />
                     </div>
                     <div className="about-backgroundImage" >
-                        <img src={require('../assets/images/reset.png')} />
+                        <Image source={require('../assets/images/reset.png')} />
                     </div>
 
                     <View style={styles.body}>
@@ -354,7 +354,7 @@ const styles = StyleSheet.create({
     button: {
         marginVertical: 10,
         backgroundColor: '#006666',
-        width: '40%'
+        width: '80%'
     },
     linkText: {
         fontSize: 16,
@@ -369,7 +369,7 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     body: {
-        width: '40%'
+        width: '80%'
     },
 
 });
