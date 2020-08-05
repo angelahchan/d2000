@@ -7,7 +7,7 @@ import { FORGOT_STATUS } from '../constants/ForgotState';
 
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { StyleSheet, AsyncStorage, Button, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, AsyncStorage, Button, TextInput, TouchableOpacity , Image} from 'react-native';
 import { Input } from 'react-native-elements';
 import GlobalContext from '../context/GlobalContext';
 import { RootStackParamList } from '../types';
