@@ -1,27 +1,45 @@
 import * as React from 'react';
-import { StyleSheet, ImageBackground, Button, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, ImageBackground, ToastAndroid, TouchableOpacity, Image,Platform} from 'react-native';
 //import { Button } from 'react-native-elements';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View, } from '../components/Themed';
+import GlobalContext from '../context/GlobalContext';
 import  { COLS } from '../constants/MainColors';
 
 
 
+
 export default function Reward(props:any) {
+  const [global, setGlobal] = React.useContext(GlobalContext);
+
   return (
-    <View style={styles.container}>
-      <ImageBackground source = {require('../assets/images/angryimg.png')}
-        style={styles.card}>
-        <Text style={styles.title}>{props.amount}%</Text>
-        <Text style={styles.title}>OFF</Text>
-        <TouchableOpacity style={styles.btn}>
-          <Text style={styles.redeem}>REDEEM</Text>
-        </TouchableOpacity>
-      </ImageBackground>
-    </View>
-  );
-}
+        <ImageBackground source = {require('../assets/images/angryimg.png')}
+          style={styles.card}
+          >
+          <Text style={styles.title}>{props.discount.amount}%</Text>
+          <Text style={styles.title}>OFF</Text>
+            {!props.discount.redeemed &&
+            <TouchableOpacity style={styles.btn}
+            onPress={() =>{
+                if (Platform.OS =='android')
+                ToastAndroid.show("Redeemed Discount! Discount will be used in next trip", ToastAndroid.SHORT);
+                const newDiscounts = [...global.discounts];
+                newDiscounts.splice(props.index, 1);
+                setGlobal ({
+                  ...global,
+                  currentDiscount:props.discount,
+                  discounts:newDiscounts
+                })
+            }}>
+              <Text style={styles.redeem}>REDEEM</Text>
+            </TouchableOpacity>
+            }
+        </ImageBackground>  
+  )
+}  
+ 
+
 
 const styles = StyleSheet.create({
   container: {
@@ -46,7 +64,7 @@ const styles = StyleSheet.create({
     height: 150,
     margin: 15,
     resizeMode:"contain",
-    position:'relative',
+
     borderRadius: 20,
     borderWidth:0,
     overflow:'hidden',

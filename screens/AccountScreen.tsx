@@ -5,9 +5,11 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import{ AppRegistry, ScrollView, Image,TextInput,Picker, Button} from 'react-native'
 import Reward from '../components/Reward'
+import GlobalContext from '../context/GlobalContext';
 
 
-export default function AccountScreen() {
+export default function AccountScreen(props:any) {
+  const [global, setGlobal] = React.useContext(GlobalContext);
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -18,15 +20,26 @@ export default function AccountScreen() {
         </View>
         <Text style={styles.h2}>Rewards</Text>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.scroll}>
+        contentContainerStyle={styles.scroll}
+        >
+          
             <View style={styles.rewards}>
-                <Reward amount={50}/>
-                <Reward amount={50}/>
+            {
+             global.discounts.map((discount:any, index:any) => {
+               return (
+                <Reward discount={discount} index={index} key={index} />
+               )
+               })
+              }
             </View>
         </ScrollView>
         <Text style={styles.h2}>4 more days until new reward</Text>
         <Image source={require('../assets/images/daysleft.jpg')}
         style={styles.daysleft}/>
+              <View style={styles.btn}>
+        <Button title='Manage Notifications' onPress={()=>{props.navigation.navigate('NotifListScreen')}}
+        color='#FF9900'></Button>
+        </View>
       </View>
     </ScrollView>
   );
@@ -94,9 +107,9 @@ const styles = StyleSheet.create({
     width: '50%' // is 50% of container width
   },
   rewards:{
-    flex: 0.4,
+
     alignItems:'flex-start',
-    flexDirection:'row'
+    flexDirection:'row',
   },
   daysleft:{
     width:'90%',
@@ -113,7 +126,6 @@ const styles = StyleSheet.create({
     borderRadius:30,
     borderWidth:0,
     marginVertical:15,
-    flex:0.2
   }
 
 });
