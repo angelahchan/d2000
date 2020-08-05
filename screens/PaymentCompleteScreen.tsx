@@ -9,12 +9,17 @@ import { Ionicons } from '@expo/vector-icons';
 export default function PaymentCompleteScreen(props:any) {
   const [global, setGlobal] = React.useContext(GlobalContext)
 
+  const { discount } = props.route.params;
+  let { cost} = props.route.params;
+  cost = parseFloat(cost).toFixed(2)
   return (
     <View style={styles.container}>
+  
       <AddIcon name='ios-checkmark-circle-outline' color='green'></AddIcon>
-      <Text style={styles.title}>$6.10</Text>
+      <Text style={styles.title}>${cost}</Text>
       <Text style={styles.description}>Paid by {global.selectedCard.type} card</Text>
       <Text style={styles.cardno}>{global.selectedCard.cardNumber}</Text>
+      {discount != 0  && <Text style={styles.description}>Discount Applied {discount}% Off</Text> }
       <View style={styles.space}></View>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <View style={styles.paymentDetails} >
