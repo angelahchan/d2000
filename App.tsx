@@ -7,6 +7,7 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import GlobalContext from './context/GlobalContext';
+import rewards from './assets/data/rewards.json';
 
 
 export default function App() {
@@ -18,6 +19,8 @@ export default function App() {
     tripState:PSTATE.PAYMENT_STATUS.NOT_READY,
     tripHistory:[],
     notifs:[],
+    discounts:rewards,
+    currentDiscount:{}
   });
   // users [] 
 
