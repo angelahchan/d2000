@@ -14,15 +14,19 @@ export default function PaymentTop(props:any){
     let setCanPay = props.setCanPay;
     let paymentTitle;
     let discount  = 0;
+    
     if (Object.keys(global.currentDiscount).length != 0){
         discount = global.currentDiscount.amount
     }
     function chargeCard(id:any) {
         let selectedItem;
         let discount = 1;
+        let concession = 1;
+        if (global.hasConcession)
+            concession = 0.8
         if (Object.keys(global.currentDiscount).length != 0)
             discount = global.currentDiscount.amount/100;
-        const amountCharged = 6.1*discount;
+        const amountCharged = 6.1*discount*concession;
         const newList = global.cards.map((item:any) => {
             if (item.cardNumber === id) {
               const updatedItem = {

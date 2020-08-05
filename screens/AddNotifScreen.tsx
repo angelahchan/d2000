@@ -22,18 +22,6 @@ export default function AddNotifScreen(props:any) {
     const [startStop, setStartStop] = React.useState('');
     const [endStop, setEndStop] = React.useState('');
     const [global, setGlobal] = React.useContext(GlobalContext)
-    /*
-                    headerRight: () => (
-                  <TouchableOpacity onPress={ () =>{
-                      navigation.navigate('AddNotifScreen')
-                  }
-
-                  }>
-                  <AddIcon name="ios-add" color={COL.COLS.MAIN_COL} />
-                  </TouchableOpacity>
-                ),
-      */
-    
 
 
     function addNotif(props:any){
