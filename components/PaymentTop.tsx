@@ -13,14 +13,21 @@ export default function PaymentTop(props:any){
     let  paymentStat = global.tripState
     let setCanPay = props.setCanPay;
     let paymentTitle;
-
+    let discount  = 0;
+    if (Object.keys(global.currentDiscount).length != 0){
+        discount = global.currentDiscount.amount
+    }
     function chargeCard(id:any) {
         let selectedItem;
-        const newList = global.cards.map((item) => {
+        let discount = 1;
+        if (Object.keys(global.currentDiscount).length != 0)
+            discount = global.currentDiscount.amount/100;
+        const amountCharged = 6.1*discount;
+        const newList = global.cards.map((item:any) => {
             if (item.cardNumber === id) {
               const updatedItem = {
                 ...item,
-                balance: item.balance - 6.1,
+                balance: item.balance - amountCharged,
               };
               selectedItem = updatedItem;
               return updatedItem;
@@ -33,16 +40,6 @@ export default function PaymentTop(props:any){
                 return updatedItem;
             }
           });
-          /*
-          let oldHistory = global.tripHistory;
-          const newHistory = oldHistory.push({
-              cost:6.1,
-              startTime: global.startTime,
-              endTime: global.endTime,
-              selectedCard: global.selectedCard
-
-          })
-          */
          const newHistory = [...global.tripHistory, {
             cost:6.1,
             startTime: global.startTime,
@@ -57,9 +54,11 @@ export default function PaymentTop(props:any){
             endTime: moment()
             .utcOffset('+10')
             .format('YYYY/MM/DD hh:mm:ss'),
-            tripHistory:newHistory
+            tripHistory:newHistory,
+            currentDiscount:{}
 
           });
+          return (amountCharged)
     }
 
     switch (paymentStat){
@@ -96,8 +95,12 @@ export default function PaymentTop(props:any){
         case PSTATE.PAYMENT_STATUS.IN_PROGRESS:
             return (
                 <TouchableOpacity style = {styles.paymentTop} onPress={() => {
-                    chargeCard(global.selectedCard.cardNumber)
-                props.navigation.navigate('PaymentCompleteScreen')}}>
+                     const cost = chargeCard(global.selectedCard.cardNumber)
+                        props.navigation.navigate('PaymentCompleteScreen',{
+                            discount:discount,
+                            cost:cost
+                        })
+                }}>
                 <Text style={styles.title }>In Progress</Text>
                 <Image
                         style={styles.iconContainer}

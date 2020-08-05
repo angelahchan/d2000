@@ -90,7 +90,7 @@ export default function PaymentMiddle(props:any){
         </View>
         <View style={styles.cardDetailsBox}>
         {Object.keys(global.selectedCard).length != 0 && <CardDetail  cardNumber={global.selectedCard.cardNumber} 
-        balance={global.selectedCard.balance}/> }
+        balance={parseFloat(global.selectedCard.balance).toFixed(2)}/> }
         </View>
         </>
         )
@@ -103,7 +103,7 @@ export default function PaymentMiddle(props:any){
         return ( <>
         <View style={styles.cardDetailsBox}>
         {Object.keys(global.selectedCard).length != 0 && <CardDetail cardNumber={global.selectedCard.cardNumber} 
-        balance={global.selectedCard.balance}/> }
+        balance={parseFloat(global.selectedCard.balance).toFixed(2)}/> }
         </View>
         </>)
     }
