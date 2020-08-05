@@ -47,7 +47,12 @@ class ScrollList extends React.Component {
     if(this.state.val==null)
     return (
       <ScrollView style={styles.con} contentContainerStyle = {{alignItems: 'center'}}>
-          {this.state.innerList.map(function(ele: React.ReactNode){index++;return <Text key={index}>{ele}</Text>})}
+          {this.state.innerList.map(
+            function(ele: React.ReactNode)
+          {
+          return (
+          <Text key={ele.id}>{ele}</Text>)
+          })}
       </ScrollView>
     );
     else 
