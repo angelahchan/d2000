@@ -4,8 +4,9 @@ import lines from '../test.json';
 import images from '../routes';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-import * as Progress from 'react-native-progress';
-import{ProgressBarAndroid,TouchableOpacity,Button, AppRegistry, ScrollView, Image,TextInput,Picker,TouchableHighlight} from 'react-native'
+import ProgressBar from '../components/progressBar';
+import MapContainer from '../components/GoogleApiWrapper';
+import{Animated,ProgressBarAndroid,TouchableOpacity,Button, AppRegistry, ScrollView, Image,TextInput,Picker,TouchableHighlight} from 'react-native';
 
 var start : string;
 var des : string;
@@ -13,19 +14,34 @@ var obj :ScrollList;
 var sortKey='time';
 var displayList: JSX.Element[] =[];
 var imageSrc:any;
-displayList.push(<Text key='0'>Test</Text>);
-displayList.push(<Text key='1'>Test2</Text>);
+displayList.push(
+  <View style={{
+    width:'300px',
+    margin:20,
+    backgroundColor:'#fff',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height:'100px',
+  }}>
+    <Text>Please enter some shit</Text>
+
+  </View>
+);
 class ScrollList extends React.Component {
   constructor(state:[]) {
     super(state);
     obj=this;
-    this.state={innerList:displayList, val:null}
+    this.state={innerList:displayList, val:null,judge:false}
   }
   search(li:[]){
     this.setState({innerList:li});
   }
   setTag(tag:object){
     this.setState({val:tag});
+  }
+  check(){
+    if(this.state.judge==false) this.setState({judge:true})
   }
   render(){
     if(this.state.val==null)
@@ -36,12 +52,22 @@ class ScrollList extends React.Component {
     );
     else 
     return (
-      <View>
+      <View style={{alignItems: 'center'}}>
         <TouchableOpacity onPress={()=>this.setTag(null)}>
           <Image style={styles.back} source={require('../assets/images/back.png')}/>
         </TouchableOpacity>
-        <Image style={styles.route} source={images['png'+this.state.val.id]}/>
-        <Text>{this.state.val.arrive}</Text>
+        <View style={{height:'500px',width:'500px'}}>
+          <MapContainer start={this.state.val.start} end={this.state.val.des} id={this.state.val.id}></MapContainer>
+          
+        </View>
+        <View key={index} style={styles.seg}>
+        <Text>{"start: "+this.state.val.start}</Text>
+        <Text>{"end: "+this.state.val.des}</Text>
+        <Text>{"arrive: "+this.state.val.arrive}</Text>
+        <ProgressBar width={parseInt(this.state.val.seats)}/>
+        <Text>{"seats left: "+this.state.val.seats}</Text>
+        <Text>{"cost: "+this.state.val.price}</Text>
+      </View>
       </View>
     );
   }
@@ -55,11 +81,11 @@ export default function PlannerScreen() {
       <Text style={styles.title}>Tab One</Text>
       <TextInput placeholder="Start location" onChangeText={(text) => setStart(text)}></TextInput>
       <TextInput placeholder="end location" onChangeText={(text) => setDes(text)}></TextInput>
-      <View   style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <Picker onValueChange={(key) => setSortKey(key)}>
         <Picker.Item label="Time" value="time" />
         <Picker.Item label="Money" value="cost" />
       </Picker>
+      <View   style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <ScrollList></ScrollList>
     
       <EditScreenInfo path="/screens/PlannerScreen.tsx" />
@@ -109,6 +135,7 @@ function display(){
         <Text>{"start: "+element.start}</Text>
         <Text>{"end: "+element.des}</Text>
         <Text>{"arrive: "+element.arrive}</Text>
+        <ProgressBar width={parseInt(element.seats)}/>
         <Text>{"seats left: "+element.seats}</Text>
         <Text>{"cost: "+element.price}</Text>
       </View>
@@ -118,6 +145,7 @@ function display(){
   });
    obj.search(Li);
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -138,6 +166,7 @@ const styles = StyleSheet.create({
   },
   seg:{
     width:'300px',
+    height:'150px',
     margin:20,
     backgroundColor:'#fff',
     flex: 1,
@@ -153,13 +182,18 @@ const styles = StyleSheet.create({
     width:'500px',
     height:'500px'
   },
-  progressBar:{
-    width:'30px',
-    height:'30px'
-  },inner: {
+  progressBar: {
+    height: 20,
+    width: '100%',
+    backgroundColor: 'white',
+    borderColor: '#000',
+    borderWidth: 2,
+    borderRadius: 5
+  }
+  ,inner: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  }
+  },
 });
