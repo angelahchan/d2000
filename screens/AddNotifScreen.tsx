@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Platform, Button, TouchableOpacity} from 'react-native';
+import { StyleSheet, Platform, Button, TouchableOpacity, ToastAndroid} from 'react-native';
 
 import { Text, View } from '../components/Themed';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -12,38 +12,97 @@ import stopInfo from '../assets/data/stopInfo.json'
 
 
 
-export default function AddNotifScreen() {
+export default function AddNotifScreen(props:any) {
+    const [time, setTime] = React.useState(new Date());
     const [date, setDate] = React.useState(new Date());
     const [mode, setMode] = React.useState('date');
     const [show, setShow] = React.useState(false);
+    const [datePickerVisible, setDatePickerVisible] = React.useState(false);
     const [pickerVisible, setPickerVisible] = React.useState(false);
-    const [selectedItems, setSelectedItems] = React.useState([]);
-    const [destination, setDestination] = React.useState([]);
-  
+    const [startStop, setStartStop] = React.useState('');
+    const [endStop, setEndStop] = React.useState('');
+    const [global, setGlobal] = React.useContext(GlobalContext)
+    /*
+                    headerRight: () => (
+                  <TouchableOpacity onPress={ () =>{
+                      navigation.navigate('AddNotifScreen')
+                  }
 
+                  }>
+                  <AddIcon name="ios-add" color={COL.COLS.MAIN_COL} />
+                  </TouchableOpacity>
+                ),
+      */
+    
+
+
+    function addNotif(props:any){
+      const newNotifs = [
+        ...global.notifs,
+        {
+          notifDate:date.toLocaleDateString(),
+          notifTime:time.toLocaleTimeString(),
+          startStop:startStop,
+          endStop:endStop,
+          selected:false
+        },
+    ]
+      setGlobal({
+        ...global,
+        notifs: newNotifs
+  })
+  props.navigation.push('NotifListScreen');
+  if (Platform.OS == 'android')
+    ToastAndroid.show("Added Notification", ToastAndroid.SHORT);
+  }
   return (
     <View style={styles.container}>
         <TouchableOpacity style={styles.timePicker}
-            onPress={() => setPickerVisible(true)}
+            onPress={()=> setDatePickerVisible(true)}
+        >
+            <Input
+                label='Date'
+                placeholder={"5/08/2020"}
+                editable={false}
+                value={date.toLocaleDateString()}
+            />
+        </TouchableOpacity>
+        {datePickerVisible &&
+            (<DateTimePicker
+                mode={"date"} 
+                value={date}
+
+                onChange={(event, value) => {
+                    setDatePickerVisible(false)
+                    if (event.type === "set"){
+                        setDate(value)
+                    }
+                    if (event.type === "cancel"){
+                        setDatePickerVisible(false)
+                    }
+                }}
+            />)}
+        <TouchableOpacity style={styles.timePicker}
+            onPress={()=> setPickerVisible(true)}
         >
             <Input
                 label='Time'
                 placeholder={"3:20PM"}
                 editable={false}
-                value={date.toLocaleTimeString()}
+                value={time.toLocaleTimeString()}
             />
         </TouchableOpacity>
         {pickerVisible &&
             (<DateTimePicker
                 mode={"time"} 
                 display='clock'
-                is24Hour={true} 
-                value={date}
+                is24Hour={true}
+                value={time}
 
                 onChange={(event, value) => {
                     setPickerVisible(false)
                     if (event.type === "set"){
-                        setDate(value)
+                        setTime(value)
                     }
                     if (event.type === "cancel"){
                         setPickerVisible(false)
@@ -53,15 +112,9 @@ export default function AddNotifScreen() {
             <Text style={styles.stopLabel}>Start Stop</Text>
              <SearchableDropdown
             onItemSelect={(item:any) => {
-              const items = selectedItems;
-              items.push(item)
-              setSelectedItems(items)
+              setStartStop(item.name)
             }}
             containerStyle={{ padding: 5, width:'90%'}}
-            onRemoveItem={(item, index) => {
-              const items = selectedItems.filter((sitem) => sitem.id !== item.id);
-              setSelectedItems(items);
-            }}
             itemStyle={{
               padding: 10,
               marginTop: 2,
@@ -73,11 +126,10 @@ export default function AddNotifScreen() {
             itemTextStyle={{ color: '#222' }}
             itemsContainerStyle={{ maxHeight: 140 }}
             items={stopInfo}
-            defaultIndex={2}
             resetValue={false}
             textInputProps={
               {
-                placeholder: "placeholder",
+                placeholder: "Start Stop",
                 underlineColorAndroid: "transparent",
                 style: {
                     padding: 12,
@@ -96,15 +148,9 @@ export default function AddNotifScreen() {
           <Text style={styles.stopLabel}>End Stop</Text>
          <SearchableDropdown
             onItemSelect={(item:any) => {
-              const items = destination;
-              items.push(item)
-              setSelectedItems(items)
+              setEndStop(item.name)
             }}
             containerStyle={{ padding: 5, width:'90%'}}
-            onRemoveItem={(item, index) => {
-              const items = destination.filter((sitem) => sitem.id !== item.id);
-              setSelectedItems(items);
-            }}
             itemStyle={{
               padding: 10,
               marginTop: 2,
@@ -116,11 +162,10 @@ export default function AddNotifScreen() {
             itemTextStyle={{ color: '#222' }}
             itemsContainerStyle={{ maxHeight: 140 }}
             items={stopInfo}
-            defaultIndex={2}
             resetValue={false}
             textInputProps={
               {
-                placeholder: "placeholder",
+                placeholder: "End Stop",
                 underlineColorAndroid: "transparent",
                 style: {
                     padding: 12,
@@ -137,15 +182,14 @@ export default function AddNotifScreen() {
             }
         />
         <View style={styles.btn}>
-        <Button  title="Add Notification" onPress= { () =>{
+        <Button  title="Add Notification" onPress= { () => {
+          addNotif(props)
 
-        }}
-        
-         />
+        }}/>
         </View>
     </View>
-  );
-}
+    );
+      }
 
 const styles = StyleSheet.create({
   container: {

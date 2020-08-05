@@ -11,10 +11,12 @@ import AccountScreen from '../screens/AccountScreen';
 import PlannerScreen from '../screens/PlannerScreen';
 import AddCardScreen from '../screens/AddCardScreen';
 import PaymentCompleteScreen from '../screens/PaymentCompleteScreen';
-import AddNotifScreen from '../screens/AddNotifScreen';
 import HistoryScreen from '../screens/HistoryScreen';
 import AddSaleScreen  from '../screens/AddSaleScreen ';
+import NotifListScreen from '../screens/NotifListScreen';
 import * as COL from '../constants/MainColors'
+import {Button, TouchableOpacity} from 'react-native';
+
 import {
     BottomTabParamList,
     HomeParamList,
@@ -169,7 +171,7 @@ const AccountStack = createStackNavigator<AccountParamList>();
 function AccountNavigator() {
     return (
         <AccountStack.Navigator>
-            <AccountStack.Screen
+                <AccountStack.Screen
                 name="AccountScreen"
                 component={AccountScreen}
                 options={{ headerTitle: 'Account',
@@ -181,19 +183,19 @@ function AccountNavigator() {
                 }, }}
             />
 
-            <AccountStack.Screen
-                name="AddNotifScreen"
-                component={AddNotifScreen}
-                options={{
-                    headerTitle: 'AddNotifScreen',
-                    headerStyle: {
-                        backgroundColor: COL.COLS.MAIN_COL,
-                    },
-                    headerTitleStyle: {
-                        color: 'white',
-                    },
-                }}
+               <AccountStack.Screen
+                name="NotifListScreen"
+                component={NotifListScreen}
+                options={ { headerTitle: 'Notifications',
+                headerStyle: {
+                  backgroundColor:COL.COLS.MAIN_COL,
+                },
+                headerTitleStyle: {
+                  color: 'white',
+                }, }}
+                
             />
+
 
         </AccountStack.Navigator>
     );

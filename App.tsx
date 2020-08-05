@@ -9,6 +9,7 @@ import Navigation from './navigation';
 import GlobalContext from './context/GlobalContext';
 import { HISTORY_STATUS } from './constants/HistoryState ';
 
+
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
@@ -21,6 +22,7 @@ export default function App() {
     nearHistory: {},
     CurrentUser: {},
     History: HISTORY_STATUS.NO
+    notifs:[],
   });
   // users [] 
 

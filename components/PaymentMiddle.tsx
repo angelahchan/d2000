@@ -31,7 +31,7 @@ export default function PaymentMiddle(props:any){
     */
     function handleToggleComplete(id:any) {
         let selectedItem;
-        const newList = global.cards.map((item) => {
+        const newList = global.cards.map((item:any) => {
             if (item.cardNumber === id) {
               const updatedItem = {
                 ...item,
@@ -65,7 +65,7 @@ export default function PaymentMiddle(props:any){
             >
                 <View style={styles.cardContainer}>
                 {
-                    global.cards.map((card, index) => {
+                    global.cards.map((card:any, index:any) => {
                         // cards.map(card    for card in cards:
                         return (
                         <TouchableOpacity 

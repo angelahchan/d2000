@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet,  AsyncStorage, Button,TextInput, Picker } from 'react-native';
+import { StyleSheet,  AsyncStorage, Button,TextInput, Picker, ToastAndroid, Platform } from 'react-native';
 import CardContext from '../context/CardContext'
 import { Text, View,  } from '../components/Themed';
 import GlobalContext from '../context/GlobalContext';
@@ -39,6 +39,8 @@ const cvvInput = React.createRef<Input>()
     */
     cardInput.current.clear()
     cvvInput.current.clear()
+    if (Platform.OS == 'android')
+        ToastAndroid.show("Added Credit Card", ToastAndroid.SHORT);
     props.navigation.navigate('PaymentScreen')
    }
     return (

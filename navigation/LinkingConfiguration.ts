@@ -28,7 +28,8 @@ export default {
           Account: {
             screens: {
               AccountScreen: 'four',
-              AddNotifScreen: 'addnotif',
+              AddNotifScreen:'addnotif',
+              NotifListScreen:'notifs'
             },
           },
         },

@@ -1,130 +1,130 @@
 [
   {
-    "name": "Honeysuckle Light Rail",
+    "name": "Honeysuckle",
     "id": 0
   },
   {
-    "name": "Lilyfield Light Rail",
+    "name": "Lilyfield",
     "id": 1
   },
   {
-    "name": "John Street Square Light Rail",
+    "name": "John Street Square",
     "id": 2
   },
   {
-    "name": "Haymarket Light Rail Stop",
+    "name": "Haymarket Stop",
     "id": 3
   },
   {
-    "name": "Glebe Light Rail",
+    "name": "Glebe",
     "id": 4
   },
   {
-    "name": "UNSW Anzac Parade Light Rail",
+    "name": "UNSW Anzac Parade ",
     "id": 5
   },
   {
-    "name": "Wansey Road Light Rail",
+    "name": "Wansey Road",
     "id": 6
   },
   {
-    "name": "Surry Hills Light Rail",
+    "name": "Surry Hills",
     "id": 7
   },
   {
-    "name": "Central Chalmers Street Light Rail",
+    "name": "Central Chalmers Street",
     "id": 8
   },
   {
-    "name": "Jubilee Park Light Rail",
+    "name": "Jubilee Park",
     "id": 9
   },
   {
-    "name": "Glebe Light Rail",
+    "name": "Glebe",
     "id": 10
   },
   {
-    "name": "Moore Park Light Rail",
+    "name": "Moore Park",
     "id": 11
   },
   {
-    "name": "Bridge Street Light Rail",
+    "name": "Bridge Street",
     "id": 12
   },
   {
-    "name": "QVB Light Rail",
+    "name": "QVB",
     "id": 13
   },
   {
-    "name": "Wynyard Light Rail",
+    "name": "Wynyard",
     "id": 14
   },
   {
-    "name": "Town Hall Light Rail",
+    "name": "Town Hall",
     "id": 15
   },
   {
-    "name": "Dulwich Grove Light Rail",
+    "name": "Dulwich Grove",
     "id": 16
   },
   {
-    "name": "Waratah Mills Light Rail",
+    "name": "Waratah Mills",
     "id": 17
   },
   {
-    "name": "Arlington Light Rail",
+    "name": "Arlington",
     "id": 18
   },
   {
-    "name": "Circular Quay Light Rail",
+    "name": "Circular Quay",
     "id": 19
   },
   {
-    "name": "Lewisham West Light Rail",
+    "name": "Lewisham West",
     "id": 20
   },
   {
-    "name": "Hawthorne Light Rail",
+    "name": "Hawthorne",
     "id": 21
   },
   {
-    "name": "Kingsford Light Rail",
+    "name": "Kingsford",
     "id": 22
   },
   {
-    "name": "Juniors Kingsford Light Rail",
+    "name": "Juniors Kingsford",
     "id": 23
   },
   {
-    "name": "Randwick Light Rail",
+    "name": "Randwick ",
     "id": 24
   },
   {
-    "name": "UNSW High Street Light Rail",
+    "name": "UNSW High Street",
     "id": 25
   },
   {
-    "name": "Leichhardt North Light Rail",
+    "name": "Leichhardt North",
     "id": 26
   },
   {
-    "name": "Crown Street Light Rail",
+    "name": "Crown Street",
     "id": 27
   },
   {
-    "name": "Civic Light Rail",
+    "name": "Civic",
     "id": 28
   },
   {
-    "name": "ES Marks Light Rail",
+    "name": "ES Marks",
     "id": 29
   },
   {
-    "name": "Exhibition Centre Light Rail",
+    "name": "Exhibition Centre",
     "id": 30
   },
   {
-    "name": "Convention Light Rail",
+    "name": "Convention",
     "id": 31
   }
 ]
