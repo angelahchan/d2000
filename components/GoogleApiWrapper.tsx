@@ -271,7 +271,7 @@ export class MapContainer extends Component {
             name={'start'}
             position={geoStart}
             icon={{scaledSize: new this.props.google.maps.Size(30, 30),
-                url: require("../assets/images/marker.png")}}
+                url: require("../assets/images/start.png")}}
         />);
         geocoder.geocode( { 'address': des}, function(results, status) {
             if (status == 'OK') {
@@ -281,10 +281,10 @@ export class MapContainer extends Component {
               alert('Geocode was not successful for the following reason: ' + status);
             }});
         segment.push(<Marker key={'end'} onClick={this.onMarkerClick}
-            name={'des'}
+            name={'destination'}
             position={geoEnd}
             icon={{scaledSize: new this.props.google.maps.Size(30,30 ),
-                url: require("../assets/images/marker.png")}}
+                url: require("../assets/images/des.jpg")}}
         />);
         
         polyLine=<Polyline
