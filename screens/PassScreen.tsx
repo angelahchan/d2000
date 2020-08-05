@@ -12,9 +12,7 @@ import { Input } from 'react-native-elements';
 import GlobalContext from '../context/GlobalContext';
 import { RootStackParamList } from '../types';
 
-export default function SignUpScreen({
-    navigation,
-}: StackScreenProps<RootStackParamList, 'Forgot'>) {
+export default function SignUpScreen(props: any) {
     const [global, setGlobal] = React.useContext(GlobalContext);
     const [name, setName] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -41,7 +39,7 @@ export default function SignUpScreen({
                             users: newusers,
                         });
                         setforgotState(FORGOT_STATUS.SUCCESS);
-                        navigation.navigate('Login');
+                        props.navigation.navigate('AccountScreen');
                         return 0;
                     }
                 }
@@ -66,7 +64,7 @@ export default function SignUpScreen({
             setforgotState(FORGOT_STATUS.FAILMAIL);
         }
 
-        navigation.navigate('Forgot');
+        props.navigation.navigate('PassScreen');
     }
     switch (forgotstate) {
         case FORGOT_STATUS.READY:
@@ -126,8 +124,8 @@ export default function SignUpScreen({
                     <View style={styles.button}>
                         <Button title="Submit" onPress={submitUser} />
                     </View>
-                    <Text>Already have an account?</Text>
-                    <TouchableOpacity onPress={() => navigation.replace('Login')} style={styles.link}>
+                    <Text>Don't want to change the password?</Text>
+                    <TouchableOpacity onPress={() => props.navigation.replace('AccountScreen')} style={styles.link}>
                         <Text style={styles.linkText}>Log in</Text>
                     </TouchableOpacity>
                 </View>
@@ -191,8 +189,8 @@ export default function SignUpScreen({
                     <View style={styles.button}>
                         <Button title="Submit" onPress={submitUser} />
                     </View>
-                    <Text>Already have an account?</Text>
-                    <TouchableOpacity onPress={() => navigation.replace('Login')} style={styles.link}>
+                    <Text>Don't want to change the password?</Text>
+                    <TouchableOpacity onPress={() => props.navigation.replace('AccountScreen')} style={styles.link}>
                         <Text style={styles.linkText}>Log in</Text>
                     </TouchableOpacity>
                 </View>
@@ -254,8 +252,8 @@ export default function SignUpScreen({
                     <View style={styles.button}>
                         <Button title="Submit" onPress={submitUser} />
                     </View>
-                    <Text>Already have an account?</Text>
-                    <TouchableOpacity onPress={() => navigation.replace('Login')} style={styles.link}>
+                    <Text>Don't want to change the password?</Text>
+                    <TouchableOpacity onPress={() => props.navigation.replace('AccountScreen')} style={styles.link}>
                         <Text style={styles.linkText}>Log in</Text>
                     </TouchableOpacity>
                 </View>
@@ -317,9 +315,9 @@ export default function SignUpScreen({
                     <View style={styles.button}>
                         <Button title="Submit" onPress={submitUser} />
                     </View>
-                    <Text>Already have an account?</Text>
-                    <TouchableOpacity onPress={() => navigation.replace('Login')} style={styles.link}>
-                        <Text style={styles.linkText}>Log in</Text>
+                    <Text>Don't want to change the password?</Text>
+                    <TouchableOpacity onPress={() => props.navigation.replace('AccountScreen')} style={styles.link}>
+                        <Text style={styles.linkText}>Account</Text>
                     </TouchableOpacity>
                 </View>
             );
