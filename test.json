@@ -2,48 +2,23 @@
     "lines":[
         {
             "id":"1",
-            "start":"UNSW",
-            "des":"Bondi beach",
-            "duration":"15",
-            "price":"9.99",
-            "seats":"70",
-            "arrive":"16:30"
-        },
-        {
-            "id":"2",
-            "start":"UNSW",
-            "des":"Bondi beach",
-            "duration":"30",
-            "price":"3.99",
-            "seats":"80",
-            "arrive":"16:40"
-        },
-        {
-            "id":"3",
+            "line":"3",
             "start":"UNSW",
             "des":"Central Chalmers Street Light Rail",
             "duration":"20",
-            "price":"6.99",
+            "price":"7.99",
             "seats":"99",
             "arrive":"16:35"
         },
         {
-            "id":"4",
-            "start":"Zetland",
-            "des":"central station",
-            "duration":"30",
-            "price":"3.99",
-            "seats":"70",
-            "arrive":"16:40"
-        },
-        {
-            "id":"3",
-            "start":"1",
-            "des":"1",
-            "duration":"30",
-            "price":"3.99",
-            "seats":"70",
-            "arrive":"16:40"
+            "id":"2",
+            "line":"2",
+            "start":"UNSW",
+            "des":"Central Chalmers Street Light Rail",
+            "duration":"15",
+            "price":"8.99",
+            "seats":"50",
+            "arrive":"16:15"
         }
     ]
 }

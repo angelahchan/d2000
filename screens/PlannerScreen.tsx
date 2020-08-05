@@ -57,7 +57,7 @@ class ScrollList extends React.Component {
           <Image style={styles.back} source={require('../assets/images/back.png')}/>
         </TouchableOpacity>
         <View style={{height:'500px',width:'500px'}}>
-          <MapContainer start={this.state.val.start} end={this.state.val.des} id={this.state.val.id}></MapContainer>
+          <MapContainer start={this.state.val.start} end={this.state.val.des} id={this.state.val.line}></MapContainer>
           
         </View>
         <View key={index} style={styles.seg}>
@@ -130,15 +130,36 @@ function display(){
   }
   temp.forEach((element)=>{
     Li.push(
-      <TouchableOpacity onPress = {()=>obj.setTag(element)}>
-      <View key={index} style={styles.seg}>
-        <Text>{"start: "+element.start}</Text>
-        <Text>{"end: "+element.des}</Text>
-        <Text>{"arrive: "+element.arrive}</Text>
-        <ProgressBar width={parseInt(element.seats)}/>
-        <Text>{"seats left: "+element.seats}</Text>
-        <Text>{"cost: "+element.price}</Text>
-      </View>
+      <TouchableOpacity  onPress = {()=>obj.setTag(element)}>
+      <View key={index} style={styles.seg1}>
+        <View  key={index} style={styles.seg}>
+            <View key={index} style={styles.seg3}>
+                <Text style={styles.left} > {"Randwick Line"}</Text>
+                <Text style={styles.right}>{"$" + element.price}</Text>
+            </View>
+
+
+            <View key={index} style={styles.seg2}>
+                
+                <Text style={styles.grey}>{"Start at " + element.arrive}</Text>
+            </View>
+            <View key={index} style={styles.seg2}>
+                
+                <Text style={styles.grey}>{element.start}</Text>
+            </View>
+
+            <View key={index} style={styles.seg2}>
+                
+                <Text style={styles.grey}>{element.des}</Text>
+            </View>
+
+            
+            
+            
+            
+        
+        </View>
+    </View>
       </TouchableOpacity>
       );
       index++;
@@ -195,5 +216,44 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  },
+  },seg1: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 12,
+},
+seg3: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 5,
+},
+seg2: {
+    marginLeft: 25,
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
+},
+left: {
+    textAlign: 'left',
+    fontSize: 14,
+    color: '#006666',
+    fontWeight: '900',
+    marginLeft: 20,
+    marginRight: 25,
+},
+grey: {
+
+    textAlign: 'left',
+    fontSize: 14,
+    color: '#999999',
+    fontWeight: '500',
+    marginTop: 5,
+},
+right: {
+
+    textAlign: 'right',
+    fontSize: 14,
+    color: '#000000',
+    fontWeight: '700',
+    marginLeft: 25,
+    marginRight: 25,
+},
 });
