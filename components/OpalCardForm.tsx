@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet,  AsyncStorage, Button,TextInput, Picker, ToastAndroid } from 'react-native';
+import { StyleSheet,  Platform, Button,TextInput, Picker, ToastAndroid } from 'react-native';
 import CardContext from '../context/CardContext'
 import { Text, View,  } from '../components/Themed';
 import GlobalContext from '../context/GlobalContext';
@@ -27,7 +27,8 @@ function submitCardDetails() {
             },
         ]
     });
-    ToastAndroid.show("Added Opal Card", ToastAndroid.SHORT);
+    if (Platform.OS == 'android')
+        ToastAndroid.show("Added Opal Card", ToastAndroid.SHORT);
     props.navigation.navigate('PaymentScreen')
 }
     return (
