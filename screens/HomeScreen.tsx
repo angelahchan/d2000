@@ -54,9 +54,9 @@ export default function HomeScreen(props: any) {
                     <TouchableOpacity
                         onPress={() => props.navigation.replace('HistoryScreen')}
                         style={styles.body}
-                    >   
-                        <View style={styles.a1}>
-                            <Text style={styles.center1} > {"Check History"}</Text>
+                    >
+                        <View style={styles.center1} >
+                            <Image source={require('../assets/images/his-b.png')} />
                         </View>
                     </TouchableOpacity>
 
@@ -64,8 +64,8 @@ export default function HomeScreen(props: any) {
                         onPress={() => props.navigation.replace('AddNotifScreen')}
                         style={styles.body}
                     >
-                        <View style={styles.a2}>
-                            <Text style={styles.center1} > {"Add notification"}</Text>
+                        <View style={styles.center1} >
+                            <Image source={require('../assets/images/a-b.png')} />
                         </View>
                     </TouchableOpacity>
 
@@ -73,8 +73,8 @@ export default function HomeScreen(props: any) {
                         onPress={() => props.navigation.replace('NotifListScreen')}
                         style={styles.body}
                     >
-                        <View style={styles.a3}>
-                            <Text style={styles.center1} > {"Check Notification"}</Text>
+                        <View style={styles.center1} >
+                            <Image source={require('../assets/images/c-b.png')} />
                         </View>
                     </TouchableOpacity>
 
@@ -102,8 +102,8 @@ export default function HomeScreen(props: any) {
                     onPress={() => props.navigation.replace('HistoryScreen')}
                     style={styles.body}
                 >
-                    <View style={styles.a1}>
-                        <Text style={styles.center1} > {"Check History"}</Text>
+                    <View style={styles.center1} >
+                        <Image source={require('../assets/images/his-b.png')} />
                     </View>
                 </TouchableOpacity>
 
@@ -111,8 +111,8 @@ export default function HomeScreen(props: any) {
                     onPress={() => props.navigation.replace('AddNotifScreen')}
                     style={styles.body}
                 >
-                    <View style={styles.a2}>
-                        <Text style={styles.center1} > {"Add notification"}</Text>
+                    <View style={styles.center1} >
+                        <Image source={require('../assets/images/a-b.png')} />
                     </View>
                 </TouchableOpacity>
 
@@ -120,10 +120,11 @@ export default function HomeScreen(props: any) {
                     onPress={() => props.navigation.replace('NotifListScreen')}
                     style={styles.body}
                 >
-                    <View style={styles.a3}>
-                        <Text style={styles.center1} > {"Check Notification"}</Text>
+                    <View style={styles.center1} >
+                        <Image source={require('../assets/images/c-b.png')} />
                     </View>
                 </TouchableOpacity>
+
             </View>
         )
     }
