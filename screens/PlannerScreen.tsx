@@ -16,7 +16,7 @@ var displayList: JSX.Element[] =[];
 var imageSrc:any;
 displayList.push(
   <View style={{
-    width:300,
+    width:200,
     margin:20,
     backgroundColor:'#fff',
     flex: 1,
@@ -24,7 +24,7 @@ displayList.push(
     justifyContent: 'center',
     height:100
   }}>
-    <Text>Please enter some shit</Text>
+    <Text>Please enter some thing</Text>
 
   </View>
 );
@@ -47,42 +47,41 @@ class ScrollList extends React.Component {
     if(this.state.val==null)
     return (
       <ScrollView style={styles.con} contentContainerStyle = {{alignItems: 'center'}}>
-          {this.state.innerList.map(function(ele: React.ReactNode){index++;return <Text key={index}>{ele}</Text>})}
+          {this.state.innerList.map(function(ele: React.ReactNode){return ele})}
       </ScrollView>
     );
     else 
     return (
-      <View style={{alignItems: 'center',padding:'10%',backgroundColor:'#eee',paddingTop:'0'}}>
+      <View style={{alignItems: 'center',padding:'10%',backgroundColor:'#eee',paddingTop:0}}>
         <TouchableOpacity onPress={()=>this.setTag(null)}>
           <Image style={styles.back} source={require('../assets/images/back.png')}/>
         </TouchableOpacity>
         <View style={{height:500,width:500}}>
-          <MapContainer start={this.state.val.start} end={this.state.val.des} id={this.state.val.line}></MapContainer>
-          
+          <MapContainer ></MapContainer>
         </View>
-        <View key={index} style={styles.seg1}>
-        <View  key={index} style={styles.seg}>
-            <View key={index} style={styles.seg3}>
+        
+        <View  key={index++} style={styles.seg}>
+            <View key={index++} style={styles.seg3}>
                 <Text style={styles.left} > {"Randwick Line"}</Text>
                 <Text style={styles.right}>{"$" + this.state.val.price}</Text>
             </View>
 
 
-            <View key={index} style={styles.seg2}>
+            <View key={index++} style={styles.seg2}>
                 
                 <Text style={styles.grey}>{"Start at " + this.state.val.arrive}</Text>
             </View>
-            <View key={index} style={styles.seg2}>
+            <View key={index++} style={styles.seg2}>
                 
                 <Text style={styles.grey}>{this.state.val.start}</Text>
             </View>
 
-            <View key={index} style={styles.seg2}>
+            <View key={index++} style={styles.seg2}>
                 
                 <Text style={styles.grey}>{this.state.val.des}</Text>
             </View>
         </View>
-    </View>
+    
       </View>
     );
   }
@@ -102,7 +101,6 @@ export default function PlannerScreen() {
       </Picker>
       <View   style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <ScrollList></ScrollList>
-    
       <EditScreenInfo path="/screens/PlannerScreen.tsx" />
     </View>
   );
@@ -145,38 +143,29 @@ function display(){
   }
   temp.forEach((element)=>{
     Li.push(
-      <TouchableOpacity  onPress = {()=>obj.setTag(element)}>
-      <View key={index} style={styles.seg1}>
-        <View  key={index} style={styles.seg}>
-            <View key={index} style={styles.seg3}>
-                <Text style={styles.left} > {"Randwick Line"}</Text>
-                <Text style={styles.right}>{"$" + element.price}</Text>
-            </View>
+      <TouchableOpacity key={index++} style={styles.seg1}  onPress = {()=>obj.setTag(element)}>
+          <View  key={index++} style={styles.seg}>
+              <View key={index++} style={styles.seg3}>
+                  <Text style={styles.left} > {"Randwick Line"}</Text>
+                  <Text style={styles.right}>{"$" + element.price}</Text>
+              </View>
+              <View key={index++} style={styles.seg2}>
+                  
+                  <Text style={styles.grey}>{"Start at " + element.arrive}</Text>
+              </View>
+              <View key={index++} style={styles.seg2}>
+                  
+                  <Text style={styles.grey}>{element.start}</Text>
+              </View>
 
-
-            <View key={index} style={styles.seg2}>
-                
-                <Text style={styles.grey}>{"Start at " + element.arrive}</Text>
-            </View>
-            <View key={index} style={styles.seg2}>
-                
-                <Text style={styles.grey}>{element.start}</Text>
-            </View>
-
-            <View key={index} style={styles.seg2}>
-                
-                <Text style={styles.grey}>{element.des}</Text>
-            </View>
-
-            
-            
-            
-            
-        
-        </View>
-    </View>
+              <View key={index++} style={styles.seg2}>
+                  
+                  <Text style={styles.grey}>{element.des}</Text>
+              </View>
+          </View>
       </TouchableOpacity>
       );
+      if(Li.length==0) Li.push(<Text></Text>);
       index++;
   });
    obj.search(Li);
@@ -214,8 +203,8 @@ const styles = StyleSheet.create({
     height:50,
   },
   route:{
-    width:500,
-    height:500,
+    width:80,
+    height:80,
   },
   progressBar: {
     height: 20,
