@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         width: '80%',
     },
     seg: {
-        width: '300px',
+        width: '80%',
         margin: 20,
         backgroundColor: '#fff',
         flex: 1,
