@@ -4,8 +4,7 @@ import lines from '../test.json';
 import images from '../routes';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-import ProgressBar from '../components/progressBar';
-import MapContainer from '../components/GoogleApiWrapper';
+import {MapWrapper} from '../components/MapWrapper';
 import{Animated,ProgressBarAndroid,TouchableOpacity,Button, AppRegistry, ScrollView, Image,TextInput,Picker,TouchableHighlight} from 'react-native';
 
 var start : string;
@@ -28,6 +27,7 @@ displayList.push(
 
   </View>
 );
+
 class ScrollList extends React.Component {
   constructor(state:[]) {
     super(state);
@@ -57,7 +57,7 @@ class ScrollList extends React.Component {
           <Image style={styles.back} source={require('../assets/images/back.png')}/>
         </TouchableOpacity>
         <View style={{height:500,width:500}}>
-          <MapContainer ></MapContainer>
+          <MapWrapper start={this.state.val.start} des={this.state.val.des} id={this.state.val.line} startPos={this.state.val.startPos} desPos={this.state.val.desPos}></MapWrapper>
         </View>
         
         <View  key={index++} style={styles.seg}>
@@ -86,27 +86,54 @@ class ScrollList extends React.Component {
     );
   }
 }
-
-var index=2;
-export default function PlannerScreen() {
-  
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <TextInput placeholder="Start location" onChangeText={(text) => setStart(text)}></TextInput>
-      <TextInput placeholder="end location" onChangeText={(text) => setDes(text)}></TextInput>
-      <Picker onValueChange={(key) => setSortKey(key)}>
+var judge=false;
+var val='time';
+var pick;
+function displayP(){
+  if(pick.state.judge==false) pick.setState({judge:true});
+}
+class MyPicker extends React.Component{
+  constructor(prop){
+    super(prop);
+    pick=this;
+    this.state={key:'time',judge:false}
+  }
+  render(){
+    return (
+      <View>
+      <TouchableOpacity onPress={displayP}>
+      <Text >Sort by :{val}</Text>
+      </TouchableOpacity>
+      
+      {pick.state.judge &&
+      <Picker style={{width:300,borderWidth:1}} onValueChange={(key) => setSortKey(key)}>
         <Picker.Item label="Time" value="time" />
         <Picker.Item label="Money" value="cost" />
       </Picker>
-      <View   style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+      }   
+      
+      </View>
+    );
+      }
+  }
+var index=2;
+export default function PlannerScreen() {
+  var judge=false;
+  return (
+    <View style={styles.container}>
+      
+      <TextInput placeholder="Start location" onChangeText={(text) => setStart(text)}></TextInput>
+      <TextInput placeholder="end location" onChangeText={(text) => setDes(text)}></TextInput>
+      <MyPicker />
+      
       <ScrollList></ScrollList>
-      <EditScreenInfo path="/screens/PlannerScreen.tsx" />
     </View>
   );
 }
 function setSortKey(key:string){
   sortKey=key;
+  val=key;
+  pick.setState({key:{val},judge:false});
   display();
 }
 function setStart(startT:string){
@@ -165,7 +192,18 @@ function display(){
           </View>
       </TouchableOpacity>
       );
-      if(Li.length==0) Li.push(<Text></Text>);
+      if(Li.length==0) Li.push(<View style={{
+        width:200,
+        margin:20,
+        backgroundColor:'#fff',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height:100
+      }}>
+        <Text>Please enter some thing</Text>
+    
+      </View>);
       index++;
   });
    obj.search(Li);
@@ -188,6 +226,7 @@ const styles = StyleSheet.create({
   con:{
     backgroundColor:'#eee',
     width:'80%',
+    marginBottom:40
   },
   seg:{
     width:300,
