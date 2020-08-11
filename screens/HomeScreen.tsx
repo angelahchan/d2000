@@ -52,7 +52,7 @@ export default function HomeScreen(props: any) {
                     </View>
                     <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
                     <TouchableOpacity
-                        onPress={() => props.navigation.replace('HistoryScreen')}
+                        onPress={() => props.navigation.navigate('HistoryScreen')}
                         style={styles.body}
                     >
                         <View style={styles.center1} >
@@ -61,7 +61,7 @@ export default function HomeScreen(props: any) {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        onPress={() => props.navigation.replace('AddNotifScreen')}
+                        onPress={() => props.navigation.navigate('AddNotifScreen')}
                         style={styles.body}
                     >
                         <View style={styles.center1} >
@@ -70,7 +70,7 @@ export default function HomeScreen(props: any) {
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        onPress={() => props.navigation.replace('NotifListScreen')}
+                        onPress={() => props.navigation.navigate('NotifListScreen')}
                         style={styles.body}
                     >
                         <View style={styles.center1} >

@@ -48,7 +48,7 @@ export default function SignUpScreen({
             });
         }
 
-        navigation.navigate('Login')
+        navigation.replace('Login')
     }
 
   return (

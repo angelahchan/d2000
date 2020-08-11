@@ -45,7 +45,7 @@ export default function LoginScreen({
                         },
 
                     });
-                    navigation.navigate('Root');
+                    navigation.replace('Root');
                     return 0;
                 }
 
@@ -66,7 +66,7 @@ export default function LoginScreen({
             setLoginState(LOGIN_STATUS.FAILNAME);
         }
 
-        navigation.navigate('Login');
+        navigation.replace('Login');
         
     }
 
