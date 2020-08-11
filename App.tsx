@@ -7,21 +7,30 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import GlobalContext from './context/GlobalContext';
+
 import rewards from './assets/data/rewards.json';
+
+import { HISTORY_STATUS } from './constants/HistoryState ';
+
 
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
   const [global, setGlobal] = React.useState({
+    users:[],
     cards: [],
-        selectedCard:{},
+    selectedCard:{},
     tripState:PSTATE.PAYMENT_STATUS.NOT_READY,
     tripHistory:[],
     notifs:[],
     discounts:rewards,
     currentDiscount:{},
     hasConcession:false,
+    nearHistory: {},
+    CurrentUser: {},
+    History: HISTORY_STATUS.NO,
+
   });
   // users [] 
 

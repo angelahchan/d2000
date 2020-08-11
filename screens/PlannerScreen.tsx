@@ -58,6 +58,7 @@ class ScrollList extends React.Component {
         </TouchableOpacity>
         <View style={{height:500,width:500}}>
           <MapContainer ></MapContainer>
+
         </View>
         
         <View  key={index++} style={styles.seg}>
@@ -204,7 +205,7 @@ const styles = StyleSheet.create({
   },
   route:{
     width:80,
-    height:80,
+    height:50
   },
   progressBar: {
     height: 20,

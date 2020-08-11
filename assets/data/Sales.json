@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Monthly ticket member",
+    "id": 1
+  },
+  {
+    "name": "Opal card aged member",
+    "id": 2
+  },
+  {
+    "name": "Student discount",
+    "id": 3
+  },
+  {
+    "name": "Cooperative credit card offer",
+    "id": 4
+  }
+ ]
