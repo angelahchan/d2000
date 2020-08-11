@@ -5,13 +5,14 @@ import GlobalContext from '../context/GlobalContext';
 import { useLinkProps } from '@react-navigation/native';
 import * as PSTATE from '../constants/PaymentState';
 import { Ionicons } from '@expo/vector-icons';
-
 export default function PaymentCompleteScreen(props:any) {
   const [global, setGlobal] = React.useContext(GlobalContext)
+
 
   const { discount } = props.route.params;
   let { cost} = props.route.params;
   cost = parseFloat(cost).toFixed(2)
+
   return (
     <View style={styles.container}>
   

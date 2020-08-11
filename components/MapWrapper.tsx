@@ -140,7 +140,7 @@ var id;
 var obj;
 var linePos: any[];
 var polyLine: {} | null | undefined;
-var lineNum;
+var lineNum: (string | undefined)[];
 var startPos: import("react-native-maps").LatLng | import("react-native-maps").AnimatedRegion;
 var desPos: import("react-native-maps").LatLng | import("react-native-maps").AnimatedRegion;
 export class MapWrapper extends Component {

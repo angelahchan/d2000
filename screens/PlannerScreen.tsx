@@ -6,6 +6,7 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import {MapWrapper} from '../components/MapWrapper';
 import{Animated,ProgressBarAndroid,TouchableOpacity,Button, AppRegistry, ScrollView, Image,TextInput,Picker,TouchableHighlight} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 var start : string;
 var des : string;
@@ -13,9 +14,12 @@ var obj :ScrollList;
 var sortKey='time';
 var displayList: JSX.Element[] =[];
 var imageSrc:any;
+start= "Enter start location";
+des ="Enter end location";
+
 displayList.push(
   <View style={{
-    width:200,
+    width:'50%',
     margin:20,
     backgroundColor:'#fff',
     flex: 1,
@@ -23,11 +27,33 @@ displayList.push(
     justifyContent: 'center',
     height:100
   }}>
-    <Text>Please enter some thing</Text>
+    <Text>Please enter something</Text>
 
   </View>
 );
-
+class Header extends React.Component{
+  constructor(prop: Readonly<{}>){
+    super(prop);
+    this.state={start:"Enter start location",des:"Enter destination"};
+  }
+  execute(){
+    start="UNSW";
+    des="Sydney Tower";
+    this.setState({start:"UNSW",des:"Sydney Tower"});
+    display();
+  }
+  render(){
+    if(start=="Enter start location")
+    return (<TouchableOpacity onPress={()=>this.execute()}>
+    <Text style={{opacity:0.3}}>{start}</Text>
+    <Text style={{opacity:0.3}}>{des}</Text>
+  </TouchableOpacity>);
+  else return (<TouchableOpacity onPress={()=>this.execute()}>
+  <Text style={{opacity:1}}>{start}</Text>
+  <Text style={{opacity:1}}>{des}</Text>
+</TouchableOpacity>);
+  }
+}
 class ScrollList extends React.Component {
   constructor(state:[]) {
     super(state);
@@ -43,12 +69,16 @@ class ScrollList extends React.Component {
   check(){
     if(this.state.judge==false) this.setState({judge:true})
   }
+  
   render(){
     if(this.state.val==null)
-    return (
+    return (<View style={{alignItems:'center',width:'90%',height:'100%'}}>
+      
+      <MyPicker />
       <ScrollView style={styles.con} contentContainerStyle = {{alignItems: 'center'}}>
           {this.state.innerList.map(function(ele: React.ReactNode){return ele})}
       </ScrollView>
+      </View>
     );
     else 
     return (
@@ -56,31 +86,29 @@ class ScrollList extends React.Component {
         <TouchableOpacity onPress={()=>this.setTag(null)}>
           <Image style={styles.back} source={require('../assets/images/back.png')}/>
         </TouchableOpacity>
-        <View style={{height:500,width:500}}>
+
+        <View style={{height:'50%',width:'50%'}}>
           <MapWrapper start={this.state.val.start} des={this.state.val.des} id={this.state.val.line} startPos={this.state.val.startPos} desPos={this.state.val.desPos}></MapWrapper>
         </View>
         
-        <View  key={index++} style={styles.seg}>
-            <View key={index++} style={styles.seg3}>
-                <Text style={styles.left} > {"Randwick Line"}</Text>
-                <Text style={styles.right}>{"$" + this.state.val.price}</Text>
-            </View>
+        <View  key={index++} style={[styles.seg,{opacity:1,backgroundColor:'white',zIndex:3000,padding:0}]}>
+              <View key={index++} style={styles.seg3}>
+                  <Text style={styles.left} > {"Line "+this.state.val.line}</Text>
+                  <Text style={styles.right}>{"$" + this.state.val.price}</Text>
+              </View>
+              <View key={index++} style={[{top:30},styles.seg2]}>
+                  <Text style={styles.grey}>{"Start at " + this.state.val.arrive}</Text>
+              </View>
+              <View key={index++} style={[{top:50},styles.seg2]}>
+                  <Text style={styles.grey}>{this.state.val.start}</Text>
+              </View>
 
-
-            <View key={index++} style={styles.seg2}>
-                
-                <Text style={styles.grey}>{"Start at " + this.state.val.arrive}</Text>
-            </View>
-            <View key={index++} style={styles.seg2}>
-                
-                <Text style={styles.grey}>{this.state.val.start}</Text>
-            </View>
-
-            <View key={index++} style={styles.seg2}>
-                
-                <Text style={styles.grey}>{this.state.val.des}</Text>
-            </View>
-        </View>
+              <View key={index++} style={[{top:70},styles.seg2]}>
+                  <Text style={styles.grey}>{this.state.val.des}</Text>
+              </View>
+              <Image style={{width:30,height:35,position:'absolute',right:80,top:40}} source={require('../assets/images/seat.png')}/>
+              <Text style={[styles.right,{position:'absolute',top:80,right:50}]}>{this.state.val.seats}%</Text>  
+          </View>
     
       </View>
     );
@@ -92,26 +120,37 @@ var pick;
 function displayP(){
   if(pick.state.judge==false) pick.setState({judge:true});
 }
+function execute(){
+  start="UNSW";
+  des="Sydney Tower";
+  display();
+}
 class MyPicker extends React.Component{
-  constructor(prop){
+  constructor(prop: Readonly<{}>){
     super(prop);
     pick=this;
     this.state={key:'time',judge:false}
   }
   render(){
     return (
-      <View>
+      <View style={{position:'relative',width:100,height:30,zIndex:3000}}>
       <TouchableOpacity onPress={displayP}>
       <Text >Sort by :{val}</Text>
       </TouchableOpacity>
       
       {pick.state.judge &&
-      <Picker style={{width:300,borderWidth:1}} onValueChange={(key) => setSortKey(key)}>
+      <Picker  style={{width:300,borderWidth:1,opacity:1,backgroundColor:"white"}} onValueChange={(key) => setSortKey(key)}>
         <Picker.Item label="Time" value="time" />
         <Picker.Item label="Money" value="cost" />
       </Picker>
-      }   
       
+      }   
+      <Icon
+        name='sort-down'
+        size={20}
+        color='black'
+        style={[{right: 0, top: -5, position: 'absolute'}]}
+        />
       </View>
     );
       }
@@ -120,12 +159,9 @@ var index=2;
 export default function PlannerScreen() {
   var judge=false;
   return (
+    
     <View style={styles.container}>
-      
-      <TextInput placeholder="Start location" onChangeText={(text) => setStart(text)}></TextInput>
-      <TextInput placeholder="end location" onChangeText={(text) => setDes(text)}></TextInput>
-      <MyPicker />
-      
+      <Header></Header>
       <ScrollList></ScrollList>
     </View>
   );
@@ -170,38 +206,37 @@ function display(){
   }
   temp.forEach((element)=>{
     Li.push(
-      <TouchableOpacity key={index++} style={styles.seg1}  onPress = {()=>obj.setTag(element)}>
+      <TouchableOpacity key={index++} style={styles.seg}  onPress = {()=>obj.setTag(element)}>
           <View  key={index++} style={styles.seg}>
               <View key={index++} style={styles.seg3}>
-                  <Text style={styles.left} > {"Randwick Line"}</Text>
+                  <Text style={styles.left} > {"Line "+element.line}</Text>
                   <Text style={styles.right}>{"$" + element.price}</Text>
               </View>
-              <View key={index++} style={styles.seg2}>
-                  
+              <View key={index++} style={[{top:30},styles.seg2]}>
                   <Text style={styles.grey}>{"Start at " + element.arrive}</Text>
               </View>
-              <View key={index++} style={styles.seg2}>
-                  
+              <View key={index++} style={[{top:50},styles.seg2]}>
                   <Text style={styles.grey}>{element.start}</Text>
               </View>
 
-              <View key={index++} style={styles.seg2}>
-                  
+              <View key={index++} style={[{top:70},styles.seg2]}>
                   <Text style={styles.grey}>{element.des}</Text>
               </View>
+              <Image style={{width:30,height:35,position:'absolute',right:80,top:40}} source={require('../assets/images/seat.png')}/>
+              <Text style={[styles.right,{position:'absolute',top:80,right:50}]}>{element.seats}%</Text>  
           </View>
       </TouchableOpacity>
       );
       if(Li.length==0) Li.push(<View style={{
-        width:200,
+        width:'30%',
         margin:20,
         backgroundColor:'#fff',
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        height:100
+        height:'20%'
       }}>
-        <Text>Please enter some thing</Text>
+        <Text>Please enter something</Text>
     
       </View>);
       index++;
@@ -236,6 +271,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    position: 'relative'
   },
   back:{
     width:50,
@@ -243,7 +279,7 @@ const styles = StyleSheet.create({
   },
   route:{
     width:80,
-    height:80,
+    height:50
   },
   progressBar: {
     height: 20,
@@ -264,12 +300,15 @@ const styles = StyleSheet.create({
     marginTop: 12,
 },
 seg3: {
+    position:"absolute",
+    top:0,
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 5,
 },
 seg2: {
-    marginLeft: 25,
+  position:"absolute",
+   left:30,
     flexDirection: 'row',
     justifyContent: 'flex-start'
 },
@@ -298,4 +337,12 @@ right: {
     marginLeft: 25,
     marginRight: 25,
 },
+pickerIcon: {
+  color: "#eee",
+  position: "absolute",
+  bottom: 15,
+  right: 10,
+  fontSize: 20
+}
+
 });

@@ -52,7 +52,8 @@ export default function AddNotifScreen(props:any) {
                 label='Date'
                 placeholder={"5/08/2020"}
                 editable={false}
-                value={date.toLocaleDateString()}
+                value={date.toLocaleDateString()
+                }
             />
         </TouchableOpacity>
         {datePickerVisible &&
