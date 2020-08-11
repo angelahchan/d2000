@@ -4,8 +4,7 @@ import lines from '../test.json';
 import images from '../routes';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-import ProgressBar from '../components/progressBar';
-import MapContainer from '../components/GoogleApiWrapper';
+import {MapWrapper} from '../components/MapWrapper';
 import{Animated,ProgressBarAndroid,TouchableOpacity,Button, AppRegistry, ScrollView, Image,TextInput,Picker,TouchableHighlight} from 'react-native';
 
 var start : string;
@@ -16,7 +15,7 @@ var displayList: JSX.Element[] =[];
 var imageSrc:any;
 displayList.push(
   <View style={{
-    width:300,
+    width:200,
     margin:20,
     backgroundColor:'#fff',
     flex: 1,
@@ -24,10 +23,11 @@ displayList.push(
     justifyContent: 'center',
     height:100
   }}>
-    <Text>Please enter some shit</Text>
+    <Text>Please enter some thing</Text>
 
   </View>
 );
+
 class ScrollList extends React.Component {
   constructor(state:[]) {
     super(state);
@@ -47,73 +47,93 @@ class ScrollList extends React.Component {
     if(this.state.val==null)
     return (
       <ScrollView style={styles.con} contentContainerStyle = {{alignItems: 'center'}}>
-          {this.state.innerList.map(
-            function(ele: React.ReactNode)
-          {
-          return (
-          <Text key={ele.id}>{ele}</Text>)
-          })}
+          {this.state.innerList.map(function(ele: React.ReactNode){return ele})}
       </ScrollView>
     );
     else 
     return (
-      <View style={{alignItems: 'center',padding:'10%',backgroundColor:'#eee',paddingTop:'0'}}>
+      <View style={{alignItems: 'center',padding:'10%',backgroundColor:'#eee',paddingTop:0}}>
         <TouchableOpacity onPress={()=>this.setTag(null)}>
           <Image style={styles.back} source={require('../assets/images/back.png')}/>
         </TouchableOpacity>
         <View style={{height:500,width:500}}>
-          <MapContainer start={this.state.val.start} end={this.state.val.des} id={this.state.val.line}></MapContainer>
-          
+          <MapWrapper start={this.state.val.start} des={this.state.val.des} id={this.state.val.line} startPos={this.state.val.startPos} desPos={this.state.val.desPos}></MapWrapper>
         </View>
-        <View key={index} style={styles.seg1}>
-        <View  key={index} style={styles.seg}>
-            <View key={index} style={styles.seg3}>
+        
+        <View  key={index++} style={styles.seg}>
+            <View key={index++} style={styles.seg3}>
                 <Text style={styles.left} > {"Randwick Line"}</Text>
                 <Text style={styles.right}>{"$" + this.state.val.price}</Text>
             </View>
 
 
-            <View key={index} style={styles.seg2}>
+            <View key={index++} style={styles.seg2}>
                 
                 <Text style={styles.grey}>{"Start at " + this.state.val.arrive}</Text>
             </View>
-            <View key={index} style={styles.seg2}>
+            <View key={index++} style={styles.seg2}>
                 
                 <Text style={styles.grey}>{this.state.val.start}</Text>
             </View>
 
-            <View key={index} style={styles.seg2}>
+            <View key={index++} style={styles.seg2}>
                 
                 <Text style={styles.grey}>{this.state.val.des}</Text>
             </View>
         </View>
-    </View>
+    
       </View>
     );
   }
 }
-
-var index=2;
-export default function PlannerScreen() {
-  
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <TextInput placeholder="Start location" onChangeText={(text) => setStart(text)}></TextInput>
-      <TextInput placeholder="end location" onChangeText={(text) => setDes(text)}></TextInput>
-      <Picker onValueChange={(key) => setSortKey(key)}>
+var judge=false;
+var val='time';
+var pick;
+function displayP(){
+  if(pick.state.judge==false) pick.setState({judge:true});
+}
+class MyPicker extends React.Component{
+  constructor(prop){
+    super(prop);
+    pick=this;
+    this.state={key:'time',judge:false}
+  }
+  render(){
+    return (
+      <View>
+      <TouchableOpacity onPress={displayP}>
+      <Text >Sort by :{val}</Text>
+      </TouchableOpacity>
+      
+      {pick.state.judge &&
+      <Picker style={{width:300,borderWidth:1}} onValueChange={(key) => setSortKey(key)}>
         <Picker.Item label="Time" value="time" />
         <Picker.Item label="Money" value="cost" />
       </Picker>
-      <View   style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+      }   
+      
+      </View>
+    );
+      }
+  }
+var index=2;
+export default function PlannerScreen() {
+  var judge=false;
+  return (
+    <View style={styles.container}>
+      
+      <TextInput placeholder="Start location" onChangeText={(text) => setStart(text)}></TextInput>
+      <TextInput placeholder="end location" onChangeText={(text) => setDes(text)}></TextInput>
+      <MyPicker />
+      
       <ScrollList></ScrollList>
-    
-      <EditScreenInfo path="/screens/PlannerScreen.tsx" />
     </View>
   );
 }
 function setSortKey(key:string){
   sortKey=key;
+  val=key;
+  pick.setState({key:{val},judge:false});
   display();
 }
 function setStart(startT:string){
@@ -150,38 +170,40 @@ function display(){
   }
   temp.forEach((element)=>{
     Li.push(
-      <TouchableOpacity  onPress = {()=>obj.setTag(element)}>
-      <View key={index} style={styles.seg1}>
-        <View  key={index} style={styles.seg}>
-            <View key={index} style={styles.seg3}>
-                <Text style={styles.left} > {"Randwick Line"}</Text>
-                <Text style={styles.right}>{"$" + element.price}</Text>
-            </View>
+      <TouchableOpacity key={index++} style={styles.seg1}  onPress = {()=>obj.setTag(element)}>
+          <View  key={index++} style={styles.seg}>
+              <View key={index++} style={styles.seg3}>
+                  <Text style={styles.left} > {"Randwick Line"}</Text>
+                  <Text style={styles.right}>{"$" + element.price}</Text>
+              </View>
+              <View key={index++} style={styles.seg2}>
+                  
+                  <Text style={styles.grey}>{"Start at " + element.arrive}</Text>
+              </View>
+              <View key={index++} style={styles.seg2}>
+                  
+                  <Text style={styles.grey}>{element.start}</Text>
+              </View>
 
-
-            <View key={index} style={styles.seg2}>
-                
-                <Text style={styles.grey}>{"Start at " + element.arrive}</Text>
-            </View>
-            <View key={index} style={styles.seg2}>
-                
-                <Text style={styles.grey}>{element.start}</Text>
-            </View>
-
-            <View key={index} style={styles.seg2}>
-                
-                <Text style={styles.grey}>{element.des}</Text>
-            </View>
-
-            
-            
-            
-            
-        
-        </View>
-    </View>
+              <View key={index++} style={styles.seg2}>
+                  
+                  <Text style={styles.grey}>{element.des}</Text>
+              </View>
+          </View>
       </TouchableOpacity>
       );
+      if(Li.length==0) Li.push(<View style={{
+        width:200,
+        margin:20,
+        backgroundColor:'#fff',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height:100
+      }}>
+        <Text>Please enter some thing</Text>
+    
+      </View>);
       index++;
   });
    obj.search(Li);
@@ -204,6 +226,7 @@ const styles = StyleSheet.create({
   con:{
     backgroundColor:'#eee',
     width:'80%',
+    marginBottom:40
   },
   seg:{
     width:300,
@@ -219,8 +242,8 @@ const styles = StyleSheet.create({
     height:50,
   },
   route:{
-    width:500,
-    height:500,
+    width:80,
+    height:80,
   },
   progressBar: {
     height: 20,
