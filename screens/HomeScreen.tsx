@@ -32,7 +32,7 @@ export default function HomeScreen(props: any) {
                                 <Text style={styles.grey}>{"Start at " + global.nearHistory.startTime}</Text>
                             </View>
                             <View style={styles.seg2}>
-                                <Image source={require('../assets/images/start.png')} />
+                                <Image source={require('../assets/images/start-1.png')} />
                                 <Text style={styles.grey}>{"UNSW High Street"}</Text>
                             </View>
 

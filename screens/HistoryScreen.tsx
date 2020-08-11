@@ -33,7 +33,7 @@ export default function HistoryScreen(props: any) {
                                             <Text style={styles.grey}>{"Start at " + element.startTime}</Text>
                                         </View>
                                         <View key={index} style={styles.seg2}>
-                                            <Image source={require('../assets/images/start.png')} />
+                                            <Image source={require('../assets/images/start-1.png')} />
                                             <Text style={styles.grey}>{"UNSW High Street"}</Text>
                                         </View>
 
