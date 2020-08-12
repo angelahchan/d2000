@@ -17,9 +17,9 @@ export default function AccountScreen(props:any) {
   else
     status = 'Adult No Concession'
   return (
-    <ScrollView>
+    <ScrollView endFillColor='white'>
       <View style={styles.container}>
-        <Text style={styles.title}>Welcome, Jess</Text>
+        <Text style={styles.title}>Welcome {global.CurrentUser.name}</Text>
         
         <Text style={styles.subtitle}>{status}</Text>
         <View style={styles.btn}>
@@ -51,8 +51,6 @@ export default function AccountScreen(props:any) {
         <Image source={require('../assets/images/daysleft.jpg')}
         style={styles.daysleft}/>
               <View style={styles.btn}>
-        <Button title='Manage Notifications' onPress={()=>{props.navigation.navigate('NotifListScreen')}}
-        color='#FF9900'></Button>
         </View>
       </View>
     </ScrollView>

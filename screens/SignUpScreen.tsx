@@ -52,7 +52,7 @@ export default function SignUpScreen({
     }
 
   return (
-    <ScrollView endFillColor='white'>
+    <ScrollView endFillColor='white'  keyboardShouldPersistTaps='always'>
       <View style={styles.container}>
           <View style={styles.topImg}>
           <View  >

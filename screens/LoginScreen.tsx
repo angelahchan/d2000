@@ -73,7 +73,7 @@ export default function LoginScreen({
     switch (loginState) {
         case LOGIN_STATUS.READY:
             return (
-                <ScrollView endFillColor='white'>
+                <ScrollView endFillColor='white'  keyboardShouldPersistTaps='always'>
                 <View style={styles.container}>
                     <View style={styles.topImg}>
                         <View  >
@@ -109,9 +109,9 @@ export default function LoginScreen({
                     <TouchableOpacity onPress={() => navigation.replace('Forgot')} style={styles.link1}>
                         <Text style={styles.right}>Forgot?</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button}>
+                    <View style={styles.button}>
                         <Button background-color="#006666" title="Login" onPress={submitUser} />
-                    </TouchableOpacity>
+                    </View>
 
                     <Text style={styles.account}>Don't have a account?</Text>
                     <TouchableOpacity onPress={() => navigation.replace('Sign')} style={styles.link}>
@@ -122,7 +122,7 @@ export default function LoginScreen({
             );
         case LOGIN_STATUS.FAILNAME:
             return (
-                <ScrollView endFillColor='white'>
+                <ScrollView endFillColor='white'  keyboardShouldPersistTaps='always'>
                 <View style={styles.container}>
                     <View style={styles.topImg}>
                     <View  >
@@ -172,7 +172,7 @@ export default function LoginScreen({
             );
         case LOGIN_STATUS.FAILPASS:
             return (
-                <ScrollView endFillColor='white'>
+                <ScrollView endFillColor='white'  keyboardShouldPersistTaps='always'>
                 <View style={styles.container}>
                     <View style={styles.topImg}>
                     <View  >

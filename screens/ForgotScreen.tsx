@@ -71,7 +71,7 @@ export default function SignUpScreen({
     switch (forgotstate) {
         case FORGOT_STATUS.READY:
             return (
-                <ScrollView>
+                <ScrollView  keyboardShouldPersistTaps='always'>
                 <View style={styles.container}>
                     <View style={styles.topImg}>
              
@@ -139,7 +139,7 @@ export default function SignUpScreen({
             );
         case FORGOT_STATUS.FAILMAIL:
             return (
-                <ScrollView>
+                <ScrollView  keyboardShouldPersistTaps='always'>
                 <View style={styles.container}>
 
                     <View >
@@ -207,7 +207,7 @@ export default function SignUpScreen({
             );
         case FORGOT_STATUS.FAILMOBILE:
             return (
-                <ScrollView>
+                <ScrollView  keyboardShouldPersistTaps='always'>
                 <View style={styles.container}>
 
                     <View >
@@ -273,7 +273,7 @@ export default function SignUpScreen({
             );
         case FORGOT_STATUS.FAILPASS:
             return (
-                <ScrollView>
+                <ScrollView  keyboardShouldPersistTaps='always'>
                 <View style={styles.container}>
 
                     <View >
