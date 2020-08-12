@@ -67,6 +67,15 @@ const cvvInput = React.createRef<Input>()
       onChangeText={text => setCVV(text)}
       ref={cvvInput}
     />
+     <Input 
+      label='Expiry'
+      placeholder='13-08'
+      leftIcon={{ type: 'font-awesome', name: 'credit-card' }}
+      keyboardType = 'numeric'
+      errorStyle={{ color: 'red' }}
+      onChangeText={text => setExpiry(text)}
+      ref={cardInput}
+    />
     <View style={styles.button}>
     <Button  title="Add Card" onPress= {submitCardDetails}
          />
