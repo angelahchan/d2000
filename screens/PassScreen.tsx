@@ -101,8 +101,8 @@ export default function SignUpScreen(props: any) {
 
                     <View style={styles.body}>
                         <Input
-                            label='ConfimPassword'
-                            placeholder='   Enter ConfimPassword'
+                            label='Confim Password'
+                            placeholder='Confirm Password'
                             leftIcon={{ type: 'font-awesome', name: 'check' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setconfimPass(text)}

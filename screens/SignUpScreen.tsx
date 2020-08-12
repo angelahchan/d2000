@@ -62,8 +62,8 @@ export default function SignUpScreen({
 
           <View style={styles.body}>
               <Input
-                  label='Username'
-                  placeholder='  Enter Username'
+                  label='Email'
+                  placeholder='  Enter Email'
                   leftIcon={{ type: 'font-awesome', name: 'user' }}
                   errorStyle={{ color: 'red' }}
                   onChangeText={text => setName(text)}
@@ -95,7 +95,7 @@ export default function SignUpScreen({
           <View style={styles.button}>
               <Button title="SignUp" onPress={submitUser} />
           </View>
-          <Text>Already have an account?</Text>
+          <Text style={styles.account}>Already have an account?</Text>
           <TouchableOpacity onPress={() => navigation.replace('Login')} style={styles.link}>
               <Text style={styles.linkText}>Log in</Text>
           </TouchableOpacity>
@@ -136,7 +136,8 @@ const styles = StyleSheet.create({
     },
     linkText: {
         fontSize: 16,
-        color: '#006666'
+        color: '#006666',
+        textDecorationLine:'underline'
     },
     link: {
         marginTop: 15,
@@ -144,5 +145,8 @@ const styles = StyleSheet.create({
     },
     body: {
         width: '80%'
+    },
+    account:{
+        marginTop:'5%'
     },
 });
