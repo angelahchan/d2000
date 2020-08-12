@@ -82,7 +82,7 @@ marginVertical:'3%'
   
 <View  style={styles.headerSeg}>
 <Image source={require('../assets/images/end.png')} />
-<Text  style={styles.headerText}>{des}</Text>
+<Text  style={styles.headerText2}>{des}</Text>
 </View>
 
 </TouchableOpacity>);
@@ -134,6 +134,7 @@ class ScrollList extends React.Component {
                   <Text style={styles.grey}>{"Start at " + this.state.val.arrive}</Text>
               </View>
               <View key={index++} style={[{top:50},styles.seg2]}>
+              <Image source={require('../assets/images/start-1.png')} />
                   <Text style={styles.grey}>{this.state.val.start}</Text>
               </View>
 
@@ -168,6 +169,7 @@ class MyPicker extends React.Component{
   render(){
     //area to position the sort by dropdown 
     //     <TouchableOpacity onPress={displayP}>
+    
     return (
       <View style={styles.sortBy}>
 
@@ -175,7 +177,13 @@ class MyPicker extends React.Component{
     
     <Text style={styles.textSort}>Sort By:</Text>
       
-      <Picker  style={{width:'50%',backgroundColor:"white", alignSelf:'flex-end'}} onValueChange={(key) => setSortKey(key)}>
+      <Picker  style={{width:'50%',backgroundColor:"white", alignSelf:'flex-end'}} onValueChange={(key) => {
+        console.log('the key is' + key)
+       
+
+         console.log(pick.state.judge)
+        setSortKey(key)
+       }}>
         <Picker.Item label="Time" value="time" />
         <Picker.Item label="Money" value="cost" />
       </Picker>
@@ -184,6 +192,29 @@ class MyPicker extends React.Component{
       
       </View>
     );
+    /*
+    return (
+      <View style={{position:'relative',width:100,height:30,zIndex:3000}}>
+      <TouchableOpacity onPress={displayP}>
+      <Text >Sort by :{val}</Text>
+      </TouchableOpacity>
+      
+      {pick.state.judge &&
+      <Picker  style={{width:300,borderWidth:1,opacity:1,backgroundColor:"white"}} onValueChange={(key) => setSortKey(key)}>
+        <Picker.Item label="Time" value="time" />
+        <Picker.Item label="Money" value="cost" />
+      </Picker>
+      
+      }   
+      <Icon
+        name='sort-down'
+        size={20}
+        color='black'
+        style={[{right: 0, top: -5, position: 'absolute'}]}
+        />
+      </View>
+    );*/
+      
       }
   }
 var index=2;
@@ -200,6 +231,7 @@ export default function PlannerScreen() {
 function setSortKey(key:string){
   sortKey=key;
   val=key;
+  console.log('key is ' + key)
   pick.setState({key:{val},judge:false});
   display();
 }
@@ -228,10 +260,12 @@ function display(){
   });
   switch(sortKey){
     case "time":
+      console.log('time triggerd')
       reg=temp.sort((a,b)=>parseInt(a.duration)-parseInt(b.duration));
       break;
     case "cost":
       reg=temp.sort((a,b)=>parseInt(a.price)-parseInt(b.price));
+      console.log('cost triggerd')
       break;
     default:
   }
