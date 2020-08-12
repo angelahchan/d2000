@@ -86,7 +86,6 @@ class ScrollList extends React.Component {
         <TouchableOpacity onPress={()=>this.setTag(null)}>
           <Image style={styles.back} source={require('../assets/images/back.png')}/>
         </TouchableOpacity>
-
         <View style={{height:'50%',width:'50%'}}>
           <MapWrapper start={this.state.val.start} des={this.state.val.des} id={this.state.val.line} startPos={this.state.val.startPos} desPos={this.state.val.desPos}></MapWrapper>
         </View>
@@ -264,7 +263,7 @@ const styles = StyleSheet.create({
     marginBottom:40
   },
   seg:{
-    width:300,
+    width:250,
     height:150,
     margin:20,
     backgroundColor:'#fff',
@@ -279,7 +278,7 @@ const styles = StyleSheet.create({
   },
   route:{
     width:80,
-    height:50
+    height:80,
   },
   progressBar: {
     height: 20,
