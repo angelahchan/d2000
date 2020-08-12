@@ -31,7 +31,7 @@ export default function PaymentBottom() {
               borderWidth: (index == 0) ? 0 : 2,
               borderColor: COLS.MAIN_ORANGE,
               marginVertical:5}
-            }></View>
+            } key={index}></View>
           <Text> {stopName.name} </Text>
           </View>
           

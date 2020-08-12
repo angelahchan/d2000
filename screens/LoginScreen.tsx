@@ -109,9 +109,9 @@ export default function LoginScreen({
                     <TouchableOpacity onPress={() => navigation.replace('Forgot')} style={styles.link1}>
                         <Text style={styles.right}>Forgot?</Text>
                     </TouchableOpacity>
-                    <View style={styles.button}>
+                    <TouchableOpacity style={styles.button}>
                         <Button background-color="#006666" title="Login" onPress={submitUser} />
-                    </View>
+                    </TouchableOpacity>
 
                     <Text style={styles.account}>Don't have a account?</Text>
                     <TouchableOpacity onPress={() => navigation.replace('Sign')} style={styles.link}>

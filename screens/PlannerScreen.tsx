@@ -235,7 +235,7 @@ function display(){
         justifyContent: 'center',
         height:'20%'
       }}>
-        <Text>Please enter something</Text>
+        <Text>Please select the start and end stops</Text>
     
       </View>);
       index++;
