@@ -21,7 +21,7 @@ displayList.push(
   <View style={{
     width:'100%',
     margin:20,
-    backgroundColor:'#fff',
+    backgroundColor:'#eee',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
@@ -65,15 +65,24 @@ class Header extends React.Component{
     </View>
 
   </TouchableOpacity>);
-  else return (<TouchableOpacity onPress={()=>this.execute()}>
+  else return (<TouchableOpacity style={styles.header} onPress={()=>this.execute()}>
   <View  style={styles.headerSeg}>
   <Image source={require('../assets/images/start-1.png')} />
-  <Text style={{opacity:1}}>{start}</Text>
+  <Text style={styles.headerText2}>{start}</Text>
   </View>
+  <View
+style={{
+borderBottomColor: 'grey',
+borderBottomWidth: 1,
+width:'90%',
+alignSelf:'center',
+marginVertical:'3%'
+}}
+/>
   
 <View  style={styles.headerSeg}>
 <Image source={require('../assets/images/end.png')} />
-<Text style={{opacity:1}}>{des}</Text>
+<Text  style={styles.headerText}>{des}</Text>
 </View>
 
 </TouchableOpacity>);
@@ -99,8 +108,9 @@ class ScrollList extends React.Component {
     if(this.state.val==null)
     return (<View style={{alignItems:'center',width:'90%',height:'100%'}}>
       
-      <MyPicker />
+    
       <ScrollView endFillColor='white' style={styles.con} contentContainerStyle = {{alignItems: 'center'}}>
+      <MyPicker />
           {this.state.innerList.map(function(ele: React.ReactNode){return ele})}
       </ScrollView>
       </View>
@@ -157,25 +167,21 @@ class MyPicker extends React.Component{
   }
   render(){
     //area to position the sort by dropdown 
+    //     <TouchableOpacity onPress={displayP}>
     return (
-      <View style={{position:'relative',width:100,height:30,zIndex:3000}}>
-      <TouchableOpacity onPress={displayP}>
-      <Text >Sort by :{val}</Text>
-      </TouchableOpacity>
+      <View style={styles.sortBy}>
+
+  
+    
+    <Text style={styles.textSort}>Sort By:</Text>
       
-      {pick.state.judge &&
-      <Picker  style={{width:300,borderWidth:1,opacity:1,backgroundColor:"white"}} onValueChange={(key) => setSortKey(key)}>
+      <Picker  style={{width:'50%',backgroundColor:"white", alignSelf:'flex-end'}} onValueChange={(key) => setSortKey(key)}>
         <Picker.Item label="Time" value="time" />
         <Picker.Item label="Money" value="cost" />
       </Picker>
       
-      }   
-      <Icon
-        name='sort-down'
-        size={20}
-        color='black'
-        style={[{right: 0, top: -5, position: 'absolute'}]}
-        />
+    
+      
       </View>
     );
       }
@@ -381,12 +387,31 @@ headerSeg:{
 },
 header:{
   width:'100%',
-  height:'25%'
+  height:'22%'
 
 },
 headerText:{
   fontSize:16,
   color:'grey',
+},
+headerText2:{
+  fontSize:16,
+  color:'black',
+},
+sortBy:{
+  alignSelf:'flex-end',
+  alignItems:'flex-start',
+  flexDirection:'row',
+  width:'50%',
+  backgroundColor:'#eee'
+},
+pickerText:{
+  textAlign:'left'
+},
+textSort:{
+  textAlign:'center',
+  alignSelf:'flex-start',
+  width:'50%'
 }
 
 
