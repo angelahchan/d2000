@@ -139,6 +139,7 @@ export default function SignUpScreen({
             );
         case FORGOT_STATUS.FAILMAIL:
             return (
+                <ScrollView>
                 <View style={styles.container}>
 
                     <View >
@@ -202,9 +203,11 @@ export default function SignUpScreen({
                         <Text style={styles.linkText}>Log in</Text>
                     </TouchableOpacity>
                 </View>
+                </ScrollView>
             );
         case FORGOT_STATUS.FAILMOBILE:
             return (
+                <ScrollView>
                 <View style={styles.container}>
 
                     <View >
@@ -266,9 +269,11 @@ export default function SignUpScreen({
                         <Text style={styles.linkText}>Log in</Text>
                     </TouchableOpacity>
                 </View>
+                </ScrollView>
             );
         case FORGOT_STATUS.FAILPASS:
             return (
+                <ScrollView>
                 <View style={styles.container}>
 
                     <View >
@@ -330,6 +335,7 @@ export default function SignUpScreen({
                         <Text style={styles.linkText}>Log in</Text>
                     </TouchableOpacity>
                 </View>
+                </ScrollView>
             );
         default: return (<Text>Password Change Success!</Text>)
     }

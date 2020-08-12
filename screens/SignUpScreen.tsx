@@ -6,7 +6,7 @@ import { Text, View } from '../components/Themed';
 import { Input } from 'react-native-elements';
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { StyleSheet, AsyncStorage, Button, TextInput, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, AsyncStorage, Button, TextInput, Image, ScrollView, TouchableOpacity } from 'react-native';
 
 import GlobalContext from '../context/GlobalContext';
 import { RootStackParamList } from '../types';
@@ -52,12 +52,15 @@ export default function SignUpScreen({
     }
 
   return (
+    <ScrollView endFillColor='white'>
       <View style={styles.container}>
+          <View style={styles.topImg}>
           <View  >
               <Image source={require('../assets/images/train.png')} />
           </View>
           <View  >
               <Image source={require('../assets/images/sign.png')} />
+          </View>
           </View>
 
           <View style={styles.body}>
@@ -100,6 +103,7 @@ export default function SignUpScreen({
               <Text style={styles.linkText}>Log in</Text>
           </TouchableOpacity>
       </View>
+      </ScrollView>
   );
 }
 
@@ -148,5 +152,11 @@ const styles = StyleSheet.create({
     },
     account:{
         marginTop:'5%'
+    },
+    topImg:{
+        height:'20%',
+        alignSelf:'center',
+        alignItems:'center',
+        marginVertical:'5%'
     },
 });

@@ -6,7 +6,7 @@ import { LOGIN_STATUS } from '../constants/LoginState';
 
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { StyleSheet, AsyncStorage, Button, TextInput, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, AsyncStorage, Button, TextInput, ScrollView, TouchableOpacity, Image } from 'react-native';
 
 import { Input } from 'react-native-elements';
 
@@ -73,6 +73,7 @@ export default function LoginScreen({
     switch (loginState) {
         case LOGIN_STATUS.READY:
             return (
+                <ScrollView endFillColor='white'>
                 <View style={styles.container}>
                     <View style={styles.topImg}>
                         <View  >
@@ -117,9 +118,11 @@ export default function LoginScreen({
                         <Text style={styles.linkText}>Sign up</Text>
                     </TouchableOpacity>
                 </View>
+                </ScrollView>
             );
         case LOGIN_STATUS.FAILNAME:
             return (
+                <ScrollView endFillColor='white'>
                 <View style={styles.container}>
                     <View style={styles.topImg}>
                     <View  >
@@ -165,9 +168,11 @@ export default function LoginScreen({
                         <Text style={styles.linkText}>Sign up</Text>
                     </TouchableOpacity>
                 </View>
+                </ScrollView>
             );
         case LOGIN_STATUS.FAILPASS:
             return (
+                <ScrollView endFillColor='white'>
                 <View style={styles.container}>
                     <View style={styles.topImg}>
                     <View  >
@@ -215,6 +220,7 @@ export default function LoginScreen({
                         <Text style={styles.linkText}>Sign up</Text>
                     </TouchableOpacity>
                 </View>
+                </ScrollView>
             );
         default: return (<Text>Login Success!</Text>)
     }
@@ -290,7 +296,8 @@ const styles = StyleSheet.create({
     topImg:{
         height:'20%',
         alignSelf:'center',
-        alignItems:'center'
+        alignItems:'center',
+        marginVertical:'5%'
     },
     link1:{
         alignSelf:'flex-end',
