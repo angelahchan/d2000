@@ -14,6 +14,9 @@ export default function HistoryScreen(props: any) {
         
         <ScrollView endFillColor='white' 
         >
+            {global.tripHistory.length == 0 && 
+            <Text style={styles.notif}>Please take a trip for more data </Text>
+              }
         <View style={styles.container} >
 
                     {
@@ -145,5 +148,10 @@ const styles = StyleSheet.create({
         marginTop: 15,
         paddingVertical: 15,
     },
+    notif:{
+        textAlign:'center',
+        fontSize:20,
+        marginVertical:'5%',
+      }
 });
 

@@ -54,7 +54,9 @@ export default function NotifListScreen(props:any) {
 
         <ScrollView  snapToAlignment="start"
         >
-
+            {global.notifs.length == 0 && 
+            <Text style={styles.notif}>No Notifications Yet</Text>
+              }
             <View style={styles.switches}>
             {
                 global.notifs.map((notif:any, index:any) => {
@@ -85,10 +87,7 @@ export default function NotifListScreen(props:any) {
 
             </View>
 
-            <TouchableOpacity onPress={() => props.navigation.replace('HomeScreen')} style={styles.container}>
-                <AddIcon name="md-home" color="black" />
-            </TouchableOpacity>
-            
+
         </ScrollView>
 
     );
@@ -160,4 +159,9 @@ const styles = StyleSheet.create({
         marginTop: 15,
         paddingVertical: 15,
     },
+    notif:{
+      textAlign:'center',
+      fontSize:20,
+      marginVertical:'5%'
+    }
 });
