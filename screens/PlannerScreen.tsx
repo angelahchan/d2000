@@ -16,18 +16,18 @@ var displayList: JSX.Element[] =[];
 var imageSrc:any;
 start= "Enter start location";
 des ="Enter end location";
-
+//display list place
 displayList.push(
   <View style={{
-    width:'50%',
+    width:'100%',
     margin:20,
-    backgroundColor:'#fff',
+    backgroundColor:'#eee',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     height:100
   }}>
-    <Text>Please enter something</Text>
+    <Text>Please Enter Location</Text>
 
   </View>
 );
@@ -44,13 +44,47 @@ class Header extends React.Component{
   }
   render(){
     if(start=="Enter start location")
-    return (<TouchableOpacity onPress={()=>this.execute()}>
-    <Text style={{opacity:0.3}}>{start}</Text>
-    <Text style={{opacity:0.3}}>{des}</Text>
+    return (<TouchableOpacity style={styles.header} onPress={()=>this.execute()}>
+        <View  style={styles.headerSeg}>
+        <Image source={require('../assets/images/start-1.png')} />
+        <Text style={styles.headerText}>{start}</Text>
+        </View>
+        <View
+  style={{
+    borderBottomColor: 'grey',
+    borderBottomWidth: 1,
+    width:'90%',
+    alignSelf:'center',
+    marginVertical:'3%'
+  }}
+/>
+        
+    <View  style={styles.headerSeg}>
+    <Image source={require('../assets/images/end.png')} />
+    <Text  style={styles.headerText}>{des}</Text>
+    </View>
+
   </TouchableOpacity>);
-  else return (<TouchableOpacity onPress={()=>this.execute()}>
-  <Text style={{opacity:1}}>{start}</Text>
-  <Text style={{opacity:1}}>{des}</Text>
+  else return (<TouchableOpacity style={styles.header} onPress={()=>this.execute()}>
+  <View  style={styles.headerSeg}>
+  <Image source={require('../assets/images/start-1.png')} />
+  <Text style={styles.headerText2}>{start}</Text>
+  </View>
+  <View
+style={{
+borderBottomColor: 'grey',
+borderBottomWidth: 1,
+width:'90%',
+alignSelf:'center',
+marginVertical:'3%'
+}}
+/>
+  
+<View  style={styles.headerSeg}>
+<Image source={require('../assets/images/end.png')} />
+<Text  style={styles.headerText2}>{des}</Text>
+</View>
+
 </TouchableOpacity>);
   }
 }
@@ -74,8 +108,9 @@ class ScrollList extends React.Component {
     if(this.state.val==null)
     return (<View style={{alignItems:'center',width:'90%',height:'100%'}}>
       
+    
+      <ScrollView endFillColor='white' style={styles.con} contentContainerStyle = {{alignItems: 'center'}}>
       <MyPicker />
-      <ScrollView style={styles.con} contentContainerStyle = {{alignItems: 'center'}}>
           {this.state.innerList.map(function(ele: React.ReactNode){return ele})}
       </ScrollView>
       </View>
@@ -99,6 +134,7 @@ class ScrollList extends React.Component {
                   <Text style={styles.grey}>{"Start at " + this.state.val.arrive}</Text>
               </View>
               <View key={index++} style={[{top:50},styles.seg2]}>
+              <Image source={require('../assets/images/start-1.png')} />
                   <Text style={styles.grey}>{this.state.val.start}</Text>
               </View>
 
@@ -131,6 +167,32 @@ class MyPicker extends React.Component{
     this.state={key:'time',judge:false}
   }
   render(){
+    //area to position the sort by dropdown 
+    //     <TouchableOpacity onPress={displayP}>
+    
+    return (
+      <View style={styles.sortBy}>
+
+  
+    
+    <Text style={styles.textSort}>Sort By:</Text>
+      
+      <Picker  style={{width:'50%',backgroundColor:"white", alignSelf:'flex-end'}} onValueChange={(key) => {
+        console.log('the key is' + key)
+       
+
+         console.log(pick.state.judge)
+        setSortKey(key)
+       }}>
+        <Picker.Item label="Time" value="time" />
+        <Picker.Item label="Money" value="cost" />
+      </Picker>
+      
+    
+      
+      </View>
+    );
+    /*
     return (
       <View style={{position:'relative',width:100,height:30,zIndex:3000}}>
       <TouchableOpacity onPress={displayP}>
@@ -151,7 +213,8 @@ class MyPicker extends React.Component{
         style={[{right: 0, top: -5, position: 'absolute'}]}
         />
       </View>
-    );
+    );*/
+      
       }
   }
 var index=2;
@@ -168,6 +231,7 @@ export default function PlannerScreen() {
 function setSortKey(key:string){
   sortKey=key;
   val=key;
+  console.log('key is ' + key)
   pick.setState({key:{val},judge:false});
   display();
 }
@@ -196,10 +260,12 @@ function display(){
   });
   switch(sortKey){
     case "time":
+      console.log('time triggerd')
       reg=temp.sort((a,b)=>parseInt(a.duration)-parseInt(b.duration));
       break;
     case "cost":
       reg=temp.sort((a,b)=>parseInt(a.price)-parseInt(b.price));
+      console.log('cost triggerd')
       break;
     default:
   }
@@ -235,7 +301,7 @@ function display(){
         justifyContent: 'center',
         height:'20%'
       }}>
-        <Text>Please enter something</Text>
+        <Text>Please select the start and end stops</Text>
     
       </View>);
       index++;
@@ -254,12 +320,14 @@ const styles = StyleSheet.create({
   },
   separator: {
     marginVertical: 30,
-    height: 1,
+    height: 10,
     width: '80%',
+    color:'black',
+    backgroundColor:'black'
   },
   con:{
     backgroundColor:'#eee',
-    width:'80%',
+    width:'100%',
     marginBottom:40
   },
   seg:{
@@ -342,6 +410,44 @@ pickerIcon: {
   bottom: 15,
   right: 10,
   fontSize: 20
+},
+headerSeg:{
+  marginLeft: 25,
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  alignItems:'flex-start',
+  marginTop:'3%',
+
+},
+header:{
+  width:'100%',
+  height:'22%'
+
+},
+headerText:{
+  fontSize:16,
+  color:'grey',
+},
+headerText2:{
+  fontSize:16,
+  color:'black',
+},
+sortBy:{
+  alignSelf:'flex-end',
+  alignItems:'flex-start',
+  flexDirection:'row',
+  width:'50%',
+  backgroundColor:'#eee'
+},
+pickerText:{
+  textAlign:'left'
+},
+textSort:{
+  textAlign:'center',
+  alignSelf:'flex-start',
+  width:'50%'
 }
+
+
 
 });

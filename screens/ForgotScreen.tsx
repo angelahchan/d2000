@@ -7,7 +7,7 @@ import { FORGOT_STATUS } from '../constants/ForgotState';
 
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { StyleSheet, AsyncStorage, Button, TextInput, TouchableOpacity, Image} from 'react-native';
+import { StyleSheet, AsyncStorage, Button, TextInput, TouchableOpacity, ScrollView, Image} from 'react-native';
 import { Input } from 'react-native-elements';
 import GlobalContext from '../context/GlobalContext';
 import { RootStackParamList } from '../types';
@@ -71,19 +71,21 @@ export default function SignUpScreen({
     switch (forgotstate) {
         case FORGOT_STATUS.READY:
             return (
+                <ScrollView  keyboardShouldPersistTaps='always'>
                 <View style={styles.container}>
-
+                    <View style={styles.topImg}>
+             
                     <View >
                         <Image source={require('../assets/images/train.png')} />
                     </View>
                     <View >
                         <Image source={require('../assets/images/reset.png')} />
                     </View>
-
+                    </View>
                     <View style={styles.body}>
                         <Input
-                            label='Username'
-                            placeholder='  Enter Username'
+                            label='Email'
+                            placeholder='Enter Email'
                             leftIcon={{ type: 'font-awesome', name: 'user' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setName(text)}
@@ -128,14 +130,16 @@ export default function SignUpScreen({
                     <View style={styles.button}>
                         <Button title="Submit" onPress={submitUser} />
                     </View>
-                    <Text>Already have an account?</Text>
+                    <Text  style={styles.account} >Already have an account?</Text>
                     <TouchableOpacity onPress={() => navigation.replace('Login')} style={styles.link}>
                         <Text style={styles.linkText}>Log in</Text>
                     </TouchableOpacity>
                 </View>
+                </ScrollView>
             );
         case FORGOT_STATUS.FAILMAIL:
             return (
+                <ScrollView  keyboardShouldPersistTaps='always'>
                 <View style={styles.container}>
 
                     <View >
@@ -194,14 +198,16 @@ export default function SignUpScreen({
                     <View style={styles.button}>
                         <Button title="Submit" onPress={submitUser} />
                     </View>
-                    <Text>Already have an account?</Text>
+                    <Text  style={styles.account}>Already have an account?</Text>
                     <TouchableOpacity onPress={() => navigation.replace('Login')} style={styles.link}>
                         <Text style={styles.linkText}>Log in</Text>
                     </TouchableOpacity>
                 </View>
+                </ScrollView>
             );
         case FORGOT_STATUS.FAILMOBILE:
             return (
+                <ScrollView  keyboardShouldPersistTaps='always'>
                 <View style={styles.container}>
 
                     <View >
@@ -213,8 +219,8 @@ export default function SignUpScreen({
 
                     <View style={styles.body}>
                         <Input
-                            label='Username'
-                            placeholder='  Enter Username'
+                            label='Email'
+                            placeholder='Email'
                             leftIcon={{ type: 'font-awesome', name: 'user' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setName(text)}
@@ -235,8 +241,8 @@ export default function SignUpScreen({
 
                     <View style={styles.body}>
                         <Input
-                            label='ConfimPassword'
-                            placeholder='   Enter ConfimPassword'
+                            label='Confim Password'
+                            placeholder='Confirm Password'
                             leftIcon={{ type: 'font-awesome', name: 'check' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setconfimPass(text)}
@@ -258,14 +264,16 @@ export default function SignUpScreen({
                     <View style={styles.button}>
                         <Button title="Submit" onPress={submitUser} />
                     </View>
-                    <Text>Already have an account?</Text>
+                    <Text style={styles.account}>Already have an account?</Text>
                     <TouchableOpacity onPress={() => navigation.replace('Login')} style={styles.link}>
                         <Text style={styles.linkText}>Log in</Text>
                     </TouchableOpacity>
                 </View>
+                </ScrollView>
             );
         case FORGOT_STATUS.FAILPASS:
             return (
+                <ScrollView  keyboardShouldPersistTaps='always'>
                 <View style={styles.container}>
 
                     <View >
@@ -277,8 +285,8 @@ export default function SignUpScreen({
 
                     <View style={styles.body}>
                         <Input
-                            label='Username'
-                            placeholder='  Enter Username'
+                            label='Email'
+                            placeholder='Enter Email'
                             leftIcon={{ type: 'font-awesome', name: 'user' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setName(text)}
@@ -289,7 +297,7 @@ export default function SignUpScreen({
                     <View style={styles.body}>
                         <Input
                             label='Password'
-                            placeholder='   Enter password'
+                            placeholder='Enter password'
                             leftIcon={{ type: 'font-awesome', name: 'check' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setPassword(text)}
@@ -299,8 +307,8 @@ export default function SignUpScreen({
 
                     <View style={styles.body}>
                         <Input
-                            label='ConfimPassword'
-                            placeholder='   Enter ConfimPassword'
+                            label='Confim Password'
+                            placeholder='Confirm Password'
                             leftIcon={{ type: 'font-awesome', name: 'check' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setconfimPass(text)}
@@ -322,11 +330,12 @@ export default function SignUpScreen({
                     <View style={styles.button}>
                         <Button title="Submit" onPress={submitUser} />
                     </View>
-                    <Text>Already have an account?</Text>
+                    <Text  style={styles.account} >Already have an account?</Text>
                     <TouchableOpacity onPress={() => navigation.replace('Login')} style={styles.link}>
                         <Text style={styles.linkText}>Log in</Text>
                     </TouchableOpacity>
                 </View>
+                </ScrollView>
             );
         default: return (<Text>Password Change Success!</Text>)
     }
@@ -365,7 +374,8 @@ const styles = StyleSheet.create({
     },
     linkText: {
         fontSize: 16,
-        color: '#006666'
+        color: '#006666',
+        textDecorationLine:'underline'
     },
     link: {
         marginTop: 15,
@@ -377,6 +387,15 @@ const styles = StyleSheet.create({
     },
     body: {
         width: '80%'
+    },
+    topImg:{
+        height:'20%',
+        alignSelf:'center',
+        alignItems:'center',
+        marginVertical:'5%'
+    },
+    account:{
+        marginTop:'5%'
     },
 
 });

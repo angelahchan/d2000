@@ -32,13 +32,16 @@ export default function PaymentMiddle(props:any){
     */
     function handleToggleComplete(id:any) {
         let selectedItem;
+        let index = 0;
         const newList = global.cards.map((item:any) => {
-            if (item.cardNumber === id) {
+            
+            if (index === id) {
               const updatedItem = {
                 ...item,
                 selected: true,
               };
               selectedItem = updatedItem;
+              index = index + 1;
               return updatedItem;
             }
             else {
@@ -46,8 +49,10 @@ export default function PaymentMiddle(props:any){
                     ...item,
                     selected: false,
                   };
+                  index = index + 1;
                 return updatedItem;
             }
+
           });
        
           setGlobal({
@@ -72,7 +77,8 @@ export default function PaymentMiddle(props:any){
                         <TouchableOpacity 
                         activeOpacity={1} key={index}
                         onPress = { () =>  {
-                            handleToggleComplete(card.cardNumber)
+                            handleToggleComplete(index)
+                            console.log('selected card index is ' +  index)
                          } }>
                              <PaymentCard cardType={card.type} isSelected={card.selected}/>
                         </TouchableOpacity>

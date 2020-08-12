@@ -1,5 +1,5 @@
 ﻿import * as React from 'react';
-import { StyleSheet, Platform, Button, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Platform, Button, TouchableOpacity, Image, ScrollView} from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import { Text, View, } from '../components/Themed';
 import GlobalContext from '../context/GlobalContext';
@@ -15,6 +15,7 @@ export default function HomeScreen(props: any) {
     switch (global.History) {
         case HISTORY_STATUS.YES:
             return (
+                <ScrollView>
                 <View style={styles.container}>
                     <Text style={styles.title}>   Welcome! {global.CurrentUser.name}</Text>
                     <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
@@ -79,8 +80,10 @@ export default function HomeScreen(props: any) {
                     </TouchableOpacity>
 
                 </View>
+                </ScrollView>
             );
         default: return (
+            <ScrollView>
             <View style={styles.container}>
             <Text style={styles.title}>   Welcome! {global.CurrentUser.name}</Text>
 
@@ -126,6 +129,7 @@ export default function HomeScreen(props: any) {
                 </TouchableOpacity>
 
             </View>
+            </ScrollView>
         )
     }
 }

@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿﻿import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import lines from '../test.json';
 import EditScreenInfo from '../components/EditScreenInfo';
@@ -11,11 +11,11 @@ var index = 2;
 export default function HistoryScreen(props: any) {
     const [global, setGlobal] = React.useContext(GlobalContext);
     return (
-        <View style={styles.container}>
+        
+        <ScrollView endFillColor='white' 
+        >
+        <View style={styles.container} >
 
-            <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-            <ScrollView style={styles.con} contentContainerStyle={{ alignItems: 'center' }} 
-            >
                     {
                         global.tripHistory.map((element, index) => {
                             // cards.map(card    for card in cards:
@@ -51,16 +51,16 @@ export default function HistoryScreen(props: any) {
                                         
                                     
                                     </View>
+                                    
                                 </View>
+                                
                             );
                         })
                     }
 
-            </ScrollView>
-            <TouchableOpacity onPress={() => props.navigation.replace('HomeScreen')} style={styles.link}>
-                <Image source={require('../assets/images/home.png')} />
-            </TouchableOpacity>
+           
         </View>
+        </ScrollView>
     );
 }
 
@@ -132,8 +132,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#000000',
         fontWeight: '700',
-        marginLeft: 25,
-        marginRight: 25,
+        width:'50%'
     },
     icon: {
         marginLeft: 20,

@@ -6,7 +6,7 @@ import { LOGIN_STATUS } from '../constants/LoginState';
 
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { StyleSheet, AsyncStorage, Button, TextInput, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, AsyncStorage, Button, TextInput, ScrollView, TouchableOpacity, Image } from 'react-native';
 
 import { Input } from 'react-native-elements';
 
@@ -73,18 +73,21 @@ export default function LoginScreen({
     switch (loginState) {
         case LOGIN_STATUS.READY:
             return (
+                <ScrollView endFillColor='white'  keyboardShouldPersistTaps='always'>
                 <View style={styles.container}>
-                    <View  >
-                        <Image source={require('../assets/images/train.png')} />
-                    </View>
-                    <View style={styles.image} >
-                        <Image source={require('../assets/images/welcome.png')} />
+                    <View style={styles.topImg}>
+                        <View  >
+                            <Image source={require('../assets/images/train.png')} />
+                        </View>
+                        <View style={styles.image} >
+                            <Image source={require('../assets/images/welcome.png')} />
+                        </View>
                     </View>
                     <View style={styles.space}></View>
                     <View style={styles.body}>
                         <Input
-                            label='Username'
-                            placeholder='  Enter Username'
+                            label='Email'
+                            placeholder='  Enter Email'
                             leftIcon={{ type: 'font-awesome', name: 'user' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setName(text)}
@@ -103,33 +106,36 @@ export default function LoginScreen({
                         />
                     </View>
 
-                    <TouchableOpacity onPress={() => navigation.replace('Forgot')} style={styles.link}>
-                        <Text style={styles.right}>forgot?</Text>
+                    <TouchableOpacity onPress={() => navigation.replace('Forgot')} style={styles.link1}>
+                        <Text style={styles.right}>Forgot?</Text>
                     </TouchableOpacity>
                     <View style={styles.button}>
                         <Button background-color="#006666" title="Login" onPress={submitUser} />
                     </View>
 
-                    <Text>Don't have a account?</Text>
+                    <Text style={styles.account}>Don't have a account?</Text>
                     <TouchableOpacity onPress={() => navigation.replace('Sign')} style={styles.link}>
                         <Text style={styles.linkText}>Sign up</Text>
                     </TouchableOpacity>
                 </View>
+                </ScrollView>
             );
         case LOGIN_STATUS.FAILNAME:
             return (
+                <ScrollView endFillColor='white'  keyboardShouldPersistTaps='always'>
                 <View style={styles.container}>
+                    <View style={styles.topImg}>
                     <View  >
                         <Image source={require('../assets/images/train.png')} />
                     </View>
                     <View >
                         <Image source={require('../assets/images/welcome.png')} />
                     </View>
-                
+                    </View>
                     <View style={styles.body}>
                         <Input
-                            label='Username'
-                            placeholder='  Enter Username'
+                            label='Email'
+                            placeholder='  Enter Email'
                             leftIcon={{ type: 'font-awesome', name: 'user' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setName(text)}
@@ -150,33 +156,37 @@ export default function LoginScreen({
                         />
                     </View>
 
-                    <TouchableOpacity onPress={() => navigation.replace('Forgot')} style={styles.link}>
-                        <Text style={styles.right}>forgot?</Text>
+                    <TouchableOpacity onPress={() => navigation.replace('Forgot')} style={styles.link1}>
+                        <Text style={styles.right}>Forgot?</Text>
                     </TouchableOpacity>
                     <View style={styles.button}>
                         <Button background-color="#006666" title="Login" onPress={submitUser} />
                     </View>
 
-                    <Text>Don't have a account?</Text>
+                    <Text  style={styles.account} >Don't have a account?</Text>
                     <TouchableOpacity onPress={() => navigation.replace('Sign')} style={styles.link}>
                         <Text style={styles.linkText}>Sign up</Text>
                     </TouchableOpacity>
                 </View>
+                </ScrollView>
             );
         case LOGIN_STATUS.FAILPASS:
             return (
+                <ScrollView endFillColor='white'  keyboardShouldPersistTaps='always'>
                 <View style={styles.container}>
+                    <View style={styles.topImg}>
                     <View  >
                         <Image source={require('../assets/images/train.png')} />
                     </View>
                     <View >
                         <Image source={require('../assets/images/welcome.png')} />
                     </View>
+                    </View>
 
                     <View style={styles.body}>
                         <Input
-                            label='Username'
-                            placeholder='  Enter Username'
+                            label='Email'
+                            placeholder='  Enter Email'
                             leftIcon={{ type: 'font-awesome', name: 'user' }}
                             errorStyle={{ color: 'red' }}
                             onChangeText={text => setName(text)}
@@ -198,18 +208,19 @@ export default function LoginScreen({
                     </View>
 
                     
-                    <TouchableOpacity onPress={() => navigation.replace('Forgot')} style={styles.link}>
-                        <Text style={styles.right}>forgot?</Text>
+                    <TouchableOpacity onPress={() => navigation.replace('Forgot')} style={styles.link1}>
+                        <Text style={styles.right}>Forgot?</Text>
                     </TouchableOpacity>
                     <View style={styles.button}>
                         <Button background-color="#006666" title="Login" onPress={submitUser} />
                     </View>
 
-                    <Text>Don't have a account?</Text>
+                    <Text  style={styles.account} >Don't have a account?</Text>
                     <TouchableOpacity onPress={() => navigation.replace('Sign')} style={styles.link}>
                         <Text style={styles.linkText}>Sign up</Text>
                     </TouchableOpacity>
                 </View>
+                </ScrollView>
             );
         default: return (<Text>Login Success!</Text>)
     }
@@ -248,11 +259,13 @@ const styles = StyleSheet.create({
     },
     linkText: {
         fontSize: 16,
-        color: '#006666'
+        color: '#006666',
+        marginBottom:'5%',
+        textDecorationLine:'underline'
     },
     link: {
         marginTop: 15,
-        paddingVertical: 15,
+        paddingVertical: 3,
     },
     warn: {
         color: 'red',
@@ -265,13 +278,31 @@ const styles = StyleSheet.create({
     right: {
         textAlign: 'right',
         fontSize: 14,
-        color: '#006666'
+        color: '#006666',
+        textDecorationLine:'underline'
     },
     space:{
         paddingVertical:20,
     },
     image:{
         paddingBottom:20,
+    },
+    account:{
+        marginTop:'5%'
+    },
+    img:{
+        marginTop:10
+    },
+    topImg:{
+        height:'20%',
+        alignSelf:'center',
+        alignItems:'center',
+        marginVertical:'5%'
+    },
+    link1:{
+        alignSelf:'flex-end',
+        marginBottom:'5%',
+        marginRight:'10%'
     }
     
 });

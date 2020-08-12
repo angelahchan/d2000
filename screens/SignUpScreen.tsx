@@ -6,7 +6,7 @@ import { Text, View } from '../components/Themed';
 import { Input } from 'react-native-elements';
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { StyleSheet, AsyncStorage, Button, TextInput, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, AsyncStorage, Button, TextInput, Image, ScrollView, TouchableOpacity } from 'react-native';
 
 import GlobalContext from '../context/GlobalContext';
 import { RootStackParamList } from '../types';
@@ -52,18 +52,21 @@ export default function SignUpScreen({
     }
 
   return (
+    <ScrollView endFillColor='white'  keyboardShouldPersistTaps='always'>
       <View style={styles.container}>
+          <View style={styles.topImg}>
           <View  >
               <Image source={require('../assets/images/train.png')} />
           </View>
           <View  >
               <Image source={require('../assets/images/sign.png')} />
           </View>
+          </View>
 
           <View style={styles.body}>
               <Input
-                  label='Username'
-                  placeholder='  Enter Username'
+                  label='Email'
+                  placeholder='  Enter Email'
                   leftIcon={{ type: 'font-awesome', name: 'user' }}
                   errorStyle={{ color: 'red' }}
                   onChangeText={text => setName(text)}
@@ -95,11 +98,12 @@ export default function SignUpScreen({
           <View style={styles.button}>
               <Button title="SignUp" onPress={submitUser} />
           </View>
-          <Text>Already have an account?</Text>
+          <Text style={styles.account}>Already have an account?</Text>
           <TouchableOpacity onPress={() => navigation.replace('Login')} style={styles.link}>
               <Text style={styles.linkText}>Log in</Text>
           </TouchableOpacity>
       </View>
+      </ScrollView>
   );
 }
 
@@ -136,7 +140,8 @@ const styles = StyleSheet.create({
     },
     linkText: {
         fontSize: 16,
-        color: '#006666'
+        color: '#006666',
+        textDecorationLine:'underline'
     },
     link: {
         marginTop: 15,
@@ -144,5 +149,14 @@ const styles = StyleSheet.create({
     },
     body: {
         width: '80%'
+    },
+    account:{
+        marginTop:'5%'
+    },
+    topImg:{
+        height:'20%',
+        alignSelf:'center',
+        alignItems:'center',
+        marginVertical:'5%'
     },
 });
