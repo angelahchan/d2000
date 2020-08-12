@@ -12,6 +12,7 @@ import PaymentCard from '../components/PaymentCard'
 import PaymentBottom from '../components/PaymentBottom';
 
 
+
 export default function PaymentMiddle(props:any){
     let setCanPay = props.setCanPay;
     const [global, setGlobal] = React.useContext(GlobalContext);
@@ -113,6 +114,7 @@ export default function PaymentMiddle(props:any){
         balance={parseFloat(global.selectedCard.balance).toFixed(2)}/> }
         </View>
         <View style={styles.cardDetailsBox}>
+            <Text style={styles.currentTrip}>Current Trip</Text>
             <PaymentBottom/>
         </View>
         </>)
@@ -219,6 +221,12 @@ const styles = StyleSheet.create({
         height: 166,
         margin: 15,
         borderRadius:10,
+      },
+      currentTrip:{
+          width:'30%',
+        fontWeight:'bold',
+        color:COL.COLS.MAIN_COL,
+        fontSize:16
       }
     
 
