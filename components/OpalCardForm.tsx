@@ -5,6 +5,9 @@ import { Text, View,  } from '../components/Themed';
 import GlobalContext from '../context/GlobalContext';
 import { Input } from 'react-native-elements';
 import * as COL from '../constants/MainColors';
+import { Formik } from 'formik';
+import * as yup from 'yup';
+import { DrawerActionType } from '@react-navigation/native';
 
 
 export default function OpalCardForm(props:any){
@@ -12,16 +15,27 @@ export default function OpalCardForm(props:any){
 const [cardNumber, setCardNumber] = React.useState('');
 const [securityNumber, setSecurityNumber] = React.useState('');
 
+const cardSchema = yup.object({
+    cardNumber: yup.string()
+      .required()
+      .min(16)
+      .max(16),
+    security: yup.string()
+      .required()
+      .min(4)
+      .max(4),
+  });
 
-function submitCardDetails() {
+
+function submitCardDetails(values:any) {
         setGlobal({
         ...global,
         cards: [
             ...global.cards,
             {
             type: 'opal',
-            cardNumber: cardNumber,
-            security:securityNumber,
+            cardNumber: values.cardNumber,
+            security:values.security,
             balance:1000,
             selected:false
             },
@@ -32,29 +46,50 @@ function submitCardDetails() {
     props.navigation.navigate('PaymentScreen')
 }
     return (
-        <><Text style={styles.title}>Add a opal card</Text>
-  <View  style={styles.input}>
-  <Input
-    label='Opal card number'
-    placeholder='Opal card number'
-    leftIcon={{ type: 'font-awesome', name: 'credit-card' }}
-    keyboardType = 'numeric'
-    errorStyle={{ color: 'red' }}
-    onChangeText={text => setCardNumber(text)}
-  />
-    <Input
-      label='Security Code'
-      placeholder='4 digit security code'
-      leftIcon={{ type: 'font-awesome', name: 'credit-card' }}
-      keyboardType = 'numeric'
-      errorStyle={{ color: 'red' }}
-      onChangeText={text => setSecurityNumber(text)}
-    />
-    <View style={styles.button}>
-  <Button  title="Add Card" 
-  onPress={submitCardDetails} />
-  </View>
-  </View></>
+         <View style={styles.input}><Text style={styles.title}>Add an Opal card</Text>
+    <Formik
+        initialValues={{ cardNumber: '', security: ''}}
+        validationSchema={cardSchema}
+        onSubmit={(values, actions) => {
+          actions.resetForm(); 
+          submitCardDetails(values);
+        }}
+      >
+           {({ handleChange, handleBlur, handleSubmit, values,touched,errors }) => (
+              <View  >
+                            <Input 
+                label='Opal card number'
+                placeholder='16 digit Opal card number'
+                leftIcon={{ type: 'font-awesome', name: 'credit-card' }}
+                autoCompleteType='cc-number'
+                keyboardType = 'numeric'
+                errorStyle={{ color: 'red' }}
+                onChangeText={handleChange('cardNumber')}
+                errorMessage={touched.cardNumber && errors.cardNumber}
+                onBlur={handleBlur('cardNumber')} 
+                    value={values.cardNumber}
+                />
+                <Input
+                label='Security Number'
+                placeholder='4 digit Security Number'
+                leftIcon={{ type: 'font-awesome', name: 'credit-card' }}
+                autoCompleteType='cc-csc'
+                keyboardType = 'numeric'
+                errorStyle={{ color: 'red' }}
+                onChangeText={handleChange('security')}
+                errorMessage={touched.security && errors.security}
+                onBlur={handleBlur('security')} 
+                    value={values.security}
+                />
+                <View style={styles.button}>
+                <Button  title="Add Opal Card" onPress={handleSubmit}/>
+                </View>
+            </View>
+          
+        )}
+      </Formik>
+      </View>
+       
     )
 }
 
