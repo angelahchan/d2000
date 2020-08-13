@@ -141,8 +141,11 @@ class ScrollList extends React.Component {
               <View key={index++} style={[{top:70},styles.seg2]}>
                   <Text style={styles.grey}>{this.state.val.des}</Text>
               </View>
-              <Image style={{width:30,height:35,position:'absolute',right:80,top:40}} source={require('../assets/images/seat.png')}/>
-              <Text style={[styles.right,{position:'absolute',top:80,right:50}]}>{this.state.val.seats}%</Text>  
+              <View key={index++} style={[{top:90},styles.seg2]}>
+                  <Text style={styles.grey}>Estimated duration: {this.state.val.duration}</Text>
+              </View>
+              <Image style={{width:30,height:35,position:'absolute',right:40,top:40}} source={require('../assets/images/seat.png')}/>
+              <Text style={[styles.right,{position:'absolute',top:80,right:10}]}>{this.state.val.seats}%</Text>  
           </View>
     
       </View>
@@ -176,7 +179,7 @@ class MyPicker extends React.Component{
       <Text >Sort by :{val}</Text>
       </TouchableOpacity>
       
-      {pick.state.judge &&
+      {!!pick.state.judge &&
       <Picker  style={{width:200,borderWidth:1,opacity:1,backgroundColor:"white"}} onValueChange={(key) => setSortKey(key)}>
         <Picker.Item label="Time" value="time" />
         <Picker.Item label="Money" value="cost" />
@@ -270,8 +273,11 @@ function display(){
               <View key={index++} style={[{top:70},styles.seg2]}>
                   <Text style={styles.grey}>{element.des}</Text>
               </View>
-              <Image style={{width:30,height:35,position:'absolute',right:80,top:40}} source={require('../assets/images/seat.png')}/>
-              <Text style={[styles.right,{position:'absolute',top:80,right:50}]}>{element.seats}%</Text>  
+              <View key={index++} style={[{top:90},styles.seg2]}>
+                  <Text style={styles.grey}>Estimated duration: {element.duration}</Text>
+              </View>
+              <Image style={{width:30,height:35,position:'absolute',right:40,top:40}} source={require('../assets/images/seat.png')}/>
+              <Text style={[styles.right,{position:'absolute',top:80,right:10}]}>{element.seats}%</Text>  
           </View>
       </TouchableOpacity>
       );
