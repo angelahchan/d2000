@@ -5,28 +5,43 @@ import { Text, View,  } from '../components/Themed';
 import GlobalContext from '../context/GlobalContext';
 import { Input } from 'react-native-elements';
 import * as COL from '../constants/MainColors'
+import { Formik } from 'formik';
+import * as yup from 'yup';
 
 
 export default function OpalCardForm(props:any){
 /*
 no idea but probably typescript issue
 */
+const cardSchema = yup.object({
+    cardNumber: yup.string()
+      .required()
+      .min(15)
+      .max(16),
+    cvv: yup.string()
+      .required()
+      .min(3)
+      .max(4),
+    expiry: yup.date()
+      .required()
+      
+  });
 const [global, setGlobal] = React.useContext(GlobalContext);
 const [cardNumber, setCardNumber] = React.useState('');
 const [cvv, setCVV] = React.useState('');
 const [expiry, setExpiry] = React.useState('');
 const cardInput = React.createRef<Input>()
 const cvvInput = React.createRef<Input>()
-   function submitCardDetails() {
+   function submitCardDetails(values:any) {
     setGlobal({
         ...global,
         cards: [
             ...global.cards,
             {
             type: 'credit',
-            cardNumber: cardNumber,
-            expiry: expiry,
-            cvv:cvv,
+            cardNumber: values.cardNumber,
+            expiry: values.expiry,
+            cvv:values.cvv,
             balance:1000,
             selected:false
             },
@@ -34,53 +49,72 @@ const cvvInput = React.createRef<Input>()
     });
     setCardNumber('')
     setCVV('')
-    /*
-    typescript issue - I know this can't be null but beyond suppressing strict null checks idk what to do
-    */
-    cardInput.current.clear()
-    cvvInput.current.clear()
+
     if (Platform.OS == 'android')
         ToastAndroid.show("Added Credit Card", ToastAndroid.SHORT);
-    props.navigation.navigate('PaymentScreen')
+        props.navigation.navigate('PaymentScreen')
    }
     return (
-    <><Text style={styles.title}>Add a credit/debit card</Text>
-    <View  style={styles.input}>
-    <Input 
-      label='Credit/debit card number'
-      placeholder='Credit/debit card number'
-      leftIcon={{ type: 'font-awesome', name: 'credit-card' }}
-      autoCompleteType='cc-number'
-      keyboardType = 'numeric'
-      errorStyle={{ color: 'red' }}
-      onChangeText={text => setCardNumber(text)}
-      ref={cardInput}
-    />
-    <Input
-      label='CVV/CSC'
-      placeholder='CVV/CSC'
-      leftIcon={{ type: 'font-awesome', name: 'credit-card' }}
-      autoCompleteType='cc-csc'
-      keyboardType = 'numeric'
-      errorStyle={{ color: 'red' }}
-      value={cvv}
-      onChangeText={text => setCVV(text)}
-      ref={cvvInput}
-    />
-     <Input 
-      label='Expiry'
-      placeholder='13-08'
-      leftIcon={{ type: 'font-awesome', name: 'credit-card' }}
-      keyboardType = 'numeric'
-      errorStyle={{ color: 'red' }}
-      onChangeText={text => setExpiry(text)}
-      ref={cardInput}
-    />
-    <View style={styles.button}>
-    <Button  title="Add Card" onPress= {submitCardDetails}
-         />
-    </View>
-    </View></>
+    <View style={styles.input}><Text style={styles.title}>Add a credit/debit card</Text>
+    <Formik
+        initialValues={{ cardNumber: '', cvv: '', expiry: '' }}
+        validationSchema={cardSchema}
+        onSubmit={(values, actions) => {
+          actions.resetForm(); 
+          submitCardDetails(values);
+        }}
+      >
+           {({ handleChange, handleBlur, handleSubmit, values,touched,errors }) => (
+              <View  >
+                            <Input 
+                label='Credit/debit card number'
+                placeholder='Credit/debit card number'
+                leftIcon={{ type: 'font-awesome', name: 'credit-card' }}
+                autoCompleteType='cc-number'
+                keyboardType = 'numeric'
+                errorStyle={{ color: 'red' }}
+                onChangeText={handleChange('cardNumber')}
+                ref={cardInput}
+                errorMessage={touched.cardNumber && errors.cardNumber}
+                onBlur={handleBlur('cardNumber')} 
+                    value={values.cardNumber}
+                />
+                <Input
+                label='CVV/CSC'
+                placeholder='CVV/CSC'
+                leftIcon={{ type: 'font-awesome', name: 'credit-card' }}
+                autoCompleteType='cc-csc'
+                keyboardType = 'numeric'
+                errorStyle={{ color: 'red' }}
+                onChangeText={handleChange('cvv')}
+                errorMessage={touched.cvv && errors.cvv}
+                onBlur={handleBlur('cvv')} 
+                    value={values.cvv}
+                />
+                <Input 
+                label='Expiry'
+                placeholder='13-08'
+                leftIcon={{ type: 'font-awesome', name: 'credit-card' }}
+                keyboardType = 'numeric'
+                errorStyle={{ color: 'red' }}
+                onChangeText={handleChange('expiry')}
+                onBlur={handleBlur('expiry')} 
+                errorMessage={touched.expiry && errors.expiry}
+                value={values.expiry}
+                />
+                {touched.expiry &&
+                <Text style={styles.errorText}>{touched.expiry && errors.expiry}</Text>
+}
+                <View style={styles.button}>
+                <Button  title="Add Card" onPress={handleSubmit}/>
+                </View>
+            </View>
+          
+        )}
+      </Formik>
+      </View>
+  
+    
     )
 }
 
@@ -117,6 +151,12 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         alignItems: 'flex-start'// if you want to fill rows left to right
     },
+    errorText: {
+        color: 'crimson',
+        fontWeight: 'bold',
+        marginBottom:'3%',
+        textAlign: 'center',
+      },
     item: {
         width: '50%'
      } // is 50% of container width
