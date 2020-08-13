@@ -17,7 +17,10 @@ import AddSaleScreen  from '../screens/AddSaleScreen ';
 import NotifListScreen from '../screens/NotifListScreen';
 import PassScreen from '../screens/PassScreen';
 import * as COL from '../constants/MainColors'
-import {Button, TouchableOpacity} from 'react-native';
+import {Text,StyleSheet} from 'react-native';
+import { HeaderBackButton } from '@react-navigation/stack';
+import GlobalContext from '../context/GlobalContext'
+import * as PSTATE from '../constants/PaymentState'
 
 import {
     BottomTabParamList,
@@ -79,12 +82,30 @@ function TabBarIcon(props: { name: string; color: string }) {
 const HomeStack = createStackNavigator<HomeParamList>();
 
 function HomeNavigator() {
+  const [global, setGlobal] = React.useContext(GlobalContext)
+
+  let tripStatus = '';
+  switch (global.tripState){
+      case (PSTATE.PAYMENT_STATUS.FINISHED):
+          tripStatus = 'Trip Complete';
+          break;
+      case (PSTATE.PAYMENT_STATUS.IN_PROGRESS):
+          tripStatus = 'Trip In Progress';
+          break;
+      default:
+          tripStatus = 'Not In A Trip'
+  }
+  
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen
         name="HomeScreen"
         component={HomeScreen}
         options={{ headerTitle: 'Home',
+        headerRight: () => (
+          <Text style={styles.status}>{tripStatus}</Text>
+          
+        ),
         headerStyle: {
           backgroundColor:COL.COLS.MAIN_COL,
         },
@@ -96,6 +117,10 @@ function HomeNavigator() {
               name="HistoryScreen"
               component={HistoryScreen}
               options={{
+                headerRight: () => (
+                  <Text style={styles.status}>{tripStatus}</Text>
+                  
+                ),
                   headerTitle: 'History',
                   headerStyle: {
                       backgroundColor: COL.COLS.MAIN_COL,
@@ -142,12 +167,29 @@ function HomeNavigator() {
 const PaymentStack = createStackNavigator<PaymentParamList>();
 
 function PaymentNavigator() {
+  const [global, setGlobal] = React.useContext(GlobalContext)
+
+  let tripStatus = '';
+  switch (global.tripState){
+      case (PSTATE.PAYMENT_STATUS.FINISHED):
+          tripStatus = 'Trip Complete';
+          break;
+      case (PSTATE.PAYMENT_STATUS.IN_PROGRESS):
+          tripStatus = 'Trip In Progress';
+          break;
+      default:
+          tripStatus = 'Not In A Trip'
+  }
   return (
     <PaymentStack.Navigator>
       <PaymentStack.Screen
         name="PaymentScreen"
         component={PaymentScreen}
         options={{ headerTitle: 'Payment', 
+        headerRight: () => (
+          <Text style={styles.status}>{tripStatus}</Text>
+          
+        ),
         headerStyle: {
           backgroundColor:COL.COLS.MAIN_COL,
         },
@@ -160,7 +202,11 @@ function PaymentNavigator() {
       <PaymentStack.Screen
         name="AddCardScreen"
         component={AddCardScreen}
-        options={{ headerTitle: 'Add Payment', headerStyle: {
+        options={{ headerTitle: 'Add Payment',
+        headerRight: () => (
+          <Text style={styles.status}>{tripStatus}</Text>
+          
+        ), headerStyle: {
           backgroundColor:COL.COLS.MAIN_COL,
         },
         headerTitleStyle: {
@@ -170,7 +216,7 @@ function PaymentNavigator() {
       <PaymentStack.Screen
         name="PaymentCompleteScreen"
         component={PaymentCompleteScreen}
-        options={{ headerTitle: 'Payment Complete',
+        options={{ headerTitle: 'Trip Complete',
         headerStyle: {
           backgroundColor:COL.COLS.MAIN_COL,
         },
@@ -185,14 +231,32 @@ function PaymentNavigator() {
 const AccountStack = createStackNavigator<AccountParamList>();
 
 function AccountNavigator() {
+  const [global, setGlobal] = React.useContext(GlobalContext)
+
+  let tripStatus = '';
+  switch (global.tripState){
+      case (PSTATE.PAYMENT_STATUS.FINISHED):
+          tripStatus = 'Trip Complete';
+          break;
+      case (PSTATE.PAYMENT_STATUS.IN_PROGRESS):
+          tripStatus = 'Trip In Progress';
+          break;
+      default:
+          tripStatus = 'Not In A Trip'
+  }
     return (
         <AccountStack.Navigator>
                 <AccountStack.Screen
                 name="AccountScreen"
                 component={AccountScreen}
                 options={{ headerTitle: 'Account',
+                headerRight: () => (
+                  <Text style={styles.status}>{tripStatus}</Text>
+                  
+                ),
                 headerStyle: {
                   backgroundColor:COL.COLS.MAIN_COL,
+
                 },
                 headerTitleStyle: {
                   color: 'white',
@@ -208,6 +272,7 @@ function AccountNavigator() {
                     headerStyle: {
                         backgroundColor: COL.COLS.MAIN_COL,
                     },
+                    
                     headerTitleStyle: {
                         color: 'white',
                     },
@@ -236,12 +301,28 @@ function AccountNavigator() {
 const PlannerStack = createStackNavigator<PlannerParamList>();
 
 function PlannerNavigator() {
+  let tripStatus = '';
+  const [global, setGlobal] = React.useContext(GlobalContext)
+  switch (global.tripState){
+      case (PSTATE.PAYMENT_STATUS.FINISHED):
+          tripStatus = 'Trip Complete';
+          break;
+      case (PSTATE.PAYMENT_STATUS.IN_PROGRESS):
+          tripStatus = 'Trip In Progress';
+          break;
+      default:
+          tripStatus = 'Not In A Trip'
+  }
     return (
         <PlannerStack.Navigator>
             <PlannerStack.Screen
                 name="PlannerScreen"
                 component={PlannerScreen}
                 options={{ headerTitle: 'Planner',
+                headerRight: () => (
+                  <Text style={styles.status}>{tripStatus}</Text>
+                  
+                ),
                 headerStyle: {
                   backgroundColor:COL.COLS.MAIN_COL,
                 },
@@ -252,3 +333,11 @@ function PlannerNavigator() {
         </PlannerStack.Navigator>
     );
 }
+
+const styles = StyleSheet.create({
+  status: {
+        color:'white',
+        paddingRight:10
+   
+    }
+});

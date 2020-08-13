@@ -11,6 +11,8 @@ export default function PaymentScreen(props:any) {
   const [global, setGlobal] = React.useContext(GlobalContext)
   const [canPay, setCanPay] = React.useState(PSTATE.PAYMENT_STATUS.NOT_READY);
   const [savedCards, setSavedCards] = React.useState();
+
+
   if (global.tripState == PSTATE.PAYMENT_STATUS.FINISHED){
     props.navigation.navigate('PaymentCompleteScreen')
   }
@@ -39,6 +41,12 @@ const styles = StyleSheet.create({
     height: 1,
     width: '100%',
   },
+  banner: {
+    flex:0.1,
+    alignItems:'center',
+    overflow: 'hidden',
+    width:'90%'
 
+},
 
 });

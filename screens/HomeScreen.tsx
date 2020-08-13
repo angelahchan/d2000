@@ -5,12 +5,17 @@ import { Text, View, } from '../components/Themed';
 import GlobalContext from '../context/GlobalContext';
 import { HISTORY_STATUS } from '../constants/HistoryState ';
 import { BottomTabParamList, AccountParamList } from '../types';
+import * as PSTATE from '../constants/PaymentState';
 
 export default function HomeScreen(props: any) {
+    
 
 
 
     const [global, setGlobal] = React.useContext(GlobalContext);
+
+
+   
 
     switch (global.History) {
         case HISTORY_STATUS.YES:
