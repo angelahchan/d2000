@@ -171,38 +171,16 @@ class MyPicker extends React.Component{
     //     <TouchableOpacity onPress={displayP}>
     
     return (
-      <View style={styles.sortBy}>
-
-  
-    
-    <Text style={styles.textSort}>Sort By:</Text>
-      
-      <Picker  style={{width:'50%',backgroundColor:"white", alignSelf:'flex-end'}} onValueChange={(key) => {
-        console.log('the key is' + key)
-       
-
-         console.log(pick.state.judge)
-        setSortKey(key)
-       }}>
-        <Picker.Item label="Time" value="time" />
-        <Picker.Item label="Money" value="cost" />
-      </Picker>
-      
-    
-      
-      </View>
-    );
-    /*
-    return (
-      <View style={{position:'relative',width:100,height:30,zIndex:3000}}>
+      <View style={{width:100,height:30,zIndex:3000}}>
       <TouchableOpacity onPress={displayP}>
       <Text >Sort by :{val}</Text>
       </TouchableOpacity>
       
       {pick.state.judge &&
-      <Picker  style={{width:300,borderWidth:1,opacity:1,backgroundColor:"white"}} onValueChange={(key) => setSortKey(key)}>
+      <Picker  style={{width:200,borderWidth:1,opacity:1,backgroundColor:"white"}} onValueChange={(key) => setSortKey(key)}>
         <Picker.Item label="Time" value="time" />
         <Picker.Item label="Money" value="cost" />
+        <Picker.Item label="Seats" value="seat" />
       </Picker>
       
       }   
@@ -213,7 +191,9 @@ class MyPicker extends React.Component{
         style={[{right: 0, top: -5, position: 'absolute'}]}
         />
       </View>
-    );*/
+    );
+    /*
+    */
       
       }
   }
@@ -267,6 +247,9 @@ function display(){
       reg=temp.sort((a,b)=>parseInt(a.price)-parseInt(b.price));
       console.log('cost triggerd')
       break;
+      case "seat":
+        reg=temp.sort((a,b)=>parseInt(a.seats)-parseInt(b.seats));
+        break;
     default:
   }
   temp.forEach((element)=>{
