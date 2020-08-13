@@ -9,7 +9,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 
 
-export default function OpalCardForm(props:any){
+export default function CreditCardForm(props:any){
 /*
 no idea but probably typescript issue
 */
