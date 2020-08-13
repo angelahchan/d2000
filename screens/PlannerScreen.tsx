@@ -174,19 +174,16 @@ class MyPicker extends React.Component{
     //     <TouchableOpacity onPress={displayP}>
     
     return (
-      <View style={{width:100,height:30,zIndex:3000}}>
-      <TouchableOpacity onPress={displayP}>
+      <View>
       <Text >Sort by :{val}</Text>
-      </TouchableOpacity>
       
-      {!!pick.state.judge &&
+      
       <Picker  style={{width:200,borderWidth:1,opacity:1,backgroundColor:"white"}} onValueChange={(key) => setSortKey(key)}>
         <Picker.Item label="Time" value="time" />
         <Picker.Item label="Money" value="cost" />
         <Picker.Item label="Seats" value="seat" />
       </Picker>
       
-      }   
       <Icon
         name='sort-down'
         size={20}
