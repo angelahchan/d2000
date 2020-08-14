@@ -177,11 +177,10 @@ class MyPicker extends React.Component{
     //     <TouchableOpacity onPress={displayP}>
     console.log(this.state.key + "THe key for this state is this")
     return (
-      <View>
-      <Text >Sort by :{val}</Text>
+      <View style={styles.sortBy}>
+       <Text style={styles.textSort}>Sort By:</Text>
       
-      
-      <Picker  selectedValue={val}  style={{width:200,borderWidth:1,opacity:1,backgroundColor:"white"}} onValueChange={(key) => {
+      <Picker  selectedValue={val}  style={{width:'50%',backgroundColor:"white", alignSelf:'flex-end'}} onValueChange={(key) => {
         setSortKey(key);
        }}>
         <Picker.Item label="Time" value="time" />
@@ -189,12 +188,7 @@ class MyPicker extends React.Component{
         <Picker.Item label="Seats" value="seat" />
       </Picker>
       
-      <Icon
-        name='sort-down'
-        size={20}
-        color='black'
-        style={[{right: 0, top: -5, position: 'absolute'}]}
-        />
+    
       </View>
     );
     /*
