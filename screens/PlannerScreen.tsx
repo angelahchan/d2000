@@ -106,14 +106,15 @@ class ScrollList extends React.Component {
   
   render(){
     if(this.state.val==null)
-    return (<View style={{alignItems:'center',width:'90%',height:'100%'}}>
-      
+    return (
     
-      <ScrollView endFillColor='white' style={styles.con} contentContainerStyle = {{alignItems: 'center'}}>
+      <ScrollView endFillColor='#eee' style={styles.con} contentContainerStyle = {{alignItems: 'center'}}>
+        <View style={{alignItems:'center',width:'90%',height:'100%', backgroundColor:'#eee'}}>
+      
       <MyPicker />
           {this.state.innerList.map(function(ele: React.ReactNode){return ele})}
+          </View>
       </ScrollView>
-      </View>
     );
     else 
     return (
@@ -141,8 +142,11 @@ class ScrollList extends React.Component {
               <View key={index++} style={[{top:70},styles.seg2]}>
                   <Text style={styles.grey}>{this.state.val.des}</Text>
               </View>
-              <Image style={{width:30,height:35,position:'absolute',right:80,top:40}} source={require('../assets/images/seat.png')}/>
-              <Text style={[styles.right,{position:'absolute',top:80,right:50}]}>{this.state.val.seats}%</Text>  
+              <View key={index++} style={[{top:90},styles.seg2]}>
+                  <Text style={styles.grey}>Estimated duration: {this.state.val.duration}</Text>
+              </View>
+              <Image style={{width:30,height:35,position:'absolute',right:40,top:40}} source={require('../assets/images/seat.png')}/>
+              <Text style={[styles.right,{position:'absolute',top:80,right:10}]}>{this.state.val.seats}%</Text>  
           </View>
     
       </View>
@@ -171,19 +175,16 @@ class MyPicker extends React.Component{
     //     <TouchableOpacity onPress={displayP}>
     
     return (
-      <View style={{width:100,height:30,zIndex:3000}}>
-      <TouchableOpacity onPress={displayP}>
+      <View>
       <Text >Sort by :{val}</Text>
-      </TouchableOpacity>
       
-      {pick.state.judge &&
+      
       <Picker  style={{width:200,borderWidth:1,opacity:1,backgroundColor:"white"}} onValueChange={(key) => setSortKey(key)}>
         <Picker.Item label="Time" value="time" />
         <Picker.Item label="Money" value="cost" />
         <Picker.Item label="Seats" value="seat" />
       </Picker>
       
-      }   
       <Icon
         name='sort-down'
         size={20}
@@ -270,8 +271,11 @@ function display(){
               <View key={index++} style={[{top:70},styles.seg2]}>
                   <Text style={styles.grey}>{element.des}</Text>
               </View>
-              <Image style={{width:30,height:35,position:'absolute',right:80,top:40}} source={require('../assets/images/seat.png')}/>
-              <Text style={[styles.right,{position:'absolute',top:80,right:50}]}>{element.seats}%</Text>  
+              <View key={index++} style={[{top:90},styles.seg2]}>
+                  <Text style={styles.grey}>Duration: {element.duration} mins</Text>
+              </View>
+              <Image style={{width:30,height:35,position:'absolute',right:40,top:40, resizeMode:"contain"}} source={require('../assets/images/seat.png')}/>
+              <Text style={[styles.right,{position:'absolute',top:80,right:10}]}>{element.seats}%</Text>  
           </View>
       </TouchableOpacity>
       );
@@ -311,13 +315,13 @@ const styles = StyleSheet.create({
   con:{
     backgroundColor:'#eee',
     width:'100%',
-    marginBottom:40
+
   },
   seg:{
     width:250,
     height:150,
     margin:20,
-    backgroundColor:'#fff',
+    backgroundColor:'white',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
