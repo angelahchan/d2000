@@ -253,7 +253,7 @@ export class MapWrapper extends Component {
           markers.push(<Marker coordinate={startPos}><Image source={require('../assets/images/start.png')} style={{ width:30,height:32 }}/></Marker>);
           markers.push(<Marker coordinate={desPos}><Image source={require('../assets/images/des.jpg')} style={{ width:25,height:30 }}/></Marker>);
           return (
-              <MapView style={{height:500,width:500}}  initialRegion={{
+              <MapView style={{height:300, width:300}}  initialRegion={{
                 latitude: -33.926028,
                 longitude: 151.231118,latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,}}>

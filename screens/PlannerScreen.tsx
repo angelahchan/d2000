@@ -118,11 +118,12 @@ class ScrollList extends React.Component {
     );
     else 
     return (
+      <ScrollView>
       <View style={{alignItems: 'center',padding:'10%',backgroundColor:'#eee',paddingTop:0}}>
         <TouchableOpacity onPress={()=>this.setTag(null)}>
           <Image style={styles.back} source={require('../assets/images/back.png')}/>
         </TouchableOpacity>
-        <View style={{height:'50%',width:'50%'}}>
+        <View style={{height:300,width:300, backgroundColor:'white'}}>
           <MapWrapper start={this.state.val.start} des={this.state.val.des} id={this.state.val.line} startPos={this.state.val.startPos} desPos={this.state.val.desPos}></MapWrapper>
         </View>
         
@@ -150,6 +151,7 @@ class ScrollList extends React.Component {
           </View>
     
       </View>
+      </ScrollView>
     );
   }
 }
