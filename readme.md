@@ -27,3 +27,7 @@ expo start --no-dev --minify
 Once this loads, make sure your Android device which you have USB Debugging enabled on is plugged into your computer. It must also be unlocked.
 
 Next, click "Run on Android Device/Emulator". The prototype app should start on your device.
+
+iOS:
+
+Only try this if you absolutely do not have an Android device to test with! Our team members have reported that they can access the prototype by downloading the Expo app from the App Store and scanning the QR code that it generates - however, some of our team have tried this and it did not work on their devices - we recommend using the method above!
