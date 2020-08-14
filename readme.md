@@ -1,6 +1,10 @@
 To Run:
 
-This project will ONLY WORK WITH Android. It will not run in browser!
+This project will ONLY WORK WITH Android. It will not run in browser! iOS isn't reccommended. 
+
+Go to https://expo.io/@angelahchan/d2000  and scan the QR Code using the expo app: https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en
+
+If this doesn't work, you can download our code and run it manually.
 
 Pre-Install:
 
