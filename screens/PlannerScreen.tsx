@@ -136,15 +136,14 @@ class ScrollList extends React.Component {
                   <Text style={styles.grey}>{"Start at " + this.state.val.arrive}</Text>
               </View>
               <View key={index++} style={[{top:50},styles.seg2]}>
-              <Image source={require('../assets/images/start-1.png')} />
                   <Text style={styles.grey}>{this.state.val.start}</Text>
               </View>
 
-              <View key={index++} style={[{top:70},styles.seg2]}>
+              <View key={index++} style={[{top:70},styles.seg2, ]}>
                   <Text style={styles.grey}>{this.state.val.des}</Text>
               </View>
               <View key={index++} style={[{top:90},styles.seg2]}>
-                  <Text style={styles.grey}>Estimated duration: {this.state.val.duration}</Text>
+                  <Text style={styles.grey}>Estimated duration: {this.state.val.duration} mins</Text>
               </View>
               <Image style={{width:30,height:35,position:'absolute',right:40,top:40}} source={require('../assets/images/seat.png')}/>
               <Text style={[styles.right,{position:'absolute',top:80,right:10}]}>{this.state.val.seats}%</Text>  
@@ -172,16 +171,19 @@ class MyPicker extends React.Component{
     pick=this;
     this.state={key:'time',judge:false}
   }
+  //const [selectedValue, setSelectedValue] = React.useState("time");
   render(){
     //area to position the sort by dropdown 
     //     <TouchableOpacity onPress={displayP}>
-    
+    console.log(this.state.key + "THe key for this state is this")
     return (
       <View>
       <Text >Sort by :{val}</Text>
       
       
-      <Picker  style={{width:200,borderWidth:1,opacity:1,backgroundColor:"white"}} onValueChange={(key) => setSortKey(key)}>
+      <Picker  selectedValue={val}  style={{width:200,borderWidth:1,opacity:1,backgroundColor:"white"}} onValueChange={(key) => {
+        setSortKey(key);
+       }}>
         <Picker.Item label="Time" value="time" />
         <Picker.Item label="Money" value="cost" />
         <Picker.Item label="Seats" value="seat" />
@@ -248,7 +250,6 @@ function display(){
       break;
     case "cost":
       reg=temp.sort((a,b)=>parseInt(a.price)-parseInt(b.price));
-      console.log('cost triggerd')
       break;
       case "seat":
         reg=temp.sort((a,b)=>parseInt(a.seats)-parseInt(b.seats));
